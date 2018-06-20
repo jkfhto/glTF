@@ -6,10 +6,10 @@
 
 glTF™ (GL Transmission Format) is a royalty-free specification for the efficient transmission and loading of 3D scenes and models by applications. glTF minimizes both the size of 3D assets, and the runtime processing needed to unpack and use those assets. glTF defines an extensible, common publishing format for 3D content tools and services that streamlines authoring workflows and enables interoperable use of content across the industry.
 
-## Specification
+## Specification 规范
 
-* [glTF Specification, 2.0](specification/2.0/README.md) (or [all specification versions](specification/README.md))
-* [glTF Extension Registry](extensions/README.md)
+* [glTF Specification, 2.0](specification/2.0/README.md) (or [all specification versions](specification/README.md))glTF2.0规范，以及其他版本规范
+* [glTF Extension Registry](extensions/README.md) glTF扩展注册表
 
 Please provide spec feedback and community updates by submitting [issues](https://github.com/KhronosGroup/glTF/issues).  For quick questions, use [gitter](https://gitter.im/KhronosGroup/glTF).
 
