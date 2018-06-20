@@ -190,7 +190,7 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 
 | Tool | Status | Description |
 |------|--------|-------------|
-| [gltf-viewer](https://github.com/avgp/gltf-viewer) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Web component to display glTF models on a website |  在网站上显示glTF模型的Web组件
+| [gltf-viewer](https://github.com/avgp/gltf-viewer) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Web component to display glTF models on a website   在网站上显示glTF模型的Web组件|  
 | [minimal-gltf-loader](https://github.com/shrekshao/minimal-gltf-loader) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | A minimal, engine-agnostic JavaScript glTF Loader, with a raw WebGL 2 renderer example |
 | [THREE.GLTFLoader](https://threejs.org/docs/#examples/loaders/GLTFLoader) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Loads glTF assets into a three.js scene. |
 | [THREE.GLTFExporter](https://threejs.org/docs/#examples/exporters/GLTFExporter) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Exports three.js scenes to a glTF asset |
