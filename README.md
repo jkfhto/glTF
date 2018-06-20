@@ -9,9 +9,11 @@ glTF™ (GL Transmission Format) is a royalty-free specification for the efficie
 ## Specification 规范
 
 * [glTF Specification, 2.0](specification/2.0/README.md) (or [all specification versions](specification/README.md))glTF2.0规范，以及其他版本规范
-* [glTF Extension Registry](extensions/README.md) glTF扩展注册表
+* [glTF Extension Registry](extensions/README.md) glTF扩展
 
 Please provide spec feedback and community updates by submitting [issues](https://github.com/KhronosGroup/glTF/issues).  For quick questions, use [gitter](https://gitter.im/KhronosGroup/glTF).
+
+请通过提交[问题]提供规范反馈和社区更新。对于快速问题，请使用[gitter]
 
 ## Quickstart
 
