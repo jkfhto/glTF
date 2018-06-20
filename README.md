@@ -13,11 +13,11 @@ glTF™ (GL Transmission Format) is a royalty-free specification for the efficie
 
 Please provide spec feedback and community updates by submitting [issues](https://github.com/KhronosGroup/glTF/issues).  For quick questions, use [gitter](https://gitter.im/KhronosGroup/glTF).
 
-请通过提交[问题]提供规范反馈和社区更新。对于快速问题，请使用[gitter]
+请通过提交[问题]提供规范反馈和社区更新。请使用[gitter]快速寻找问题，
 
 ## Quickstart
 
-### Overview
+### Overview  概括
 
 <p align="center">
 <a href="specification/2.0/figures/gltfOverview-2.0.0a.png"><img src="specification/2.0/figures/gltfOverview-2.0.0a-small.png" /></a>
