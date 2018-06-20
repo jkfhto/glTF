@@ -31,19 +31,19 @@ Please provide spec feedback and community updates by submitting [issues](https:
 * [Sample models](https://github.com/KhronosGroup/glTF-Sample-Models) for testing runtime engines and content pipeline tools.  用于测试渲染引擎和渲染管道的工具。
    * [glTF-Asset-Generator](https://github.com/bghgary/glTF-Asset-Generator) provides assets for robust importer validation.   提高接口确保gltf文件的正确性
    * [100,000+ models](https://sketchfab.com/models?features=downloadable&sort_by=-likeCount) under Creative Commons license on Sketchfab (check license for individual models).
-* [Drag-and-drop validator](http://github.khronos.org/glTF-Validator/) for verifying correctness of existing glTF files.
-* [glTF Tutorial Series](https://github.com/KhronosGroup/glTF-Tutorials/blob/master/gltfTutorial/README.md)
+* [Drag-and-drop validator](http://github.khronos.org/glTF-Validator/) for verifying correctness of existing glTF files. 用于验证现有glTF文件的正确性
+* [glTF Tutorial Series](https://github.com/KhronosGroup/glTF-Tutorials/blob/master/gltfTutorial/README.md) glTF系列教程
 
-### For artists
+### For artists  面向艺术家
 
-[Blender exporter](https://github.com/KhronosGroup/glTF-Blender-Exporter) for creating and converting models with glTF 2.0.
+[Blender exporter](https://github.com/KhronosGroup/glTF-Blender-Exporter) for creating and converting models with glTF 2.0.  用于创建和转换glTF 2.0模型
 
-Preview tools:
+Preview tools:  预览工具
   - [Sketchfab](https://sketchfab.com/)
   - [BabylonJS Sandbox](https://www.babylonjs.com/sandbox/)
   - [Drag-and-drop viewer](https://gltf-viewer.donmccurdy.com/)
 
-## Contents
+## Contents  目录
 
 * [glTF Tools](#gltf-tools)
   * [Converters and Exporters](#converters-and-exporters)
@@ -65,7 +65,7 @@ Preview tools:
 
 ## glTF Tools
 
-### Converters and Exporters
+### Converters and Exporters  模型转换和建模工具
 
 | Tool | Input | Output | Description |
 |------|-------|--------|-------------|
@@ -92,7 +92,7 @@ Preview tools:
 | [Docker collada2gltf](https://hub.docker.com/r/winsent/collada2gltf/) | `COLLADA` | ![status](https://img.shields.io/badge/glTF-%3F-lightgrey.svg?style=flat) | Docker container for Python web service, built on COLLADA2GLTF |
 | [collada2gltf-web-service](https://github.com/AnalyticalGraphicsInc/collada2gltf-web-service) | `COLLADA` | ![status](https://img.shields.io/badge/glTF-%3F-lightgrey.svg?style=flat) | Node.js web service, built on COLLADA2GLTF |
 
-### Optimizers
+### Optimizers  优化工具
 
 | Tool | Status | Description |
 |------|--------|-------------|
@@ -104,20 +104,20 @@ Preview tools:
 | [binary-gltf-utils](https://github.com/Qantas94Heavy/binary-gltf-utils) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Node.js tool to convert glTF to Binary glTF |
 
 
-### Validators
+### Validators  验证工具
 
 | Tool | Status | Description |
 |------|--------|-------------|
 | [glTF Validator](https://github.com/KhronosGroup/glTF-Validator) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Official command-line and drag-and-top tool to validate glTF assets against the specification |
 
-### Editors and Modeling Tools
+### Editors and Modeling Tools  编辑和建模工具
 
 | Tool | Status | Description |
 |------|--------|-------------|
 | [glTF VSCode Extension](https://marketplace.visualstudio.com/items?itemName=cesium.gltf-vscode) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Cross-platform JSON schema validation and previews for glTF 2.0 and 1.0 |
 | [Blender Importer](https://github.com/ksons/gltf-blender-importer) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Blender importer for glTF 2.0 (alpha) |
 
-### Viewers and Debugging
+### Viewers and Debugging  预览和调试工具
 
 | Tool | Status | Description |
 |------|--------|-------------|
@@ -129,7 +129,7 @@ Preview tools:
 | [VirtualGIS Viewer](https://www.virtualgis.io/gltfviewer/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Cesium-based glTF viewer. |
 | [GLTFQuickLook](https://github.com/magicien/GLTFQuickLook) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | macOS QuickLook plugin for glTF files |
 
-### Applications
+### Applications  应用
 
 | Application | Status | Description |
 |-------------|--------|-------------|
@@ -146,11 +146,11 @@ Preview tools:
 | [Archilogic](https://spaces.archilogic.com/blog/gltf-import-export) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Web-based 3D platform for architecture and interiors |
 | [Plex.Earth](https://plexearth.com/) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Connects AutoCAD with Google Earth and the Real World. |
 
-### Loaders and Viewers
+### Loaders and Viewers  加载工具和预览工具
 
-#### WebGL Engines
+#### WebGL Engines  WebGL引擎
 
-To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/gltf-test).
+To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/gltf-test).  要比较基于WebGL的glTF加载器，请参阅gltf-test
 
 | Engine | Status | Scope | Related |
 |--------|--------|-------|-------------|
@@ -170,13 +170,13 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 | [xml3d.js](http://xml3d.org) ([loader](https://github.com/xml3d/xml3d-gltf-plugin)) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Geometry and materials | |
 | [X3DOM](http://x3dom.org/) ([loader](https://github.com/x3dom/x3dom/blob/master/src/util/glTF/glTFLoader.js)) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Geometry and materials | |
 
-#### WebGL Sample Code
+#### WebGL Sample Code  WebGL示例代码
 
 | Sample | Status | Description |
 |--------|--------|-------------|
 | [Sample glTF loader with WebGL PBR shader](http://github.khronos.org/glTF-WebGL-PBR/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Engine-agnostic reference implementation for PBR shading with WebGL in glTF 2.0 ([source code](https://github.com/KhronosGroup/glTF-WebGL-PBR)) |
 
-#### Game Engines
+#### Game Engines  游戏引擎
 
 | Tool | Status | Description |
 |------|--------|-------------|
@@ -184,13 +184,13 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 | [Godot Game Engine](https://godotengine.org/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Godot 3.0 fully supports glTF import |
 | [jMonkeyEngine](http://jmonkeyengine.org/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | jME 3.2 supports glTF 2.0 |
 
-### Languages
+### Languages  语言
 
 #### JavaScript / Node.js
 
 | Tool | Status | Description |
 |------|--------|-------------|
-| [gltf-viewer](https://github.com/avgp/gltf-viewer) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Web component to display glTF models on a website |
+| [gltf-viewer](https://github.com/avgp/gltf-viewer) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Web component to display glTF models on a website |  在网站上显示glTF模型的Web组件
 | [minimal-gltf-loader](https://github.com/shrekshao/minimal-gltf-loader) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | A minimal, engine-agnostic JavaScript glTF Loader, with a raw WebGL 2 renderer example |
 | [THREE.GLTFLoader](https://threejs.org/docs/#examples/loaders/GLTFLoader) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Loads glTF assets into a three.js scene. |
 | [THREE.GLTFExporter](https://threejs.org/docs/#examples/exporters/GLTFExporter) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Exports three.js scenes to a glTF asset |
