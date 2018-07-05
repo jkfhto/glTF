@@ -37,65 +37,65 @@ Copyright (C) 2013-2017 The Khronos Group Inc. All Rights Reserved. glTF is a tr
 # Contents  内容
 
 * [Introduction](#introduction)  介绍
-  * [Motivation](#motivation)
-  * [glTF Basics](#gltf-basics)
-  * [Design Goals](#design-goals)
-  * [Versioning](#versioning)
-  * [File Extensions and MIME Types](#file-extensions-and-mime-types)
-  * [JSON Encoding](#json-encoding)
+  * [Motivation](#motivation)  动机
+  * [glTF Basics](#gltf-basics)  glTF基础知识
+  * [Design Goals](#design-goals)  设计目的
+  * [Versioning](#versioning)  版本
+  * [File Extensions and MIME Types](#file-extensions-and-mime-types)  文件扩展名和MIME类型
+  * [JSON Encoding](#json-encoding)  JSON编码
   * [URIs](#uris)
-* [Concepts](#concepts)
-  * [Asset](#asset)
-  * [Indices and Names](#indices-and-names)
-  * [Coordinate System and Units](#coordinate-system-and-units)
-  * [Scenes](#scenes)
-    * [Nodes and Hierarchy](#nodes-and-hierarchy)
-    * [Transformations](#transformations)
-  * [Binary Data Storage](#binary-data-storage)
-    * [Buffers and Buffer Views](#buffers-and-buffer-views)
-      * [GLB-stored Buffer](#glb-stored-buffer)
-    * [Accessors](#accessors)
-        * [Floating-Point Data](#floating-point-data)
-        * [Accessor Element Size](#accessor-element-size)
-        * [Accessors Bounds](#accessors-bounds)
-        * [Sparse Accessors](#sparse-accessors)
-    * [Data Alignment](#data-alignment)   
-  * [Geometry](#geometry)
-    * [Meshes](#meshes)
-      * [Tangent-space definition](#tangent-space-definition)
-      * [Morph Targets](#morph-targets)
-    * [Skins](#skins)
-      * [Skinned Mesh Attributes](#skinned-mesh-attributes)
-      * [Joint Hierarchy](#joint-hierarchy)
-    * [Instantiation](#instantiation)
-  * [Texture Data](#texture-data)
-    * [Textures](#textures)
-    * [Images](#images)
-    * [Samplers](#samplers)
-  * [Materials](#materials)
-    * [Metallic-Roughness Material](#metallic-roughness-material)
-    * [Additional Maps](#additional-maps)
-    * [Alpha Coverage](#alpha-coverage)
-    * [Double Sided](#double-sided)
-    * [Default Material](#default-material)
-  * [Cameras](#cameras)
-    * [Projection Matrices](#projection-matrices)
-  * [Animations](#animations)
-  * [Specifying Extensions](#specifying-extensions)
-* [GLB File Format Specification](#glb-file-format-specification)
-  * [File Extension](#file-extension)
-  * [MIME Type](#mime-type)
-  * [Binary glTF Layout](#binary-gltf-layout)
+* [Concepts](#concepts)  概念
+  * [Asset](#asset)  声明
+  * [Indices and Names](#indices-and-names)  索引和名称
+  * [Coordinate System and Units](#coordinate-system-and-units)  坐标系和单位
+  * [Scenes](#scenes)  场景
+    * [Nodes and Hierarchy](#nodes-and-hierarchy)  节点和层次结构
+    * [Transformations](#transformations)  矩阵变换
+  * [Binary Data Storage](#binary-data-storage)  二进制数据存储
+    * [Buffers and Buffer Views](#buffers-and-buffer-views)  缓冲区和缓冲区视图
+      * [GLB-stored Buffer](#glb-stored-buffer)  
+    * [Accessors](#accessors)  访问器
+        * [Floating-Point Data](#floating-point-data)  浮点数据
+        * [Accessor Element Size](#accessor-element-size)  访问器元件尺寸
+        * [Accessors Bounds](#accessors-bounds)  访问器界限
+        * [Sparse Accessors](#sparse-accessors)  稀疏存取器
+    * [Data Alignment](#data-alignment)     数据对齐
+  * [Geometry](#geometry)  几何
+    * [Meshes](#meshes)  网格
+      * [Tangent-space definition](#tangent-space-definition)  切线空间定义
+      * [Morph Targets](#morph-targets)  变形目标
+    * [Skins](#skins)  皮肤
+      * [Skinned Mesh Attributes](#skinned-mesh-attributes)  蒙皮网格属性
+      * [Joint Hierarchy](#joint-hierarchy)  关节层次结构
+    * [Instantiation](#instantiation)  实例化
+  * [Texture Data](#texture-data)  纹理数据
+    * [Textures](#textures)  纹理
+    * [Images](#images)  图片
+    * [Samplers](#samplers)  采样
+  * [Materials](#materials)  材质
+    * [Metallic-Roughness Material](#metallic-roughness-material) 金属粗糙度材料
+    * [Additional Maps](#additional-maps)  附加贴图
+    * [Alpha Coverage](#alpha-coverage)  Alpha覆盖范围
+    * [Double Sided](#double-sided)  两面性
+    * [Default Material](#default-material)  默认材料
+  * [Cameras](#cameras)  相机
+    * [Projection Matrices](#projection-matrices)  投影矩阵
+  * [Animations](#animations)  动画
+  * [Specifying Extensions](#specifying-extensions)  指定扩展名
+* [GLB File Format Specification](#glb-file-format-specification)  GLB文件格式规范
+  * [File Extension](#file-extension)  文件扩展名
+  * [MIME Type](#mime-type)  MIME类型
+  * [Binary glTF Layout](#binary-gltf-layout)  二进制glTF布局
     * [Header](#header)
     * [Chunks](#chunks)
-      * [Structured JSON Content](#structured-json-content)
-      * [Binary Buffer](#binary-buffer)
-* [Properties Reference](#properties-reference)
-* [Acknowledgments](#acknowledgments)
-* [Appendix A: Tangent Space Recalculation](#appendix-a-tangent-space-recalculation)
-* [Appendix B: BRDF Implementation](#appendix-b-brdf-implementation)
-* [Appendix C: Spline Interpolation](#appendix-c-spline-interpolation)
-* [Appendix D: Full Khronos Copyright Statement](#appendix-d-full-khronos-copyright-statement)
+      * [Structured JSON Content](#structured-json-content)  结构化JSON内容
+      * [Binary Buffer](#binary-buffer)  二进制缓冲区
+* [Properties Reference](#properties-reference)  属性参考
+* [Acknowledgments](#acknowledgments)  致谢
+* [Appendix A: Tangent Space Recalculation](#appendix-a-tangent-space-recalculation)  附录A：切线空间重新计算
+* [Appendix B: BRDF Implementation](#appendix-b-brdf-implementation)  附录B：BRDF实施
+* [Appendix C: Spline Interpolation](#appendix-c-spline-interpolation)  附录C：样条插值
+* [Appendix D: Full Khronos Copyright Statement](#appendix-d-full-khronos-copyright-statement)  附录D：完整的Khronos版权声明
 
 # Introduction
 
