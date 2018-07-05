@@ -113,15 +113,15 @@ With the advent of mobile- and web-based 3D computing, new classes of applicatio
 
 glTF solves these problems by providing a vendor- and runtime-neutral format that can be loaded and rendered with minimal processing. The format combines an easily parseable JSON scene description with one or more binary files representing geometry, animations, and other rich data. Binary data is stored in such a way that it can be loaded directly into GPU buffers without additional parsing or other manipulation. Using this approach, glTF is able to faithfully preserve full hierarchical scenes with nodes, meshes, cameras, materials, and animations, while enabling efficient delivery and fast loading.<br>glTF通过提供供应商和运行时中立格式解决了这些问题，可以最少的处理加载和渲染。该格式将易于解析的JSON场景描述与一个或多个表示几何，动画和其他丰富数据的二进制文件相结合。二进制数据以这样的方式存储，即它可以直接加载到GPU缓冲区中而无需额外的解析或其他操作。使用这种方法，glTF能够完整地保存具有节点，网格，相机，材料和动画的完整分层场景，同时实现高效传输和快速加载
 
-## glTF Basics
+## glTF Basics  glTF基础知识
 
-*This section is non-normative.*
+*This section is non-normative.*  本节不具有规范性
 
-glTF assets are JSON files plus supporting external data. Specifically, a glTF asset is represented by:
+glTF assets are JSON files plus supporting external data. Specifically, a glTF asset is represented by:<br>glTF文件是由JSON文件以及外部数据组成。具体而言，glTF文件由以下表示：
 
-* A JSON-formatted file (`.gltf`) containing a full scene description: node hierarchy, materials, cameras, as well as descriptor information for meshes, animations, and other constructs
-* Binary files (`.bin`) containing geometry and animation data, and other buffer-based data
-* Image files (`.jpg`, `.png`) for textures
+* A JSON-formatted file (`.gltf`) containing a full scene description: node hierarchy, materials, cameras, as well as descriptor information for meshes, animations, and other constructs<br>包含完整场景描述的JSON格式文件（.gltf）：节点层次结构，材质，相机以及网格，动画和其他构造的描述符信息
+* Binary files (`.bin`) containing geometry and animation data, and other buffer-based data<br>包含几何和动画数据的二进制文件（.bin）以及其他基于缓冲区的数据
+* Image files (`.jpg`, `.png`) for textures 纹理的图像文件（.jpg，.png）
 
 Assets defined in other formats, such as images, may be stored in external files referenced via URI, stored side-by-side in GLB container, or embedded directly into the JSON using [data URIs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
 
