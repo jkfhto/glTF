@@ -411,9 +411,9 @@ Binary blobs allow efficient creation of GPU buffers and textures since they req
 
 Buffer data is little endian.
 
-All buffers are stored in the asset's `buffers` array.
+All buffers are stored in the asset's `buffers` array.<br>所有buffers都存储在gltf文件的`buffers`数组中
 
-The following example defines a buffer. The `byteLength` property specifies the size of the buffer file. The `uri` property is the URI to the buffer data. Buffer data may also be stored within the glTF file as base64-encoded data and reference via data URI.
+The following example defines a buffer. The `byteLength` property specifies the size of the buffer file. The `uri` property is the URI to the buffer data. Buffer data may also be stored within the glTF file as base64-encoded data and reference via data URI.<br>以下示例定义了一个缓冲区。 byteLength属性指定缓冲区文件的大小。 uri属性是缓冲区数据的URI。缓冲区数据也可以作为base64编码的数据存储在glTF文件中，并通过数据URI进行引用
 
 ```json
 {
@@ -426,13 +426,13 @@ The following example defines a buffer. The `byteLength` property specifies the 
 }
 ```
 
-A *bufferView* represents a subset of data in a buffer, defined by an integer offset into the buffer specified in the `byteOffset` property and a `byteLength` property to specify length of the buffer view.
+A *bufferView* represents a subset of data in a buffer, defined by an integer offset into the buffer specified in the `byteOffset` property and a `byteLength` property to specify length of the buffer view.<br>bufferView表示buffer中的数据子集，由byteOffset属性中的整数偏移量和byteLength属性指定缓冲区视图的长度定义
 
-When a buffer view contain vertex indices or attributes, they must be its only content, i.e., it's invalid to have more than one kind of data in the same buffer view.
+When a buffer view contain vertex indices or attributes, they must be its only content, i.e., it's invalid to have more than one kind of data in the same buffer view.<br>当缓冲区视图包含顶点索引或属性时，它们必须是唯一的内容，即在同一缓冲区视图中具有多种数据是无效的
 
-> **Implementation Note:** This allows a runtime to upload buffer view data to the GPU without any additional processing. When `bufferView.target` is defined, runtime must use it to determine data usage, otherwise it could be inferred from mesh' accessor objects.
+> **Implementation Note:** This allows a runtime to upload buffer view data to the GPU without any additional processing. When `bufferView.target` is defined, runtime must use it to determine data usage, otherwise it could be inferred from mesh' accessor objects.<br>实现注意：这允许应用程序运行时将缓冲区视图数据上传到GPU而无需任何其他处理。当定义`bufferView.target`时，应用程序运行时必须使用它来确定数据使用情况，否则可以从网格的访问者对象中推断出它
 
-The following example defines two buffer views: the first is an ELEMENT_ARRAY_BUFFER, which holds the indices for an indexed triangle set, and the second is an ARRAY_BUFFER that holds the vertex data for the triangle set.
+The following example defines two buffer views: the first is an ELEMENT_ARRAY_BUFFER, which holds the indices for an indexed triangle set, and the second is an ARRAY_BUFFER that holds the vertex data for the triangle set.<br>下面的示例定义了两个缓冲区视图：第一个是ELEMENT_ARRAY_BUFFER，它保存索引三角形集的索引，第二个是保存三角形集的顶点数据的ARRAY_BUFFER
 
 ```json
 {
@@ -454,17 +454,17 @@ The following example defines two buffer views: the first is an ELEMENT_ARRAY_BU
 }
 ```
 
-Buffer view could have `byteStride` property. It means byte-distance between consequential elements. This field  is defined only for buffer views that contain vertex attributes.
+Buffer view could have `byteStride` property. It means byte-distance between consequential elements. This field  is defined only for buffer views that contain vertex attributes.<br>缓冲区视图可以具有byteStride属性。它意味着相邻元素之间的字节距离。仅为包含顶点属性的缓冲区视图定义此字段
 
-Buffers and buffer views do not contain type information. They simply define the raw data for retrieval from the file. Objects within the glTF file (meshes, skins, animations) access buffers or buffer views via *accessors*.
+Buffers and buffer views do not contain type information. They simply define the raw data for retrieval from the file. Objects within the glTF file (meshes, skins, animations) access buffers or buffer views via *accessors*.<br>缓冲区和缓冲区视图不包含类型信息。他们只是定义从文件中检索的原始数据。 glTF文件中的对象（网格，外观，动画）通过*accessors*访问缓冲区或缓冲区视图
 
 #### GLB-stored Buffer
 
-glTF asset could use GLB file container to pack all resources into one file. glTF Buffer referring to GLB-stored `BIN` chunk, must have `buffer.uri` property undefined, and it must be the first element of `buffers` array; byte length of `BIN` chunk could be up to 3 bytes bigger than JSON-defined `buffer.byteLength` to satisfy GLB padding requirements.
+glTF asset could use GLB file container to pack all resources into one file. glTF Buffer referring to GLB-stored `BIN` chunk, must have `buffer.uri` property undefined, and it must be the first element of `buffers` array; byte length of `BIN` chunk could be up to 3 bytes bigger than JSON-defined `buffer.byteLength` to satisfy GLB padding requirements.<br>glTF文件可以使用GLB文件容器将所有资源打包到一个文件中。 glTF缓冲区指的是GLB存储的BIN块，必须具有未定义的buffer.uri属性，并且它必须是buffers数组的第一个元素; BIN块的字节长度最多可比JSON定义的buffer.byteLength大3个字节，以满足GLB填充要求
 
-> **Implementation Note:**  Not requiring strict equality of chunk's and buffer's lengths simplifies glTF to GLB conversion a bit: implementations don't need to update `buffer.byteLength` after applying GLB padding.
+> **Implementation Note:**  Not requiring strict equality of chunk's and buffer's lengths simplifies glTF to GLB conversion a bit: implementations don't need to update `buffer.byteLength` after applying GLB padding.<br>实现注意：不要求块和缓冲区长度的严格相等简化了glTF到GLB的转换：实现后不需要在应用GLB填充后更新buffer.byteLength
 
-In the following example, the first buffer objects refers to GLB-stored data, while the second points to external resource:
+In the following example, the first buffer objects refers to GLB-stored data, while the second points to external resource:<br>在以下示例中，第一个缓冲区对象引用GLB存储的数据，而第二个缓冲区对象引用外部资源
 
 ```json
 {
@@ -480,17 +480,17 @@ In the following example, the first buffer objects refers to GLB-stored data, wh
 }
 ```
 
-See [GLB File Format Specification](#glb-file-format-specification) for details on GLB File Format.
+See [GLB File Format Specification](#glb-file-format-specification) for details on GLB File Format.<br>有关GLB文件格式的详细信息，请参阅GLB文件格式规范
 
-### Accessors
+### Accessors  访问器
 
-All large data for meshes, skins, and animations is stored in buffers and retrieved via accessors.
+All large data for meshes, skins, and animations is stored in buffers and retrieved via accessors.<br>网格，皮肤和动画的所有大数据都存储在缓冲区中并通过访问器检索
 
-An *accessor* defines a method for retrieving data as typed arrays from within a `bufferView`. The accessor specifies a component type (e.g. `5126 (FLOAT)`) and a data type (e.g. `VEC3`), which when combined define the complete data type for each array element. The accessor also specifies the location and size of the data within the `bufferView` using the properties `byteOffset` and `count`. The latter specifies the number of elements within the `bufferView`, *not* the number of bytes. Elements could be, e.g., vertex indices, vertex attributes, animation keyframes, etc.
+An *accessor* defines a method for retrieving data as typed arrays from within a `bufferView`. The accessor specifies a component type (e.g. `5126 (FLOAT)`) and a data type (e.g. `VEC3`), which when combined define the complete data type for each array element. The accessor also specifies the location and size of the data within the `bufferView` using the properties `byteOffset` and `count`. The latter specifies the number of elements within the `bufferView`, *not* the number of bytes. Elements could be, e.g., vertex indices, vertex attributes, animation keyframes, etc.<br>*accessor*定义了一种从bufferView中将数据作为类型化数组进行检索的方法。访问器指定组件类型（例如5126（FLOAT））和数据类型（例如VEC3），它们在组合时定义每个数组元素的完整数据类型。访问器还使用属性byteOffset和count指定bufferView中数据的位置和大小。后者指定bufferView中的元素数，而不是字节数。元素可以是例如顶点索引，顶点属性，动画关键帧等
 
-All accessors are stored in the asset's `accessors` array.
+All accessors are stored in the asset's `accessors` array.所有访问器都存储在文件的`accessors`数组中
 
-The following fragment shows two accessors, the first is a scalar accessor for retrieving a primitive's indices, and the second is a 3-float-component vector accessor for retrieving the primitive's position data.
+The following fragment shows two accessors, the first is a scalar accessor for retrieving a primitive's indices, and the second is a 3-float-component vector accessor for retrieving the primitive's position data.<br>下面的片段显示了两个访问器，第一个是用于检索基元索引的标量访问器，第二个是用于检索基元位置数据的3浮点分量矢量访问器
 
 ```json
 {
@@ -529,15 +529,15 @@ The following fragment shows two accessors, the first is a scalar accessor for r
 }
 ```
 
-#### Floating-Point Data
+#### Floating-Point Data  浮点数据
 
-Data of `5126 (FLOAT)` componentType must use IEEE-754 single precision format. 
+Data of `5126 (FLOAT)` componentType must use IEEE-754 single precision format. <br>`5126 (FLOAT)`componentType的数据必须使用IEEE-754单精度格式
 
-Values of `NaN`, `+Infinity`, and `-Infinity` are not allowed.
+Values of `NaN`, `+Infinity`, and `-Infinity` are not allowed.<br>不允许使用NaN，+ Infinity和-Infinity的值
 
-#### Accessor Element Size
+#### Accessor Element Size  访问器元素尺寸
 
-The following tables can be used to compute the size of element accessible by accessor.
+The following tables can be used to compute the size of element accessible by accessor.<br>以下表格可用于计算访问者可访问的元素的大小
 
 | `componentType` | Size in bytes |
 |:---------------:|:-------------:|
@@ -559,7 +559,7 @@ The following tables can be used to compute the size of element accessible by ac
 | `"MAT4"` | 16 |
 
 Element size, in bytes, is
-`(size in bytes of the 'componentType') * (number of components defined by 'type')`.
+`(size in bytes of the 'componentType') * (number of components defined by 'type')`.<br>元素大小（以字节为单位）是（'componentType'的字节大小）*（'type'定义的组件数）
 
 For example:
 
@@ -577,15 +577,15 @@ For example:
 }
 ```
 
-In this accessor, the `componentType` is `5126` (FLOAT), so each component is four bytes.  The `type` is `"VEC3"`, so there are three components.  The size of each element is 12 bytes (`4 * 3`).
+In this accessor, the `componentType` is `5126` (FLOAT), so each component is four bytes.  The `type` is `"VEC3"`, so there are three components.  The size of each element is 12 bytes (`4 * 3`).<br>在此访问器中，componentType是5126（FLOAT），因此每个组件是四个字节。类型是“VEC3”，因此有三个组件。每个元素的大小为12个字节（4 * 3）
 
-#### Accessors Bounds
+#### Accessors Bounds  访问器界限
 
-`accessor.min` and `accessor.max` properties are arrays that contain per-component minimum and maximum values, respectively. Exporters and loaders must treat these values as having the same data type as accessor's `componentType`, i.e., use integers (JSON number without fractional part) for integer types and use floating-point decimals for `5126` (FLOAT).
+`accessor.min` and `accessor.max` properties are arrays that contain per-component minimum and maximum values, respectively. Exporters and loaders must treat these values as having the same data type as accessor's `componentType`, i.e., use integers (JSON number without fractional part) for integer types and use floating-point decimals for `5126` (FLOAT).<br>accessor.min和accessor.max属性是包含每个组件最小值和最大值的数组。导出器和加载器必须将这些值与accessor的componentType数据类型相匹配，即对整数类型使用整数（没有小数部分的JSON编号），并对5126（FLOAT）使用浮点小数
 
-> **Implementation Note:** JavaScript client implementations should convert JSON-parsed floating-point doubles to single precision, when `componentType` is `5126` (FLOAT). This could be done with `Math.fround` function.
+> **Implementation Note:** JavaScript client implementations should convert JSON-parsed floating-point doubles to single precision, when `componentType` is `5126` (FLOAT). This could be done with `Math.fround` function.<br>实现注意：当componentType为5126（FLOAT）时，JavaScript客户端实现应将JSON解析的浮点双精度转换为单精度。这可以使用Math.fround函数完成
 
-While these properties are not required for all accessor usages, there are cases when minimum and maximum must be defined. Refer to other sections of this specification for details. 
+While these properties are not required for all accessor usages, there are cases when minimum and maximum must be defined. Refer to other sections of this specification for details. <br>虽然这些属性不是对所有访问者必须的，但有时必须定义最小值和最大值。有关详细信息，请参阅本规范的其他部分
 
 #### Sparse Accessors
 
