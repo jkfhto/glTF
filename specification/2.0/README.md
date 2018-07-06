@@ -260,15 +260,15 @@ The [node transformations](#transformations) and [animation channel paths](#anim
 
 
 
-## Scenes
+## Scenes  场景
 
-The glTF asset contains zero or more *scenes*, the set of visual objects to render. Scenes are defined in a `scenes` array. An additional property, `scene` (note singular), identifies which of the scenes in the array is to be displayed at load time.
+The glTF asset contains zero or more *scenes*, the set of visual objects to render. Scenes are defined in a `scenes` array. An additional property, `scene` (note singular), identifies which of the scenes in the array is to be displayed at load time.<br>glTF文件包含零个或多个场景，即要渲染的可视对象集。场景在`scenes`数组中定义。附加属性`scene`标识哪些场景将在加载时显示
 
-When `scene` is undefined, runtime is not required to render anything at load time.
+When `scene` is undefined, runtime is not required to render anything at load time.<br>当场景未定义时，不需要在加载时呈现任何内容
 
-> **Implementation Note:** This allows applications to use glTF assets as libraries of individual entities such as materials or meshes.   
+> **Implementation Note:** This allows applications to use glTF assets as libraries of individual entities such as materials or meshes.<br>实现注意：这允许应用程序将glTF文件用作单个实体（如材料或网格）的库   
 
-The following example defines a glTF asset with a single scene, that contains a single node.
+The following example defines a glTF asset with a single scene, that contains a single node.<br>以下示例使用单个场景定义glTF文件，该场景包含单个节点
 
 ```json
 {
@@ -289,17 +289,17 @@ The following example defines a glTF asset with a single scene, that contains a 
 }
 ```
 
-### Nodes and Hierarchy
+### Nodes and Hierarchy  节点和层次结构
 
-The glTF asset can define *nodes*, that is, the objects comprising the scene to render.
+The glTF asset can define *nodes*, that is, the objects comprising the scene to render.<br>glTF文件可以定义*nodes*，即包含要渲染的场景的对象
 
-Nodes have an optional `name` property.
+Nodes have an optional `name` property.<br>节点具有可选的`name`属性。
 
-Nodes also have transform properties, as described in the next section.
+Nodes also have transform properties, as described in the next section.<br>节点还具有变换属性，如下一节中所述
 
-Nodes are organized in a parent-child hierarchy known informally as the *node hierarchy*.
+Nodes are organized in a parent-child hierarchy known informally as the *node hierarchy*.<br>节点以父子层次结构组织，非正式地称为*node hierarchy*节点层次结构
 
-The node hierarchy is defined using a node's `children` property, as in the following example:
+The node hierarchy is defined using a node's `children` property, as in the following example:<br>使用节点的children属性定义节点层次结构，如以下示例所示
 
 ```json
 {
@@ -324,25 +324,25 @@ The node hierarchy is defined using a node's `children` property, as in the foll
 }
 ```
 
-The node named `Car` has four children. Each of those nodes could in turn have its own children, creating a hierarchy of nodes.
+The node named `Car` has four children. Each of those nodes could in turn have its own children, creating a hierarchy of nodes.<br>名为`Car`的节点有四个子节点。这些节点中的每一个都可以拥有自己的子节点，从而创建节点层次结构
 
->For Version 2.0 conformance, the glTF node hierarchy is not a directed acyclic graph (DAG) or *scene graph*, but a strict tree. That is, no node may be a direct or indirect descendant of more than one node. This restriction is meant to simplify implementation and facilitate conformance. The restriction may be lifted later.
+>For Version 2.0 conformance, the glTF node hierarchy is not a directed acyclic graph (DAG) or *scene graph*, but a strict tree. That is, no node may be a direct or indirect descendant of more than one node. This restriction is meant to simplify implementation and facilitate conformance. The restriction may be lifted later.<br>对于2.0版，glTF节点层次结构不是有向非循环图（DAG）或场景图，而是严格的树。也就是说，没有节点可以是多个节点的直接或间接后代。此限制旨在简化实施并促进一致性。可以稍后解除限制
 
-### Transformations
+### Transformations  变换
 
-Any node can define a local space transformation either by supplying a `matrix` property, or any of `translation`, `rotation`, and `scale`  properties (also known as *TRS properties*). `translation` and `scale` are `FLOAT_VEC3` values in the local coordinate system. `rotation` is a `FLOAT_VEC4` unit quaternion value, `(x, y, z, w)`, in the local coordinate system.
+Any node can define a local space transformation either by supplying a `matrix` property, or any of `translation`, `rotation`, and `scale`  properties (also known as *TRS properties*). `translation` and `scale` are `FLOAT_VEC3` values in the local coordinate system. `rotation` is a `FLOAT_VEC4` unit quaternion value, `(x, y, z, w)`, in the local coordinate system.<br>任何节点都可以通过提供矩阵`matrix`或任何平移，旋转和缩放属性（也称为TRS属性）来定义局部空间变换。平移和缩放是局部坐标系中的FLOAT_VEC3值。 rotation是局部坐标系中的FLOAT_VEC4单位四元数值（x，y，z，w）
 
-When `matrix` is defined, it must be decomposable to TRS. This implies that transformation matrices cannot skew or shear.
+When `matrix` is defined, it must be decomposable to TRS. This implies that transformation matrices cannot skew or shear.<br>定义`matrix`时，必须将其分解为TRS。这意味着转换矩阵不能倾斜或剪切
 
-TRS properties are converted to matrices and postmultiplied in the `T * R * S` order to compose the transformation matrix; first the scale is applied to the vertices, then the rotation, and then the translation.
+TRS properties are converted to matrices and postmultiplied in the `T * R * S` order to compose the transformation matrix; first the scale is applied to the vertices, then the rotation, and then the translation.<br>将TRS属性转换为矩阵并以T * R * S顺序进行后乘，以组成变换矩阵;首先将缩放应用于顶点，然后旋转，然后进行平移
 
-When a node is targeted for animation (referenced by an `animation.channel.target`), only TRS properties may be present; `matrix` will not be present. 
+When a node is targeted for animation (referenced by an `animation.channel.target`), only TRS properties may be present; `matrix` will not be present. <br>当节点以动画为目标时（由animation.channel.target引用），可能只存在TRS属性;`matrix`不会出现
 
-> **Implementation Note:** If the determinant of the transform is a negative value, the winding order of the mesh triangle faces should be reversed. This supports negative scales for mirroring geometry.
+> **Implementation Note:** If the determinant of the transform is a negative value, the winding order of the mesh triangle faces should be reversed. This supports negative scales for mirroring geometry.<br>实现注意：如果变换的行列式是负值，则应反转网格三角形面的缠绕顺序。这支持镜像几何的负标度
 
-> **Implementation Note:** Non-invertible transformations (e.g., scaling one axis to zero) could lead to lighting and/or visibility artifacts.
+> **Implementation Note:** Non-invertible transformations (e.g., scaling one axis to zero) could lead to lighting and/or visibility artifacts.<br>实现注意：不可逆转换（例如，将一个轴缩放到零）可能导致照明和/或可见性伪像
 
-In the example below, node named `Box` defines non-default rotation and translation.
+In the example below, node named `Box` defines non-default rotation and translation.<br>在下面的示例中，名为Box的节点定义了非默认的旋转和平移
 
 ```json
 {
@@ -370,7 +370,7 @@ In the example below, node named `Box` defines non-default rotation and translat
 }
 ```
 
-The next example defines the transformation for a node with attached camera using the `matrix` property rather than using the individual TRS values:
+The next example defines the transformation for a node with attached camera using the `matrix` property rather than using the individual TRS values:<br>下一个示例使用matrix属性定义具有附加摄像头的节点的变换，而不是使用单独的TRS值
 
 ```json
 {
@@ -401,13 +401,13 @@ The next example defines the transformation for a node with attached camera usin
 }
 ```
 
-## Binary Data Storage
+## Binary Data Storage  二进制数据存储
 
-### Buffers and Buffer Views
+### Buffers and Buffer Views  缓冲区和缓冲区视图
 
-A *buffer* is data stored as a binary blob. The buffer can contain a combination of geometry, animation, and skins.
+A *buffer* is data stored as a binary blob. The buffer can contain a combination of geometry, animation, and skins.<br>*buffer*是存储为二进制blob的数据。buffer可以包含几何，动画和皮肤等数据
 
-Binary blobs allow efficient creation of GPU buffers and textures since they require no additional parsing, except perhaps decompression. An asset can have any number of buffer files for flexibility for a wide array of applications.
+Binary blobs allow efficient creation of GPU buffers and textures since they require no additional parsing, except perhaps decompression. An asset can have any number of buffer files for flexibility for a wide array of applications.<br>二进制blob允许有效创建GPU缓冲区和纹理，因为除了可能的解压缩之外，它们不需要额外的解析。gltf文件可以包含任意数量的缓冲区文件，以便为各种应用程序提供灵活性
 
 Buffer data is little endian.
 
