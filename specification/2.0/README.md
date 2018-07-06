@@ -168,36 +168,36 @@ Major version updates are not expected to be compatible with previous versions.<
 * `*.bin` files use `application/octet-stream`
 * Texture files use the official `image/*` type based on the specific image format. For compatibility with modern web browsers, the following image formats are supported: `image/jpeg`, `image/png`.<br>纹理文件使用基于特定图像格式的官方`image/*`类型。为了与现代Web浏览器兼容，支持以下图像格式：image / jpeg，image / png
 
-## JSON encoding
+## JSON encoding  JSON编码
 
-To simplify client-side implementation, glTF has following restrictions on JSON format and encoding.
+To simplify client-side implementation, glTF has following restrictions on JSON format and encoding.<br>为了简化客户端实现，glTF对JSON格式和编码有以下限制
 
-1. JSON must use UTF-8 encoding without BOM.
-2. All strings defined in this spec (properties names, enums) use only ASCII charset and must be written as plain text, e.g., `"buffer"` instead of `"\u0062\u0075\u0066\u0066\u0065\u0072"`.
+1. JSON must use UTF-8 encoding without BOM.<br>JSON必须使用没有BOM的UTF-8编码<br>
+2. All strings defined in this spec (properties names, enums) use only ASCII charset and must be written as plain text, e.g., `"buffer"` instead of `"\u0062\u0075\u0066\u0066\u0065\u0072"`.<br>本规范中定义的所有字符串（属性名称，枚举）仅使用ASCII字符集，并且必须以纯文本形式写入，例如`"buffer"`而不能使用`"\u0062\u0075\u0066\u0066\u0065\u0072"`
 
-   > **Implementation Note:** This allows generic glTF client implementations to not have full Unicode support. Application-specific strings (e.g., value of `"name"` property) could use any charset.
-3. Names (keys) within JSON objects must be unique, i.e., duplicate keys aren't allowed.
+   > **Implementation Note:** This allows generic glTF client implementations to not have full Unicode support. Application-specific strings (e.g., value of `"name"` property) could use any charset.<br>实现注意：这允许通用glTF客户端实现不具有完全的Unicode支持。特定于应用程序的字符串（例如，“name”属性的值）可以使用任何字符集<br>
+3. Names (keys) within JSON objects must be unique, i.e., duplicate keys aren't allowed.<br>JSON对象中的名称（键）必须是唯一的，即不允许使用重复键
 
 ## URIs
 
-glTF uses URIs to reference buffers and image resources. These URIs may point to external resources or be data URIs that embed resources in the JSON. Embedded resources use "data" URI scheme ([RFC2397](https://tools.ietf.org/html/rfc2397)).
+glTF uses URIs to reference buffers and image resources. These URIs may point to external resources or be data URIs that embed resources in the JSON. Embedded resources use "data" URI scheme ([RFC2397](https://tools.ietf.org/html/rfc2397)).<br>glTF使用URI来引用缓冲区和图像资源。这些URI可以指向外部资源，也可以是在JSON中嵌入资源的数据URI。嵌入式资源使用“data”URI方案（RFC2397）
  
- > **Implementation Note:** Data URIs could be [decoded with JavaScript](https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding) or consumed directly by web browsers in HTML tags.
+ > **Implementation Note:** Data URIs could be [decoded with JavaScript](https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding) or consumed directly by web browsers in HTML tags.<br>实现注意：数据URI可以使用JavaScript解码，也可以由Web浏览器HTML标签直接使用
 
-Client implementations are required to support only embedded resources and relative external references (in a sense of [RFC3986](https://tools.ietf.org/html/rfc3986#section-4.2)). Clients are free to support other schemes (such as `http://`) depending on expected usage.
+Client implementations are required to support only embedded resources and relative external references (in a sense of [RFC3986](https://tools.ietf.org/html/rfc3986#section-4.2)). Clients are free to support other schemes (such as `http://`) depending on expected usage.<br>客户端实现只需要支持嵌入式资源和相关外部引用（在RFC3986的意义上）。客户可以根据预期用途自由支持其他方案（例如http：//）
 
- > **Implementation Note:** This allows the application to decide the best approach for delivery: if different assets share many of the same geometries, animations, or textures, separate files may be preferred to reduce the total amount of data requested. With separate files, applications can progressively load data and do not need to load data for parts of a model that are not visible. If an application cares more about single-file deployment, embedding data may be preferred even though it increases the overall size due to base64 encoding and does not support progressive or on-demand loading. Alternatively, an asset could use GLB container to store JSON and binary data in one file without base64 encoding. See [GLB File Format Specification](#glb-file-format-specification) for details.
+ > **Implementation Note:** This allows the application to decide the best approach for delivery: if different assets share many of the same geometries, animations, or textures, separate files may be preferred to reduce the total amount of data requested. With separate files, applications can progressively load data and do not need to load data for parts of a model that are not visible. If an application cares more about single-file deployment, embedding data may be preferred even though it increases the overall size due to base64 encoding and does not support progressive or on-demand loading. Alternatively, an asset could use GLB container to store JSON and binary data in one file without base64 encoding. See [GLB File Format Specification](#glb-file-format-specification) for details.<br>实现注意：这允许应用程序决定最佳交付方法：如果不同的资产共享许多相同的几何，动画或纹理，则可能优先使用单独的文件来减少所请求的数据总量。使用单独的文件，应用程序可以逐步加载数据，而不需要为不可见的模型部分加载数据。如果应用程序更关心单文件部署，即使由于base64编码而增加了整体大小，并且不支持渐进式或按需加载但是嵌入数据可能是首选。或者，资产可以使用GLB容器将JSON和二进制数据存储在一个文件中，而不使用base64编码。有关详细信息，请参阅GLB文件格式规范
 
-# Concepts
+# Concepts  概念
 
 <p align="center">
 <img src="figures/dictionary-objects.png" /><br/>
 The top-level arrays in a glTF asset.  See the <a href="#properties-reference">Properties Reference</a>.
 </p>
 
-## Asset
+## Asset  声明
 
-Each glTF asset must have an `asset` property. In fact, it's the only required top-level property for JSON to be a valid glTF. The `asset` object must contain glTF version which specifies the target glTF version of the asset. Additionally, an optional `minVersion` property can be used to specify the minimum glTF version support required to load the asset. The `minVersion` property allows asset creators to specify a minimum version that a client implementation must support in order to load the asset. This is very similar to the `extensionsRequired` concept, where an asset should only be loaded if the client supports the specified extension. Additional metadata can be stored in optional properties such as `generator` or `copyright`.  For example,
+Each glTF asset must have an `asset` property. In fact, it's the only required top-level property for JSON to be a valid glTF. The `asset` object must contain glTF version which specifies the target glTF version of the asset. Additionally, an optional `minVersion` property can be used to specify the minimum glTF version support required to load the asset. The `minVersion` property allows asset creators to specify a minimum version that a client implementation must support in order to load the asset. This is very similar to the `extensionsRequired` concept, where an asset should only be loaded if the client supports the specified extension. Additional metadata can be stored in optional properties such as `generator` or `copyright`.  For example,<br>每个glTF资产必须具有`asset`属性。实际上，它是JSON成为有效glTF的唯一必需的顶级属性。`asset`对象必须包含glTF版本，该版本指定glTF的版本信息。此外，可选的`minVersion`属性可用于指定加载gltf文件所需的最低glTF版本支持。 minVersion属性允许gltf文件创建者指定客户端实现必须支持的最低版本才能加载文件。这与`extensionsRequired`概念非常相似，只有在客户端支持指定的扩展名时才应加载文件。其他元数据可以存储在可选属性中，例如生成器或版权。例如
 
 ```json
 {
@@ -209,12 +209,12 @@ Each glTF asset must have an `asset` property. In fact, it's the only required t
 }
 ```
 
-> **Implementation Note:** Client implementations should first check whether a `minVersion` property is specified and ensure both major and minor versions can be supported. If no `minVersion` is specified, then clients should check the `version` property and ensure the major version is supported. Clients that load [GLB format](#glb-file-format-specification) should also check for the `minVersion` and `version` properties in the JSON chunk as the version specified in the GLB header only refers to the GLB container version.
+> **Implementation Note:** Client implementations should first check whether a `minVersion` property is specified and ensure both major and minor versions can be supported. If no `minVersion` is specified, then clients should check the `version` property and ensure the major version is supported. Clients that load [GLB format](#glb-file-format-specification) should also check for the `minVersion` and `version` properties in the JSON chunk as the version specified in the GLB header only refers to the GLB container version.<br>实现注意：客户端实现应首先检查是否指定了minVersion属性，并确保可以支持主要版本和次要版本。如果未指定minVersion，则客户端应检查version属性并确保支持主要版本。加载GLB格式的客户端还应检查JSON块中的minVersion和版本属性，因为GLB标头中指定的版本仅引用GLB容器版本
 
 
-## Indices and Names
+## Indices and Names  索引和名称
 
-Entities of a glTF asset are referenced by their indices in corresponding arrays, e.g., a `bufferView` refers to a `buffer` by specifying the buffer's index in `buffers` array.  For example:
+Entities of a glTF asset are referenced by their indices in corresponding arrays, e.g., a `bufferView` refers to a `buffer` by specifying the buffer's index in `buffers` array.  For example:<br>glTF文件的实体由它们在相应数组中的索引引用，例如，bufferView通过指定`buffers`数组中的缓冲区索引来引用缓冲区。例如
 
 ```json
 {
@@ -234,29 +234,29 @@ Entities of a glTF asset are referenced by their indices in corresponding arrays
 }
 ```
 
-In this example, `buffers` and `bufferViews` have only one element each. The bufferView refers to the buffer using the buffer's index: `"buffer": 0`.
+In this example, `buffers` and `bufferViews` have only one element each. The bufferView refers to the buffer using the buffer's index: `"buffer": 0`.<br>在此示例中，`buffers`和`bufferViews`每个只有一个元素。 bufferView使用缓冲区的索引引用缓冲区：“buffer”：0
 
-Whereas indices are used for internal glTF references, _names_ are used for application-specific uses such as display. Any top-level glTF object can have a `name` string property for this purpose. These property values are not guaranteed to be unique as they are intended to contain values created when the asset was authored.
+Whereas indices are used for internal glTF references, _names_ are used for application-specific uses such as display. Any top-level glTF object can have a `name` string property for this purpose. These property values are not guaranteed to be unique as they are intended to contain values created when the asset was authored.<br>索引用于内部glTF引用，而名称用于特定应用程序的用途，例如显示。为此，任何顶级glTF对象都可以具有名称字符串属性。这些属性值不保证是唯一的，因为它们旨在包含创建文件时创建的值
 
-For property names, glTF uses [camel case](http://en.wikipedia.org/wiki/CamelCase) `likeThis`. Camel case is a common naming convention in JSON and WebGL.
+For property names, glTF uses [camel case](http://en.wikipedia.org/wiki/CamelCase) `likeThis`. Camel case is a common naming convention in JSON and WebGL.<br>对于属性名称，glTF使用像Came这样的驼峰案例。 Camel case是JSON和WebGL中常见的命名约定
 
-## Coordinate System and Units
+## Coordinate System and Units   坐标系和单位
 
-glTF uses a right-handed coordinate system, that is, the cross product of +X and +Y yields +Z. glTF defines +Y as up. The front of a glTF asset faces +Z.
+glTF uses a right-handed coordinate system, that is, the cross product of +X and +Y yields +Z. glTF defines +Y as up. The front of a glTF asset faces +Z.<br>glTF使用右手坐标系，即+ X和+ Y的叉积产生+ Z. glTF将+ Y定义为up。 glTF文件的正面面向+ Z
 
 ![](figures/coordinate-system.png)
 
-The units for all linear distances are meters.
+The units for all linear distances are meters.  所有线性距离的单位是米
 
-All angles are in radians.
+All angles are in radians.  所有角度都是弧度值
 
-Positive rotation is counterclockwise.
+Positive rotation is counterclockwise.  正向旋转是逆时针方向
 
-The [node transformations](#transformations) and [animation channel paths](#animations) are 3D vectors or quaternions with the following data types and semantics:
+The [node transformations](#transformations) and [animation channel paths](#animations) are 3D vectors or quaternions with the following data types and semantics:<br>[node transformations]和[animation channel paths]是具有以下数据类型和语义的3D矢量或四元数
 
-* translation: A 3D vector containing the translation along the x, y and z axes
-* rotation: A quaternion (x, y, z, w), where w is the scalar
-* scale: A 3D vector containing the scaling factors along the x, y and z axes
+* translation: A 3D vector containing the translation along the x, y and z axes<br>平移：包含沿x，y和z轴平移的3D矢量<br>
+* rotation: A quaternion (x, y, z, w), where w is the scalar<br>rotation：四元数（x，y，z，w），其中w是标量<br>
+* scale: A 3D vector containing the scaling factors along the x, y and z axes<br>scale：包含沿x，y和z轴的缩放系数的3D矢量
 
 
 
