@@ -587,18 +587,18 @@ In this accessor, the `componentType` is `5126` (FLOAT), so each component is fo
 
 While these properties are not required for all accessor usages, there are cases when minimum and maximum must be defined. Refer to other sections of this specification for details. <br>虽然这些属性不是对所有访问者必须的，但有时必须定义最小值和最大值。有关详细信息，请参阅本规范的其他部分
 
-#### Sparse Accessors
+#### Sparse Accessors  稀疏访问器
 
 Sparse encoding of arrays is often more memory-efficient than dense encoding when describing incremental changes with respect to a reference array.
-This is often the case when encoding morph targets (it is, in general, more efficient to describe a few displaced vertices in a morph target than transmitting all morph target vertices).
+This is often the case when encoding morph targets (it is, in general, more efficient to describe a few displaced vertices in a morph target than transmitting all morph target vertices).<br>在描述相对于参考数组的增量更改时，数组的稀疏编码通常比密集编码更具内存效率。在编码变形目标时通常就是这种情况（通常，描述变形目标中的几个移位顶点比传输所有变形目标顶点更有效）
 
 glTF 2.0 extends the accessor structure to enable efficient transfer of sparse arrays.
-Similarly to a standard accessor, a sparse accessor initializes an array of typed elements from data stored in a `bufferView` . On top of that, a sparse accessor includes a `sparse` dictionary describing the elements that deviate from their initialization value. The `sparse` dictionary contains the following mandatory properties:
-- `count`: number of displaced elements.
+Similarly to a standard accessor, a sparse accessor initializes an array of typed elements from data stored in a `bufferView` . On top of that, a sparse accessor includes a `sparse` dictionary describing the elements that deviate from their initialization value. The `sparse` dictionary contains the following mandatory properties:<br>glTF 2.0扩展了访问器结构，以实现稀疏阵列的有效传输。与标准访问器类似，稀疏访问器从存储在bufferView中的数据初始化类型化元素的数组。最重要的是，稀疏访问器包括一个稀疏字典，用于描述偏离其初始化值的元素。稀疏字典包含以下必需属性
+- `count`: number of displaced elements.<br>`count`:被替换元素的数量<br>
 - `indices`: strictly increasing array of integers of size `count` and specific `componentType` that stores the indices of those elements that deviate from the initialization value.
-- `values`: array of displaced elements corresponding to the indices in the `indices` array.
+- `values`: array of displaced elements corresponding to the indices in the `indices` array.<br>与`indices`数组中的索引相对应的移位元素的数组
 
-The following fragment shows an example of `sparse` accessor with 10 elements deviating from the initialization array.
+The following fragment shows an example of `sparse` accessor with 10 elements deviating from the initialization array.<br>以下片段显示了`sparse`accessor的示例，其中10个元素偏离初始化数组
 
 ```json
 {
@@ -626,21 +626,21 @@ The following fragment shows an example of `sparse` accessor with 10 elements de
 }
 ```
 A sparse accessor differs from a regular one in that `bufferView` property isn't required. When it's omitted, the sparse accessor is initialized as an array of zeros of size `(size of the accessor element) * (accessor.count)` bytes.
-A sparse accessor `min` and `max` properties correspond, respectively, to the minimum and maximum component values once the sparse substitution is applied.
+A sparse accessor `min` and `max` properties correspond, respectively, to the minimum and maximum component values once the sparse substitution is applied.<br>稀疏访问器与常规访问器的不同之处在于不需要bufferView属性。当省略它时，稀疏访问器被初始化为大小为零的数组（访问器元素的大小）*（accessor.count）字节。一旦应用稀疏替换，稀疏存取器min和max属性分别对应于最小和最大组件值
 
-When neither `sparse` nor `bufferView` is defined, `min` and `max` properties could have any values. This is intended for use cases when binary data is supplied by external means (e.g., via extensions).
+When neither `sparse` nor `bufferView` is defined, `min` and `max` properties could have any values. This is intended for use cases when binary data is supplied by external means (e.g., via extensions).<br>如果既未定义`sparse`也未定义bufferView，则min和max属性可以具有任何值。这适用于通过外部手段（例如，通过扩展）提供二进制数据的用例
 
-#### Data Alignment
+#### Data Alignment  数据对齐
 
-The offset of an `accessor` into a `bufferView` (i.e., `accessor.byteOffset`) and the offset of an `accessor` into a `buffer` (i.e., `accessor.byteOffset + bufferView.byteOffset`) must be a multiple of the size of the accessor's component type.
+The offset of an `accessor` into a `bufferView` (i.e., `accessor.byteOffset`) and the offset of an `accessor` into a `buffer` (i.e., `accessor.byteOffset + bufferView.byteOffset`) must be a multiple of the size of the accessor's component type.<br>`accessor`到bufferView（即accessor.byteOffset）的偏移量和访问者到缓冲区的偏移量（即accessor.byteOffset + bufferView.byteOffset）必须是访问者组件类型大小的倍数
 
-When `byteStride` of referenced `bufferView` is not defined, it means that accessor elements are tightly packed, i.e., effective stride equals the size of the element. When `byteStride` is defined, it must be a multiple of the size of the accessor's component type. `byteStride` must be defined, when two or more accessors use the same `bufferView`.
+When `byteStride` of referenced `bufferView` is not defined, it means that accessor elements are tightly packed, i.e., effective stride equals the size of the element. When `byteStride` is defined, it must be a multiple of the size of the accessor's component type. `byteStride` must be defined, when two or more accessors use the same `bufferView`.<br>当未定义bufferView的byteStride时，意味着访问器元素被紧密打包，即有效步幅等于元素的大小。当定义byteStride时，它必须是访问者组件类型大小的倍数。当两个或多个访问器使用相同的bufferView时，必须定义byteStride
 
-Each `accessor` must fit its `bufferView`, i.e., `accessor.byteOffset + STRIDE * (accessor.count - 1) + SIZE_OF_ELEMENT` must be less than or equal to `bufferView.length`.
+Each `accessor` must fit its `bufferView`, i.e., `accessor.byteOffset + STRIDE * (accessor.count - 1) + SIZE_OF_ELEMENT` must be less than or equal to `bufferView.length`.<br>每个`accessor`必须匹配其bufferView，即accessor.byteOffset + STRIDE *（accessor.count - 1）+ SIZE_OF_ELEMENT必须小于或等于bufferView.length
 
-For performance and compatibility reasons, vertex attributes must be aligned to 4-byte boundaries inside `bufferView` (i.e., `accessor.byteOffset` and `bufferView.byteStride` must be multiples of 4). 
+For performance and compatibility reasons, vertex attributes must be aligned to 4-byte boundaries inside `bufferView` (i.e., `accessor.byteOffset` and `bufferView.byteStride` must be multiples of 4). <br>出于性能和兼容性的原因，顶点属性必须与bufferView内的4字节边界对齐（即accessor.byteOffset和bufferView.byteStride必须是4的倍数)
 
-Accessors of matrix type have data stored in column-major order; start of each column must be aligned to 4-byte boundaries. To achieve this, three `type`/`componentType` combinations require special layout:
+Accessors of matrix type have data stored in column-major order; start of each column must be aligned to 4-byte boundaries. To achieve this, three `type`/`componentType` combinations require special layout:<br>矩阵类型的访问器具有按列顺序存储的数据;每列的开头必须与4字节边界对齐。为此，三种`type`/`componentType`组合需要特殊布局
 
 **MAT2, 1-byte components**
 ```
@@ -663,11 +663,11 @@ Accessors of matrix type have data stored in column-major order; start of each c
 |m00|m00|m10|m10|m20|m20|---|---|m01|m01|m11|m11|m21|m21|---|---|m02|m02|m12|m12|m22|m22|---|---|
 ```
 
-Alignment requirements apply only to start of each column, so trailing bytes could be omitted if there's no further data. 
+Alignment requirements apply only to start of each column, so trailing bytes could be omitted if there's no further data. <br>对齐要求仅适用于每列的开始，因此如果没有其他数据，则可以省略尾随字节
 
-> **Implementation Note:** For JavaScript, this allows a runtime to efficiently create a single ArrayBuffer from a glTF `buffer` or an ArrayBuffer per `bufferView`, and then use an `accessor` to turn a typed array view (e.g., `Float32Array`) into an ArrayBuffer without copying it because the byte offset of the typed array view is a multiple of the size of the type (e.g., `4` for `Float32Array`).
+> **Implementation Note:** For JavaScript, this allows a runtime to efficiently create a single ArrayBuffer from a glTF `buffer` or an ArrayBuffer per `bufferView`, and then use an `accessor` to turn a typed array view (e.g., `Float32Array`) into an ArrayBuffer without copying it because the byte offset of the typed array view is a multiple of the size of the type (e.g., `4` for `Float32Array`).<br>实现注意：对于JavaScript，这允许运行时从glTF缓冲区或每个bufferView的ArrayBuffer有效地创建单个ArrayBuffer，然后使用访问器将类型化数组视图（例如，Float32Array）转换为ArrayBuffer而不复制它，因为类型化数组视图的字节偏移量是类型大小的倍数（例如，Float32Array为4）
 
-Consider the following example:
+Consider the following example:  请考虑以下示例
 
 ```json
 {
@@ -690,28 +690,28 @@ Consider the following example:
     ]
 }
 ```
-Accessing binary data defined by example above could be done like this:
+Accessing binary data defined by example above could be done like this:<br>访问上面例子定义的二进制数据可以这样做
 
 ```js
 var typedView = new Uint16Array(buffer, accessor.byteOffset + accessor.bufferView.byteOffset, accessor.count);
 ```
 
-The size of the accessor component type is two bytes (the `componentType` is unsigned short). The accessor's `byteOffset` is also divisible by two. Likewise, the accessor's offset into buffer `0` is `5228 ` (`620 + 4608`), which is divisible by two.
+The size of the accessor component type is two bytes (the `componentType` is unsigned short). The accessor's `byteOffset` is also divisible by two. Likewise, the accessor's offset into buffer `0` is `5228 ` (`620 + 4608`), which is divisible by two.<br>访问器组件类型的大小是两个字节（componentType是unsigned short）。访问者的byteOffset也可以被2整除。同样，访问者到缓冲区0的偏移量是5228（620 + 4608），可以被2整除
 
 
-## Geometry
+## Geometry  几何
 
-Any node can contain one mesh, defined in its `mesh` property. Mesh can be skinned using a information provided in referenced `skin` object. Mesh can have morph targets.
+Any node can contain one mesh, defined in its `mesh` property. Mesh can be skinned using a information provided in referenced `skin` object. Mesh can have morph targets.<br>任何节点都可以包含一个网格，在其`mesh`属性中定义。可以使用引用的`skin`对象中提供的信息对网格进行蒙皮。网格可以有变形目标
 
 ### Meshes
 
-In glTF, meshes are defined as arrays of *primitives*. Primitives correspond to the data required for GPU draw calls. Primitives specify one or more `attributes`, corresponding to the vertex attributes used in the draw calls. Indexed primitives also define an `indices` property. Attributes and indices are defined as references to accessors containing corresponding data. Each primitive also specifies a material and a primitive type that corresponds to the GPU primitive type (e.g., triangle set).
+In glTF, meshes are defined as arrays of *primitives*. Primitives correspond to the data required for GPU draw calls. Primitives specify one or more `attributes`, corresponding to the vertex attributes used in the draw calls. Indexed primitives also define an `indices` property. Attributes and indices are defined as references to accessors containing corresponding data. Each primitive also specifies a material and a primitive type that corresponds to the GPU primitive type (e.g., triangle set).<br>在glTF中，网格被定义为*primitives*数组。基元对应于GPU绘制调用所需的数据。基元指定一个或多个属性，对应于绘制调用中使用的顶点属性。索引基元还定义索引属性。属性和索引被定义为对包含相应数据的访问器的引用。每个基元还指定对应于GPU基元类型（例如，三角形集）的材料和基元类型
 
-> **Implementation note:** Splitting one mesh into *primitives* could be useful to limit number of indices per draw call.
+> **Implementation note:** Splitting one mesh into *primitives* could be useful to limit number of indices per draw call.<br>实现注意事项：将一个网格拆分为*primitives*可能有助于限制每个draw call调用的索引数
 
-If `material` is not specified, then a [default material](#default-material) is used.
+If `material` is not specified, then a [default material](#default-material) is used.<br>如果未指定`material`，则使用默认材质
 
-The following example defines a mesh containing one triangle set primitive:
+The following example defines a mesh containing one triangle set primitive:<br>以下示例定义包含一个三角形集基元的网格
 
 ```json
 {
@@ -735,11 +735,11 @@ The following example defines a mesh containing one triangle set primitive:
 }
 ```
 
-Each attribute is defined as a property of the `attributes` object. The name of the property corresponds to an enumerated value identifying the vertex attribute, such as `POSITION`. The value of the property is the index of an accessor that contains the data.
+Each attribute is defined as a property of the `attributes` object. The name of the property corresponds to an enumerated value identifying the vertex attribute, such as `POSITION`. The value of the property is the index of an accessor that contains the data.<br>每个属性都定义为`attributes`对象的属性。属性的名称对应于标识顶点属性的枚举值，例如POSITION。属性的值是包含数据的访问者的索引
 
-Valid attribute semantic property names include `POSITION`, `NORMAL`, `TANGENT`, `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`, `JOINTS_0`, and `WEIGHTS_0`.  Application-specific semantics must start with an underscore, e.g., `_TEMPERATURE`.
+Valid attribute semantic property names include `POSITION`, `NORMAL`, `TANGENT`, `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`, `JOINTS_0`, and `WEIGHTS_0`.  Application-specific semantics must start with an underscore, e.g., `_TEMPERATURE`.<br>有效属性语义属性名称包括`POSITION`, `NORMAL`, `TANGENT`, `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`, `JOINTS_0`, 和 `WEIGHTS_0`。特定于应用程序的语义必须以下划线开头，例如_TEMPERATURE
 
-Valid accessor type and component type for each attribute semantic property are defined below.
+Valid accessor type and component type for each attribute semantic property are defined below.<br>下面定义了每个属性语义属性的有效访问者类型和组件类型
 
 |Name|Accessor Type(s)|Component Type(s)|Description|
 |----|----------------|-----------------|-----------|
@@ -752,28 +752,28 @@ Valid accessor type and component type for each attribute semantic property are 
 |`JOINTS_0`|`"VEC4"`|`5121`&nbsp;(UNSIGNED_BYTE)<br>`5123`&nbsp;(UNSIGNED_SHORT)|See [Skinned Mesh Attributes](#skinned-mesh-attributes)|
 |`WEIGHTS_0`|`"VEC4`|`5126`&nbsp;(FLOAT)<br>`5121`&nbsp;(UNSIGNED_BYTE)&nbsp;normalized<br>`5123`&nbsp;(UNSIGNED_SHORT)&nbsp;normalized|See [Skinned Mesh Attributes](#skinned-mesh-attributes)|
 
-`POSITION` accessor **must** have `min` and `max` properties defined.
+`POSITION` accessor **must** have `min` and `max` properties defined.<br>POSITION访问器必须定义最小和最大属性
 
-`TEXCOORD`, `COLOR`, `JOINTS`, and `WEIGHTS` attribute semantic property names must be of the form `[semantic]_[set_index]`, e.g., `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`. Client implementations must support at least two UV texture coordinate sets, one vertex color, and one joints/weights set. Extensions can add additional property names, accessor types, and/or accessor component types.
+`TEXCOORD`, `COLOR`, `JOINTS`, and `WEIGHTS` attribute semantic property names must be of the form `[semantic]_[set_index]`, e.g., `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`. Client implementations must support at least two UV texture coordinate sets, one vertex color, and one joints/weights set. Extensions can add additional property names, accessor types, and/or accessor component types.<br>TEXCOORD，COLOR，JOINTS和WEIGHTS属性语义属性名称必须是[semantic] _ [set_index]形式，例如TEXCOORD_0，TEXCOORD_1，COLOR_0。客户端实现必须支持至少两个UV纹理坐标集，一个顶点颜色和一个关节/权重集。扩展可以添加其他属性名称，访问者类型和/或访问者组件类型
 
-All indices for indexed attribute semantics, must start with 0 and be continuous: `TEXCOORD_0`, `TEXCOORD_1`, etc.
+All indices for indexed attribute semantics, must start with 0 and be continuous: `TEXCOORD_0`, `TEXCOORD_1`, etc.<br>索引属性语义的所有索引必须以0开头并且是连续的：TEXCOORD_0，TEXCOORD_1等
 
-> **Implementation note:** Each primitive corresponds to one WebGL draw call (engines are, of course, free to batch draw calls). When a primitive's `indices` property is defined, it references the accessor to use for index data, and GL's `drawElements` function should be used. When the `indices` property is not defined, GL's `drawArrays` function should be used with a count equal to the count property of any of the accessors referenced by the `attributes` property (they are all equal for a given primitive).
+> **Implementation note:** Each primitive corresponds to one WebGL draw call (engines are, of course, free to batch draw calls). When a primitive's `indices` property is defined, it references the accessor to use for index data, and GL's `drawElements` function should be used. When the `indices` property is not defined, GL's `drawArrays` function should be used with a count equal to the count property of any of the accessors referenced by the `attributes` property (they are all equal for a given primitive).<br>实现说明：每个primitive对应一个WebGL draw call（当然，引擎可以自由批量绘制调用）。当定义了一个primitive的indices属性时，它引用了保存索引数据的访问器，并且应该使用GL的drawElements函数。如果未定义indices属性，则应使用GL的drawArrays函数，其计数等于attributes属性引用的任何访问器的count属性（它们对于给定的基元都是相等的）
 
-> **Implementation note:** When normals are not specified, client implementations should calculate flat normals.
+> **Implementation note:** When normals are not specified, client implementations should calculate flat normals.<br>实现说明：未指定法线时，客户端实现应计算flat法线
 
-> **Implementation note:** When tangents are not specified, client implementations should calculate tangents using default MikkTSpace algorithms.  For best results, the mesh triangles should also be processed using default MikkTSpace algorithms.
+> **Implementation note:** When tangents are not specified, client implementations should calculate tangents using default MikkTSpace algorithms.  For best results, the mesh triangles should also be processed using default MikkTSpace algorithms.<br>实现说明：当未指定切线时，客户端实现应使用默认的MikkTSpace算法计算切线。为获得最佳结果，还应使用默认的MikkTSpace算法处理网格三角形
 
-> **Implementation note:** When normals and tangents are specified, client implementations should compute the bitangent by taking the cross product of the normal and tangent xyz vectors and multiplying against the w component of the tangent: `bitangent = cross(normal, tangent.xyz) * tangent.w`
+> **Implementation note:** When normals and tangents are specified, client implementations should compute the bitangent by taking the cross product of the normal and tangent xyz vectors and multiplying against the w component of the tangent: `bitangent = cross(normal, tangent.xyz) * tangent.w`<br>实现注意事项：当指定法线和切线时，客户端实现应通过获取法线和切线xyz向量的叉积并乘以切线的w分量来计算比特率：bitangent = cross（normal，tangent.xyz）* tangent .W
 
-> **Implementation note:** When the 'mode' property is set to a non-triangular type (such as POINTS or LINES) some additional considerations must be taken while considering the proper rendering technique:
-> > For LINES with `NORMAL` and `TANGENT` properties can render with standard lighting including normal maps.
+> **Implementation note:** When the 'mode' property is set to a non-triangular type (such as POINTS or LINES) some additional considerations must be taken while considering the proper rendering technique:<br>实现注意事项：当'mode'属性设置为非三角形类型（如POINTS或LINES）时，在考虑正确的渲染技术时必须考虑一些其他因素
+> > For LINES with `NORMAL` and `TANGENT` properties can render with standard lighting including normal maps.<br>对于具有NORMAL和TANGENT属性的LINES，可以使用包括法线贴图在内的标准光照进行渲染
 > > 
-> > For all POINTS or LINES with no `TANGENT` property, render with standard lighting but ignore any normal maps on the material.
+> > For all POINTS or LINES with no `TANGENT` property, render with standard lighting but ignore any normal maps on the material.<br>对于没有TANGENT属性的所有POINTS或LINES，使用标准光照渲染但忽略材质上的任何法线贴图
 > > 
-> > For POINTS or LINES with no `NORMAL` property, don't calculate lighting and instead output the `COLOR` value for each pixel drawn.
+> > For POINTS or LINES with no `NORMAL` property, don't calculate lighting and instead output the `COLOR` value for each pixel drawn.<br>对于没有NORMAL属性的POINTS或LINES，不要计算光照，而是为每个绘制的像素输出COLOR值
 
-#### Morph Targets
+#### Morph Targets  变形目标
 
 Morph Targets are defined by extending the Mesh concept.
 
@@ -1010,13 +1010,13 @@ A skin is instanced within a node using a combination of the node's `mesh` and `
 }
 ```
 
-## Texture Data
+## Texture Data  纹理数据
 
-glTF separates texture access into three distinct types of objects: Textures, Images, and Samplers.
+glTF separates texture access into three distinct types of objects: Textures, Images, and Samplers.<br>glTF将纹理访问分为三种不同类型的对象：Textures，Images和Samplers
 
-### Textures
+### Textures 纹理
 
-All textures are stored in the asset's `textures` array. A texture is defined by an image resource, denoted by the `source` property and a sampler index (`sampler`).
+All textures are stored in the asset's `textures` array. A texture is defined by an image resource, denoted by the `source` property and a sampler index (`sampler`).<br>所有纹理都存储在文件的`textures`数组中。纹理由图像资源定义，由source属性和采样器索引（sampler）表示
 
 ```json
 {
@@ -1029,7 +1029,7 @@ All textures are stored in the asset's `textures` array. A texture is defined by
 }
 ```
 
-> **Implementation Note** glTF 2.0 supports only 2D textures.
+> **Implementation Note** glTF 2.0 supports only 2D textures.<br>实现说明:glTF 2.0仅支持2D纹理
 
 ### Images
 
