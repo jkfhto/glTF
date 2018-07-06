@@ -1033,14 +1033,14 @@ All textures are stored in the asset's `textures` array. A texture is defined by
 
 ### Images
 
-Images referred to by textures are stored in the `images` array of the asset. 
+Images referred to by textures are stored in the `images` array of the asset. <br>纹理引用的图像存储在文件的`images`数组中
 
-Each image contains one of
-- a URI to an external file in one of the supported images formats, or
-- a URI with embedded base64-encoded data, or
-- a reference to a `bufferView`; in that case `mimeType` must be defined.
+Each image contains one of 每个图像包含
+- a URI to an external file in one of the supported images formats, or<br>一种受支持的图像格式的外部文件的URI，或<br>
+- a URI with embedded base64-encoded data, or<br>带有嵌入式base64编码数据的URI，或<br>
+- a reference to a `bufferView`; in that case `mimeType` must be defined.<br>对bufferView的引用;在这种情况下，必须定义mimeType
 
-The following example shows an image pointing to an external PNG image file and another image referencing a `bufferView` with JPEG data.
+The following example shows an image pointing to an external PNG image file and another image referencing a `bufferView` with JPEG data.<br>以下示例显示指向外部PNG图像文件的图像和引用带有JPEG数据的bufferView的另一个图像
 
 ```json
 {
@@ -1055,10 +1055,10 @@ The following example shows an image pointing to an external PNG image file and 
     ]
 }
 ```
-> **Implementation Note:** When image data is provided by `uri` and `mimeType` is defined, client implementations should prefer JSON-defined MIME Type over one provided by transport layer.
+> **Implementation Note:** When image data is provided by `uri` and `mimeType` is defined, client implementations should prefer JSON-defined MIME Type over one provided by transport layer.<br>实现注意：当图像数据定义了uri并同时定义了mimeType参数时，客户端实现应优先于传输层提供的JSON定义的MIME类型
 
 The origin of the UV coordinates (0, 0) corresponds to the upper left corner of a texture image.
-This is illustrated in the following figure, where the respective UV coordinates are shown for all four corners of a normalized UV space:
+This is illustrated in the following figure, where the respective UV coordinates are shown for all four corners of a normalized UV space:<br>UV坐标（0,0）的原点对应于纹理图像的左上角。下图说明了这一点，其中显示了标准化UV空间的所有四个角的相应UV坐标
 <p align="center">
 <img src="figures/texcoords.jpg" /><br/>
 </p>
