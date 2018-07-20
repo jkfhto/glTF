@@ -1099,9 +1099,9 @@ glTF defines materials using a common set of parameters that are based on widely
 
 <p><img src="figures/materials.png" /></p>
 
-### Metallic-Roughness Material 
+### Metallic-Roughness Material   金属粗糙材质
 
-All parameters related to the metallic-roughness material model are defined under the `pbrMetallicRoughness` property of `material` object. The following example shows how a material like gold can be defined using the metallic-roughness parameters: 
+All parameters related to the metallic-roughness material model are defined under the `pbrMetallicRoughness` property of `material` object. The following example shows how a material like gold can be defined using the metallic-roughness parameters: <br>与金属粗糙度材料模型相关的所有参数都在材料对象的pbrMetallicRoughness属性下定义。以下示例显示如何使用metal-roughness参数定义像gold这样的材质
 
 ```json
 {
@@ -1118,14 +1118,14 @@ All parameters related to the metallic-roughness material model are defined unde
 }
 ```
 
-The metallic-roughness material model is defined by the following properties:
-* `baseColor` - The base color of the material
-* `metallic` - The metalness of the material
-* `roughness` - The roughness of the material
+The metallic-roughness material model is defined by the following properties:  金属粗糙度材质模型由以下属性定义：
+* `baseColor` - The base color of the material  材质的基色
+* `metallic` - The metalness of the material  材质的金属质感
+* `roughness` - The roughness of the material  材质的粗糙度
 
-The base color has two different interpretations depending on the value of metalness. When the material is a metal, the base color is the specific measured reflectance value at normal incidence (F0). For a non-metal the base color represents the reflected diffuse color of the material. In this model it is not possible to specify a F0 value for non-metals, and a linear value of 4% (0.04) is used. 
+The base color has two different interpretations depending on the value of metalness. When the material is a metal, the base color is the specific measured reflectance value at normal incidence (F0). For a non-metal the base color represents the reflected diffuse color of the material. In this model it is not possible to specify a F0 value for non-metals, and a linear value of 4% (0.04) is used. <br>根据金属度的值，基色有两种不同的解释。当材料是金属时，基色是垂直入射时的特定测量反射率值（F0）。对于非金属，基色表示材质反射的漫反射颜色。在该模型中，不可能为非金属指定F0值，并且使用4％（0.04）的线性值
 
-The value for each property (`baseColor`, `metallic`, `roughness`) can be defined using factors or textures. The `metallic` and `roughness` properties are packed together in a single texture called `metallicRoughnessTexture`. If a texture is not given, all respective texture components within this material model are assumed to have a value of `1.0`. If both factors and textures are present the factor value acts as a linear multiplier for the corresponding texture values. Texture content must be converted to linear space before it is used for any lighting computations. 
+The value for each property (`baseColor`, `metallic`, `roughness`) can be defined using factors or textures. The `metallic` and `roughness` properties are packed together in a single texture called `metallicRoughnessTexture`. If a texture is not given, all respective texture components within this material model are assumed to have a value of `1.0`. If both factors and textures are present the factor value acts as a linear multiplier for the corresponding texture values. Texture content must be converted to linear space before it is used for any lighting computations. <br>可以使用因子或纹理定义每个属性的值（baseColor，metal，roughness）。金属和粗糙度属性在称为metallicRoughnessTexture的单个纹理中打包在一起。如果未给出纹理，则假定此材料模型中的所有相应纹理组件的值均为1.0。如果存在因子和纹理，则因子值充当相应纹理值的线性乘数。在将纹理内容用于任何光照计算之前，必须将其转换为线性空间
 
 For example, assume a value of `[0.9, 0.5, 0.3, 1.0]` in linear space is obtained from an RGBA `baseColorTexture`, and assume that `baseColorFactor` is given as `[0.2, 1.0, 0.7, 1.0]`.
 Then, the result would be 
@@ -1145,7 +1145,7 @@ The following equations show how to calculate bidirectional reflectance distribu
 <br>
 *&alpha;* = `roughness ^ 2`
 
-All implementations should use the same calculations for the BRDF inputs. Implementations of the BRDF itself can vary based on device performance and resource constraints. See [Appendix B](#appendix-b-brdf-implementation) for more details on the BRDF calculations.
+All implementations should use the same calculations for the BRDF inputs. Implementations of the BRDF itself can vary based on device performance and resource constraints. See [Appendix B](#appendix-b-brdf-implementation) for more details on the BRDF calculations.<br>所有实现都应对BRDF输入使用相同的计算。 BRDF本身的实现可以根据设备性能和资源限制而变化。有关BRDF计算的更多详细信息，请参见附录B
 
 ### Additional Maps
 
