@@ -1063,11 +1063,11 @@ This is illustrated in the following figure, where the respective UV coordinates
 <img src="figures/texcoords.jpg" /><br/>
 </p>
 
-Any colorspace information (such as ICC profiles, intents, etc) from PNG or JPEG containers must be ignored.
+Any colorspace information (such as ICC profiles, intents, etc) from PNG or JPEG containers must be ignored.<br>必须忽略来自PNG或JPEG容器的任何颜色空间信息（例如ICC配置文件，意图等）
 
-> **Implementation Note:** This increases portability of an asset, since not all image decoding libraries fully support custom color conversions. To achieve correct rendering, WebGL runtimes must disable such conversions by setting `UNPACK_COLORSPACE_CONVERSION_WEBGL` flag to `NONE`.
+> **Implementation Note:** This increases portability of an asset, since not all image decoding libraries fully support custom color conversions. To achieve correct rendering, WebGL runtimes must disable such conversions by setting `UNPACK_COLORSPACE_CONVERSION_WEBGL` flag to `NONE`.<br>实现注意：这增加了资产的可移植性，因为并非所有图像解码库都完全支持自定义颜色转换。要实现正确的渲染，WebGL运行时必须通过将UNPACK_COLORSPACE_CONVERSION_WEBGL标志设置为NONE来禁用此类转换
 
-### Samplers
+### Samplers  采样
 
 Samplers are stored in the `samplers` array of the asset. Each sampler specifies filter and wrapping options corresponding to the GL types. The following example defines a sampler with linear mag filtering, linear mipmap min filtering, and repeat wrapping in S (U) and T (V).
 
@@ -1093,9 +1093,9 @@ Samplers are stored in the `samplers` array of the asset. Each sampler specifies
 > * Has a wrapping mode (either `wrapS` or `wrapT`) equal to `REPEAT` or `MIRRORED_REPEAT`, or
 > * Has a minification filter (`minFilter`) that uses mipmapping (`NEAREST_MIPMAP_NEAREST`, `NEAREST_MIPMAP_LINEAR`, `LINEAR_MIPMAP_NEAREST`, or `LINEAR_MIPMAP_LINEAR`).
 
-## Materials
+## Materials  材质
 
-glTF defines materials using a common set of parameters that are based on widely used material representations from Physically-Based Rendering (PBR). Specifically, glTF uses the metallic-roughness material model. Using this declarative representation of materials enables a glTF file to be rendered consistently across platforms. 
+glTF defines materials using a common set of parameters that are based on widely used material representations from Physically-Based Rendering (PBR). Specifically, glTF uses the metallic-roughness material model. Using this declarative representation of materials enables a glTF file to be rendered consistently across platforms. <br>glTF使用一组通用参数来定义材料，这些参数基于广泛使用的基于物理的渲染（PBR）的材料表示。具体而言，glTF使用金属粗糙度材料模型。使用这种材料的声明表示，可以跨平台一致地呈现glTF文件
 
 <p><img src="figures/materials.png" /></p>
 
