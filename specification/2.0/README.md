@@ -1197,19 +1197,19 @@ The following examples shows a material that is defined using `pbrMetallicRoughn
 
 ### Alpha Coverage
 
-The `alphaMode` property defines how the alpha value of the main factor and texture should be interpreted. The alpha value is defined in the `baseColor` for metallic-roughness material model. 
+The `alphaMode` property defines how the alpha value of the main factor and texture should be interpreted. The alpha value is defined in the `baseColor` for metallic-roughness material model. <br>alphaMode属性定义应如何解释主要因子和纹理的alpha值。 alpha值在金属粗糙度材料模型中在baseColor中定义
 
-`alphaMode` can be one of the following values:
-* `OPAQUE` - The rendered output is fully opaque and any alpha value is ignored.
-* `MASK` - The rendered output is either fully opaque or fully transparent depending on the alpha value and the specified alpha cutoff value. This mode is used to simulate geometry such as tree leaves or wire fences.
-* `BLEND` - The rendered output is combined with the background using the normal painting operation (i.e. the Porter and Duff over operator). This mode is used to simulate geometry such as guaze cloth or animal fur. 
+`alphaMode` can be one of the following values:  alphaMode可以是以下值之一
+* `OPAQUE` - The rendered output is fully opaque and any alpha value is ignored. <br>渲染的输出完全不透明，忽略任何alpha值
+* `MASK` - The rendered output is either fully opaque or fully transparent depending on the alpha value and the specified alpha cutoff value. This mode is used to simulate geometry such as tree leaves or wire fences.<br>渲染输出完全不透明或完全透明，具体取决于alpha值和指定的alpha截止值。此模式用于模拟树叶或线栅等几何体
+* `BLEND` - The rendered output is combined with the background using the normal painting operation (i.e. the Porter and Duff over operator). This mode is used to simulate geometry such as guaze cloth or animal fur. <br>使用常规绘制操作（即Porter和Duff over运算符）将渲染输出与背景组合。此模式用于模拟几何形状，如guaze布或动物毛皮
 
- When `alphaMode` is set to `MASK` the `alphaCutoff` property specifies the cutoff threshold. If the alpha value is greater than or equal to the `alphaCutoff` value then it is rendered as fully opaque, otherwise, it is rendered as fully transparent. `alphaCutoff` value is ignored for other modes.
+ When `alphaMode` is set to `MASK` the `alphaCutoff` property specifies the cutoff threshold. If the alpha value is greater than or equal to the `alphaCutoff` value then it is rendered as fully opaque, otherwise, it is rendered as fully transparent. `alphaCutoff` value is ignored for other modes.<br>当alphaMode设置为MASK时，alphaCutoff属性指定截止阈值。如果alpha值大于或等于alphaCutoff值，则它将呈现为完全不透明，否则呈现为完全透明。其他模式将忽略alphaCutoff值
 
->**Implementation Note for Real-Time Rasterizers:** Real-time rasterizers typically use depth buffers and mesh sorting to support alpha modes. The following describe the expected behavior for these types of renderers.
->* `OPAQUE` - A depth value is written for every pixel and mesh sorting is not required for correct output.
->* `MASK` - A depth value is not written for a pixel that is discarded after the alpha test. A depth value is written for all other pixels. Mesh sorting is not required for correct output.
->* `BLEND` - Support for this mode varies. There is no perfect and fast solution that works for all cases. Implementations should try to achieve the correct blending output for as many situations as possible. Whether depth value is written or whether to sort is up to the implementation. For example, implementations can discard pixels which have zero or close to zero alpha value to avoid sorting issues.
+>**Implementation Note for Real-Time Rasterizers:** Real-time rasterizers typically use depth buffers and mesh sorting to support alpha modes. The following describe the expected behavior for these types of renderers.<br>实时光栅化的实现说明：实时光栅化通常使用深度缓冲区和网格排序来支持alpha模式。以下描述了这些类型的渲染器的预期行为<br>
+>* `OPAQUE` - A depth value is written for every pixel and mesh sorting is not required for correct output.<br>为每个像素写入深度值，并且正确输出不需要网格排序<br>
+>* `MASK` - A depth value is not written for a pixel that is discarded after the alpha test. A depth value is written for all other pixels. Mesh sorting is not required for correct output.<br>不为alpha测试后丢弃的像素写入深度值。为所有其他像素写入深度值。正确输出不需要网格排序<br>
+>* `BLEND` - Support for this mode varies. There is no perfect and fast solution that works for all cases. Implementations should try to achieve the correct blending output for as many situations as possible. Whether depth value is written or whether to sort is up to the implementation. For example, implementations can discard pixels which have zero or close to zero alpha value to avoid sorting issues.<br>对此模式的支持各不相同。没有完美而快速的解决方案适用于所有情况。实现应该尝试在尽可能多的情况下实现正确的混合输出。是否写入深度值或是否进行排序取决于实现。例如，实现可以丢弃具有零或接近零alpha值的像素以避免排序问题
 
 ### Double Sided
 
