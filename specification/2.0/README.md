@@ -1149,14 +1149,14 @@ All implementations should use the same calculations for the BRDF inputs. Implem
 
 ### Additional Maps
 
-The material definition also provides for additional maps that can also be used with the metallic-roughness material model as well as other material models which could be provided via glTF extensions.
+The material definition also provides for additional maps that can also be used with the metallic-roughness material model as well as other material models which could be provided via glTF extensions.<br>材料定义还提供了额外的地图，这些地图也可以与金属粗糙度材料模型以及glTF扩展提供的其他材料模型一起使用
 
 Materials define the following additional maps:
 - **normal** : A tangent space normal map.
 - **occlusion** : The occlusion map indicating areas of indirect lighting.
-- **emissive** : The emissive map controls the color and intensity of the light being emitted by the material.
+- **emissive** : The emissive map controls the color and intensity of the light being emitted by the material.<br>自发光贴图控制材质发出的光的颜色和强度
 
-The following examples shows a material that is defined using `pbrMetallicRoughness` parameters as well as additional texture maps:
+The following examples shows a material that is defined using `pbrMetallicRoughness` parameters as well as additional texture maps:<br>以下示例显示了使用pbrMetallicRoughness参数以及其他纹理贴图定义的材质
 
 ```json
 {
@@ -1187,13 +1187,13 @@ The following examples shows a material that is defined using `pbrMetallicRoughn
 }
 ```
 
->**Implementation Note:** If an implementation is resource-bound and cannot support all the maps defined it should support these additional maps in the following priority order.  Resource-bound implementations should drop maps from the bottom to the top.
+>**Implementation Note:** If an implementation is resource-bound and cannot support all the maps defined it should support these additional maps in the following priority order.  Resource-bound implementations should drop maps from the bottom to the top.<br>实现注意：如果实现受资源限制且无法支持定义的所有映射，则应按以下优先级顺序支持这些附加映射。 资源绑定实现应该从底部到顶部删除贴图。
 >
 >| Map       | Rendering impact when map is not supported |
 >|-----------|--------------------------------------------|
 >| Normal    | Geometry will appear less detailed than authored. |
 >| Occlusion | Model will appear brighter in areas that should be darker. |
->| Emissive  | Model with lights will not be lit. For example, the headlights of a car model will be off instead of on. |
+>| Emissive  | Model with lights will not be lit. For example, the headlights of a car model will be off instead of on. <br>带灯的自发光模型不会亮起。 例如，汽车模型的前灯将关闭而不是打开|
 
 ### Alpha Coverage
 
