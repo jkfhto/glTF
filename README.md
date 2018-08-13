@@ -6,16 +6,18 @@
 
 glTF™ (GL Transmission Format) is a royalty-free specification for the efficient transmission and loading of 3D scenes and models by applications. glTF minimizes both the size of 3D assets, and the runtime processing needed to unpack and use those assets. glTF defines an extensible, common publishing format for 3D content tools and services that streamlines authoring workflows and enables interoperable use of content across the industry.
 
-## Specification
+## Specification 规范
 
-* [glTF Specification, 2.0](specification/2.0/README.md) (or [all specification versions](specification/README.md))
-* [glTF Extension Registry](extensions/README.md)
+* [glTF Specification, 2.0](specification/2.0/README.md) (or [all specification versions](specification/README.md))glTF2.0规范，以及其他版本规范
+* [glTF Extension Registry](extensions/README.md) glTF扩展
 
 Please provide spec feedback and community updates by submitting [issues](https://github.com/KhronosGroup/glTF/issues).  For quick questions, use [gitter](https://gitter.im/KhronosGroup/glTF).
 
+请通过提交[问题]提供规范反馈和社区更新。请使用[gitter]快速寻找问题，
+
 ## Quickstart
 
-### Overview
+### Overview  概括
 
 <p align="center">
 <a href="specification/2.0/figures/gltfOverview-2.0.0a.png"><img src="specification/2.0/figures/gltfOverview-2.0.0a-small.png" /></a>
@@ -24,16 +26,17 @@ Please provide spec feedback and community updates by submitting [issues](https:
 </p>
 
 
-### For developers
+### For developers  面向开发者
 
-* [Sample models](https://github.com/KhronosGroup/glTF-Sample-Models) for testing runtime engines and content pipeline tools.
-   * [glTF-Asset-Generator](https://github.com/bghgary/glTF-Asset-Generator) provides assets for robust importer validation.
+* [Sample models](https://github.com/KhronosGroup/glTF-Sample-Models) for testing runtime engines and content pipeline tools.  用于测试渲染引擎和渲染管道的工具。
+   * [glTF-Asset-Generator](https://github.com/bghgary/glTF-Asset-Generator) provides assets for robust importer validation.   提过接口确保gltf文件的正确性
    * [100,000+ models](https://sketchfab.com/models?features=downloadable&sort_by=-likeCount) under Creative Commons license on Sketchfab (check license for individual models).
-* [Drag-and-drop validator](http://github.khronos.org/glTF-Validator/) for verifying correctness of existing glTF files.
-* [glTF Tutorial Series](https://github.com/KhronosGroup/glTF-Tutorials/blob/master/gltfTutorial/README.md)
+* [Drag-and-drop validator](http://github.khronos.org/glTF-Validator/) for verifying correctness of existing glTF files. 用于验证现有glTF文件的正确性
+* [glTF Tutorial Series](https://github.com/KhronosGroup/glTF-Tutorials/blob/master/gltfTutorial/README.md) glTF系列教程
 
-### For artists
+### For artists  面向艺术家
 
+<<<<<<< HEAD
 - [Blender exporter](https://github.com/KhronosGroup/glTF-Blender-Exporter)
 - [3DS Max exporter](http://doc.babylonjs.com/resources/3dsmax_to_gltf)
 - [Maya exporter](https://github.com/WonderMediaProductions/Maya2glTF)
@@ -41,12 +44,17 @@ Please provide spec feedback and community updates by submitting [issues](https:
 
 ### Preview tools
 
+=======
+[Blender exporter](https://github.com/KhronosGroup/glTF-Blender-Exporter) for creating and converting models with glTF 2.0.  用于创建和转换glTF 2.0模型
+
+Preview tools:  预览工具
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
   - [Sketchfab](https://sketchfab.com/)
   - [BabylonJS Sandbox](https://www.babylonjs.com/sandbox/)
   - [Drag-and-drop viewer](https://gltf-viewer.donmccurdy.com/)
   - [glTF VSCode Extension](https://marketplace.visualstudio.com/items?itemName=cesium.gltf-vscode) 3D previews, glTF validation, conversion to/from GLB
 
-## Contents
+## Contents  目录
 
 - [glTF Tools](#gltf-tools)
     - [Converters, Importers, and Exporters](#converters-importers-and-exporters)
@@ -81,16 +89,21 @@ Please provide spec feedback and community updates by submitting [issues](https:
 
 ## glTF Tools
 
+<<<<<<< HEAD
 ### Converters, Importers, and Exporters
+=======
+### Converters and Exporters  模型转换和建模工具
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
 | Tool | Input | Output | Description |
 |------|-------|--------|-------------|
-| [Khronos Group Blender Exporter](https://github.com/KhronosGroup/glTF-Blender-Exporter) | — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Official exporter for Blender |
+| [Khronos Group Blender Exporter](https://github.com/KhronosGroup/glTF-Blender-Exporter) | — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Official exporter for Blender   Blender的官方导出工具|
 | [3DS Max Exporter](http://doc.babylonjs.com/resources/3dsmax_to_gltf) | — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Export glTF files using [BabylonJS plugin](http://doc.babylonjs.com/resources/3dsmax#how-to-install-the-3ds-max-plugin) for 3DS Max 2015 or later |
 | [Maya Exporter](http://doc.babylonjs.com/resources/maya_to_gltf) | — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Export glTF files using [BabylonJS plugin](http://doc.babylonjs.com/resources/maya) for Maya 2018 or later |
 | [Unity Exporter (Sketchfab fork)](https://github.com/sketchfab/Unity-glTF-Exporter) | — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Unity editor wizard that exports to glTF Format |
 | Unity COLLADA & glTF Exporter [Unity 5](https://www.assetstore.unity3d.com/#!/content/40946) & [Unity 2017](https://www.assetstore.unity3d.com/#!/content/99793) | — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Commercial unity asset store editor extension to export COLLADA and glTF via collada2gltf |
 | Sketchup [export](http://extensions.sketchup.com/en/content/gltf-exporter) and [import](http://extensions.sketchup.com/en/content/gltf-import) | — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Separate extensions for export and import |
+<<<<<<< HEAD
 | [PBR extension for SketchUp](https://github.com/SamuelTS/SketchUp-PBR-Plugin) | `SKP` | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | PBR Material Editor, glTF Exporter, PBR Viewport |
 | [obj2gltf](https://github.com/AnalyticalGraphicsInc/OBJ2GLTF)  | `OBJ` | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Command-line converter |
 | [Kupoman blendergltf](https://github.com/Kupoman/blendergltf) | — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | glTF exporter for Blender aimed at streaming scenes to other applications |
@@ -99,12 +112,19 @@ Please provide spec feedback and community updates by submitting [issues](https:
 | [BlackThread.io converter](https://blackthread.io/gltf-converter/) | [Multiple](https://blackthread.io/gltf-converter/#supported-formats) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Online drag and drop converter powered by three.js |
 | [Assimp](http://www.assimp.org/) | [Multiple](https://github.com/assimp/assimp#supported-file-formats) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | General-purpose online conversion pipeline |
 | [PiXYZ Studio](https://www.pixyz-software.com/studio/) | [Multiple](https://docs.google.com/spreadsheets/d/1aWdeBOvZsbnwHfbyhuVS4vBDwevsT2Bz65hEhc0CtnU/pubhtml?gid=786960864) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Interactively prepare & optimize any CAD data |
+=======
+| [obj2gltf](https://github.com/AnalyticalGraphicsInc/OBJ2GLTF)  | `OBJ` | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Command-line converter   命令行转换器|
+| [blendergltf](https://github.com/Kupoman/blendergltf) | — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | glTF exporter for Blender aimed at streaming scenes to other applications |
+| [BlackThread.io converter](https://blackthread.io/gltf-converter/) | [Multiple](https://blackthread.io/gltf-converter/#supported-formats) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Online drag and drop converter powered by three.js   由three.js提供支持的在线转换器|
+| [Assimp](http://www.assimp.org/) | [Multiple](https://github.com/assimp/assimp#supported-file-formats) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | General-purpose online conversion pipeline   通用的在线转换工具|
+| [PiXYZ Studio](https://www.pixyz-software.com/studio/) | [Multiple](https://docs.google.com/spreadsheets/d/1aWdeBOvZsbnwHfbyhuVS4vBDwevsT2Bz65hEhc0CtnU/pubhtml?gid=786960864) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Interactively prepare & optimize any CAD data   交互式准备和优化任何CAD数据|
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 | [FBX2glTF (Facebook)](https://github.com/facebookincubator/FBX2glTF)  | `FBX` | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Command-line converter |
 | [FBX2glTF (ClayGL)](https://github.com/pissang/clay-viewer#converter)  | `FBX`, `COLLADA`, `OBJ` | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Python tool to convert models to glTF2.0 format, model is parsed by FBX SDK. |
-| [glTF API](https://github.com/headjack-dev/gltf-api)  | `FBX`, `COLLADA`, `OBJ` | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Web API to convert OBJ, FBX and COLLADA files to glTF or GLB |
-| [Simplygon Cloud](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/simplygon.simplygon)  | [Multiple](https://simplygonclouddoc.simplygon.com/tutorials/firstprocessing.html#asset) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Cloud based asset optimization pipeline |
-| [Verge3D](http://www.soft8soft.com/verge3d/)  | — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | glTF 2.0 exporters for Blender and 3ds Max |
-| [COLLADA2GLTF](https://github.com/KhronosGroup/COLLADA2GLTF/) | `COLLADA` | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Official command-line converter, with updates for glTF 2.0 in progress |
+| [glTF API](https://github.com/headjack-dev/gltf-api)  | `FBX`, `COLLADA`, `OBJ` | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Web API to convert OBJ, FBX and COLLADA files to glTF or GLB   Web API将OBJ，FBX和COLLADA文件转换为glTF或GLB|
+| [Simplygon Cloud](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/simplygon.simplygon)  | [Multiple](https://simplygonclouddoc.simplygon.com/tutorials/firstprocessing.html#asset) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Cloud based asset optimization pipeline   基于云的资源优化管道|
+| [Verge3D](http://www.soft8soft.com/verge3d/)  | — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | glTF 2.0 exporters for Blender and 3ds Max   用于Blender和3ds Max导出glTF 2.0文件|
+| [COLLADA2GLTF](https://github.com/KhronosGroup/COLLADA2GLTF/) | `COLLADA` | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Official command-line converter, with updates for glTF 2.0 in progress   官方命令行转换器，正在进行glTF 2.0版本更新|
 | [Cesium drag-and-drop converter](http://cesiumjs.org/convertmodel.html) | `OBJ`, `COLLADA` | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Online drag and drop converter |
 | [Maya2glTF](https://github.com/WonderMediaProductions/Maya2glTF) | — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Export glTF from Autodesk Maya |
 | [batchgltf](https://github.com/feiss/batchgltf) | `COLLADA` | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Batch converter with GUI |
@@ -114,25 +134,41 @@ Please provide spec feedback and community updates by submitting [issues](https:
 | [collada2gltf-web-service](https://github.com/AnalyticalGraphicsInc/collada2gltf-web-service) | `COLLADA` | ![status](https://img.shields.io/badge/glTF-%3F-lightgrey.svg?style=flat) | Node.js web service, built on COLLADA2GLTF |
 | [cqparts](https://github.com/fragmuffin/cqparts) | `STEP` | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Python CAD for programmers ([import / export doc](https://fragmuffin.github.io/cqparts/doc/cqparts/import-export.html)) ([GLTFExporter](https://fragmuffin.github.io/cqparts/doc/api/cqparts.codec.html#cqparts.codec.gltf.GLTFExporter)) |
 
-### Optimizers
+### Optimizers  优化工具
 
 | Tool | Status | Description |
 |------|--------|-------------|
-| [gltf-import-export](https://github.com/najadojo/gltf-import-export) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | NPM package to convert between glb and gltf files |
-| [makeglb](https://github.com/sbtron/makeglb) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Drag and drop browser tool to convert gltf to self contained binary glb |
-| [gltf-toolkit](https://github.com/microsoft/gltf-toolkit) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Collection of tools and libraries to modify and optimize glTF assets for Windows Mixed Reality home |
-| [glTF Pipeline](https://github.com/AnalyticalGraphicsInc/gltf-pipeline) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Official Node.js command-line tool for optimizing glTF assets |
+| [gltf-import-export](https://github.com/najadojo/gltf-import-export) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | NPM package to convert between glb and gltf files   可以在glb和gltf文件之间进行转换的NPM软件包|
+| [makeglb](https://github.com/sbtron/makeglb) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Drag and drop browser tool to convert gltf to self contained binary glb   将glTF转换为glb|
+| [gltf-toolkit](https://github.com/microsoft/gltf-toolkit) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Collection of tools and libraries to modify and optimize glTF assets for Windows Mixed Reality home   一系列用于修改和优化glTF文件的工具|
+| [glTF Pipeline](https://github.com/AnalyticalGraphicsInc/gltf-pipeline) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Official Node.js command-line tool for optimizing glTF assets   用于优化glTF文件的官方Node.js命令行工具|
 | [gltf2glb](https://github.com/Geopipe/gltf2glb) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Python tool to convert glTF to Binary glTF |
 | [binary-gltf-utils](https://github.com/Qantas94Heavy/binary-gltf-utils) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Node.js tool to convert glTF to Binary glTF |
 
+<<<<<<< HEAD
 ### Validators
 
 | Tool | Status | Description |
 |------|--------|-------------|
 | [glTF Validator](https://github.com/KhronosGroup/glTF-Validator) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Official command-line and drag-and-drop tool to validate glTF assets against the specification |
 | [glTF VSCode Extension](https://marketplace.visualstudio.com/items?itemName=cesium.gltf-vscode) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | 3D previews, built-in official glTF Validator, conversion to/from GLB |
+=======
 
-### Viewers and Debugging
+### Validators  验证工具
+
+| Tool | Status | Description |
+|------|--------|-------------|
+| [glTF Validator](https://github.com/KhronosGroup/glTF-Validator) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Official command-line and drag-and-top tool to validate glTF assets against the specification   验证glTF文件规范化的官方命令行和拖放式工具|
+
+### Editors and Modeling Tools  编辑和建模工具
+
+| Tool | Status | Description |
+|------|--------|-------------|
+| [glTF VSCode Extension](https://marketplace.visualstudio.com/items?itemName=cesium.gltf-vscode) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Cross-platform JSON schema validation and previews for glTF 2.0 and 1.0 |
+| [Blender Importer](https://github.com/ksons/gltf-blender-importer) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Blender importer for glTF 2.0 (alpha) |
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
+
+### Viewers and Debugging  预览和调试工具
 
 | Tool | Status | Description |
 |------|--------|-------------|
@@ -143,10 +179,15 @@ Please provide spec feedback and community updates by submitting [issues](https:
 | [glTF Animation Visualizer](https://bengfarrell.github.io/animation-visualizer/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Frame-by-frame debugging for glTF animations. |
 | [VirtualGIS Viewer](https://www.virtualgis.io/gltfviewer/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Cesium-based glTF viewer. |
 | [GLTFQuickLook](https://github.com/magicien/GLTFQuickLook) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | macOS QuickLook plugin for glTF files |
+<<<<<<< HEAD
 | [glTF Viewer](https://www.8thwall.com/gltf/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Android and iOS apps for glTF 2.0 viewing and link sharing: supports embedded glTF 2.0 files and links |
 | [DirectX glTF Viewer](https://github.com/Microsoft/glTF-DXViewer) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | DirectX11, C++ desktop app for loading and rendering glTF files |
 | [glTFShowcase](https://www.vispolygon.com/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Android app for viewing glTF 2.0 asset from local files (gltf/glb): supports environment lighting change. |
 ### Applications
+=======
+
+### Applications  应用
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
 | Application | Status | Description |
 |-------------|--------|-------------|
@@ -163,11 +204,15 @@ Please provide spec feedback and community updates by submitting [issues](https:
 | [Archilogic](https://spaces.archilogic.com/blog/gltf-import-export) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Web-based 3D platform for architecture and interiors |
 | [Plex.Earth](https://plexearth.com/) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Connects AutoCAD with Google Earth and the Real World. |
 
+<<<<<<< HEAD
 ### Loaders and Engines
+=======
+### Loaders and Viewers  加载工具和预览工具
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
-#### WebGL Engines
+#### WebGL Engines  WebGL引擎
 
-To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/gltf-test).
+To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/gltf-test).  要比较基于WebGL的glTF加载器，请参阅gltf-test
 
 | Engine | Status | Scope | Related |
 |--------|--------|-------|-------------|
@@ -188,13 +233,17 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 | [xml3d.js](http://xml3d.org) ([loader](https://github.com/xml3d/xml3d-gltf-plugin)) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Geometry and materials | |
 | [X3DOM](http://x3dom.org/) ([loader](https://github.com/x3dom/x3dom/blob/master/src/util/glTF/glTFLoader.js)) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Geometry and materials | |
 
-#### WebGL Sample Code
+#### WebGL Sample Code  WebGL示例代码
 
 | Sample | Status | Description |
 |--------|--------|-------------|
 | [Sample glTF loader with WebGL PBR shader](http://github.khronos.org/glTF-WebGL-PBR/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Engine-agnostic reference implementation for PBR shading with WebGL in glTF 2.0 ([source code](https://github.com/KhronosGroup/glTF-WebGL-PBR)) |
 
+<<<<<<< HEAD
 #### Game and Rendering Engines
+=======
+#### Game Engines  游戏引擎
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
 | Tool | Status | Description |
 |------|--------|-------------|
@@ -205,19 +254,19 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 | [Ogre_glTF](https://ybalrid.github.io/Ogre_glTF/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | glTF 2.0 loader plugin for Ogre v2-1  |
 | [G3D Innovation Engine](https://casual-effects.com/g3d/www/index.html) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | glTF 2.0 import |
 
-### Languages
+### Languages  语言
 
 #### JavaScript / Node.js
 
 | Tool | Status | Description |
 |------|--------|-------------|
-| [gltf-viewer](https://github.com/avgp/gltf-viewer) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Web component to display glTF models on a website |
-| [minimal-gltf-loader](https://github.com/shrekshao/minimal-gltf-loader) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | A minimal, engine-agnostic JavaScript glTF Loader, with a raw WebGL 2 renderer example |
-| [THREE.GLTFLoader](https://threejs.org/docs/#examples/loaders/GLTFLoader) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Loads glTF assets into a three.js scene. |
-| [THREE.GLTFExporter](https://threejs.org/docs/#examples/exporters/GLTFExporter) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Exports three.js scenes to a glTF asset |
-| [gltf-walker](https://github.com/ksons/gltf-walker) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Convenience library for processing glTF |
-| [RedCube.js](https://github.com/Reon90/redcube) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | glTF viewer without dependencies |
-| [gltf-bounding-box](https://github.com/wanadev/gltf-bounding-box) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Computes the global bounding box of a gltf model |
+| [gltf-viewer](https://github.com/avgp/gltf-viewer) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Web component to display glTF models on a website   在网页上显示glTF模型的Web组件|  
+| [minimal-gltf-loader](https://github.com/shrekshao/minimal-gltf-loader) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | A minimal, engine-agnostic JavaScript glTF Loader, with a raw WebGL 2 renderer example   一个最小的，与引擎无关的JavaScript glTF Loader，带有一个原始的WebGL 2渲染器示例|
+| [THREE.GLTFLoader](https://threejs.org/docs/#examples/loaders/GLTFLoader) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Loads glTF assets into a three.js scene.   将glTF资源加载到three.js场景中|
+| [THREE.GLTFExporter](https://threejs.org/docs/#examples/exporters/GLTFExporter) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Exports three.js scenes to a glTF asset   将three.js场景导出为glTF文件|
+| [gltf-walker](https://github.com/ksons/gltf-walker) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Convenience library for processing glTF   用于处理glTF的便利库|
+| [RedCube.js](https://github.com/Reon90/redcube) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | glTF viewer without dependencies   没有依赖的glTF查看器|
+| [gltf-bounding-box](https://github.com/wanadev/gltf-bounding-box) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Computes the global bounding box of a gltf model   计算gltf模型的全局边界框|
 
 #### C++
 
@@ -313,7 +362,7 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 |------|--------|-------------|
 | [GLTFSceneKit](https://github.com/magicien/GLTFSceneKit) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | glTF loader for SceneKit |
 
-### Utilities
+### Utilities  公用事业
 
 * [gltf-utilities](https://github.com/AnalyticalGraphicsInc/gltf-utilities) - JavaScript utility library to help load glTF
 * [wetzel](https://github.com/AnalyticalGraphicsInc/wetzel) - Generate Markdown documentation from JSON Schema
@@ -327,7 +376,7 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 
 * [glTF tagged](http://stackoverflow.com/questions/tagged/gltf) questions
 
-## Presentations and Articles
+## Presentations and Articles  演示文稿和文章
 
 ### Intros
 
@@ -335,12 +384,12 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 * **glTF Webinar** ([video](https://www.youtube.com/watch?v=KALedPvtFHY), [slides](https://www.khronos.org/assets/uploads/developers/library/2017-glTF-webinar/glTF-Webinar_Feb17.pdf)) by Marco Hutter. February 2017
 * [glTF Brief](https://docs.google.com/presentation/d/1BRdEGqJFIWk3QOehOxJqM9dIE4kIBNQhIm7UeBaVse0/edit#slide=id.g185e245559_2_28) by Tony Parisi, FormVR and Amanda Watson, Oculus. October 2016
 
-### Tutorials
+### Tutorials  教程
 
 * [glTF Tutorials](https://github.com/KhronosGroup/glTF-Tutorials)
 * [Physically-Based Rendering: From Theory to glTF](https://github.com/moneimne/glTF-Tutorials/tree/master/PBR)
 
-### All Presentations and Articles
+### All Presentations and Articles  所有演示文稿和文章
 
 * [glTF 2.0 – Status and Outlook](https://www.khronos.org/developers/library/2018-webinar-gltf-2) by Norbert Nopper. July 2018
 * [TurboSquid adds glTF to supported formats for its StemCell initiative](https://www.khronos.org/blog/turbosquid-adds-gltf-to-supported-formats-for-its-stemcell-initiative). July 2018

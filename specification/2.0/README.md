@@ -4,18 +4,18 @@
 
 *Version 2.0*
 
-The GL Transmission Format (glTF) is an API-neutral runtime asset delivery format.  glTF bridges the gap between 3D content creation tools and modern 3D applications by providing an efficient, extensible, interoperable format for the transmission and loading of 3D content.
+The GL Transmission Format (glTF) is an API-neutral runtime asset delivery format.  glTF bridges the gap between 3D content creation tools and modern 3D applications by providing an efficient, extensible, interoperable format for the transmission and loading of 3D content.<br>GL传输格式（glTF）是一种与API无关的文件传输格式。 glTF通过为3D内容的传输和加载提供高效，可扩展，可互操作的格式，弥补了3D内容创建工具和现代3D应用程序之间的差距。
 
 Last Updated: June 9, 2017
 
-Editors
+Editors  编者
 
 * Saurabh Bhatia, Microsoft
 * Patrick Cozzi, Cesium
 * Alexey Knyazev, Individual Contributor
 * Tony Parisi, Unity
 
-Khronos 3D Formats Working Group and Alumni
+Khronos 3D Formats Working Group and Alumni  Khronos 3D格式工作组和校友
 
 * Remi Arnaud, Starbreeze Studios
 * Emiliano Gambaretto, Adobe
@@ -34,16 +34,17 @@ Khronos 3D Formats Working Group and Alumni
 
 Copyright (C) 2013-2017 The Khronos Group Inc. All Rights Reserved. glTF is a trademark of The Khronos Group Inc.
 
-# Contents
+# Contents  内容
 
-* [Introduction](#introduction)
-  * [Motivation](#motivation)
-  * [glTF Basics](#gltf-basics)
-  * [Design Goals](#design-goals)
-  * [Versioning](#versioning)
-  * [File Extensions and MIME Types](#file-extensions-and-mime-types)
-  * [JSON Encoding](#json-encoding)
+* [Introduction](#introduction)  介绍
+  * [Motivation](#motivation)  动机
+  * [glTF Basics](#gltf-basics)  glTF基础知识
+  * [Design Goals](#design-goals)  设计目的
+  * [Versioning](#versioning)  版本
+  * [File Extensions and MIME Types](#file-extensions-and-mime-types)  文件扩展名和MIME类型
+  * [JSON Encoding](#json-encoding)  JSON编码
   * [URIs](#uris)
+<<<<<<< HEAD
 * [Concepts](#concepts)
   * [Asset](#asset)
   * [Indices and Names](#indices-and-names)
@@ -87,88 +88,133 @@ Copyright (C) 2013-2017 The Khronos Group Inc. All Rights Reserved. glTF is a tr
   * [File Extension](#file-extension)
   * [MIME Type](#mime-type)
   * [Binary glTF Layout](#binary-gltf-layout)
+=======
+* [Concepts](#concepts)  概念
+  * [Asset](#asset)  声明
+  * [Indices and Names](#indices-and-names)  索引和名称
+  * [Coordinate System and Units](#coordinate-system-and-units)  坐标系和单位
+  * [Scenes](#scenes)  场景
+    * [Nodes and Hierarchy](#nodes-and-hierarchy)  节点和层次结构
+    * [Transformations](#transformations)  矩阵变换
+  * [Binary Data Storage](#binary-data-storage)  二进制数据存储
+    * [Buffers and Buffer Views](#buffers-and-buffer-views)  缓冲区和缓冲区视图
+      * [GLB-stored Buffer](#glb-stored-buffer)  
+    * [Accessors](#accessors)  访问器
+        * [Floating-Point Data](#floating-point-data)  浮点数据
+        * [Accessor Element Size](#accessor-element-size)  访问器元件尺寸
+        * [Accessors Bounds](#accessors-bounds)  访问器界限
+        * [Sparse Accessors](#sparse-accessors)  稀疏存取器
+    * [Data Alignment](#data-alignment)     数据对齐
+  * [Geometry](#geometry)  几何
+    * [Meshes](#meshes)  网格
+      * [Tangent-space definition](#tangent-space-definition)  切线空间定义
+      * [Morph Targets](#morph-targets)  变形目标
+    * [Skins](#skins)  皮肤
+      * [Skinned Mesh Attributes](#skinned-mesh-attributes)  蒙皮网格属性
+      * [Joint Hierarchy](#joint-hierarchy)  关节层次结构
+    * [Instantiation](#instantiation)  实例化
+  * [Texture Data](#texture-data)  纹理数据
+    * [Textures](#textures)  纹理
+    * [Images](#images)  图片
+    * [Samplers](#samplers)  采样
+  * [Materials](#materials)  材质
+    * [Metallic-Roughness Material](#metallic-roughness-material) 金属粗糙度材料
+    * [Additional Maps](#additional-maps)  附加贴图
+    * [Alpha Coverage](#alpha-coverage)  Alpha覆盖范围
+    * [Double Sided](#double-sided)  两面性
+    * [Default Material](#default-material)  默认材料
+  * [Cameras](#cameras)  相机
+    * [Projection Matrices](#projection-matrices)  投影矩阵
+  * [Animations](#animations)  动画
+  * [Specifying Extensions](#specifying-extensions)  指定扩展名
+* [GLB File Format Specification](#glb-file-format-specification)  GLB文件格式规范
+  * [File Extension](#file-extension)  文件扩展名
+  * [MIME Type](#mime-type)  MIME类型
+  * [Binary glTF Layout](#binary-gltf-layout)  二进制glTF布局
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
     * [Header](#header)
     * [Chunks](#chunks)
-      * [Structured JSON Content](#structured-json-content)
-      * [Binary Buffer](#binary-buffer)
-* [Properties Reference](#properties-reference)
-* [Acknowledgments](#acknowledgments)
-* [Appendix A: Tangent Space Recalculation](#appendix-a-tangent-space-recalculation)
-* [Appendix B: BRDF Implementation](#appendix-b-brdf-implementation)
-* [Appendix C: Spline Interpolation](#appendix-c-spline-interpolation)
-* [Appendix D: Full Khronos Copyright Statement](#appendix-d-full-khronos-copyright-statement)
+      * [Structured JSON Content](#structured-json-content)  结构化JSON内容
+      * [Binary Buffer](#binary-buffer)  二进制缓冲区
+* [Properties Reference](#properties-reference)  属性参考
+* [Acknowledgments](#acknowledgments)  致谢
+* [Appendix A: Tangent Space Recalculation](#appendix-a-tangent-space-recalculation)  附录A：切线空间重新计算
+* [Appendix B: BRDF Implementation](#appendix-b-brdf-implementation)  附录B：BRDF实施
+* [Appendix C: Spline Interpolation](#appendix-c-spline-interpolation)  附录C：样条插值
+* [Appendix D: Full Khronos Copyright Statement](#appendix-d-full-khronos-copyright-statement)  附录D：完整的Khronos版权声明
 
-# Introduction
+# Introduction  介绍
 
-The GL Transmission Format (glTF) is an API-neutral runtime asset delivery format.  glTF bridges the gap between 3D content creation tools and modern graphics applications by providing an efficient, extensible, interoperable format for the transmission and loading of 3D content.
+The GL Transmission Format (glTF) is an API-neutral runtime asset delivery format.  glTF bridges the gap between 3D content creation tools and modern graphics applications by providing an efficient, extensible, interoperable format for the transmission and loading of 3D content.<br>GL传输格式（glTF）是一种与API无关的文件传输格式。 glTF通过为3D内容的传输和加载提供高效，可扩展，可互操作的格式，弥补了3D内容创建工具和现代3D应用程序之间的差距。
 
-## Motivation
+## Motivation  动机
 
-*This section is non-normative.*
+*This section is non-normative.* 本节不具有规范性
 
-Traditional 3D modeling formats have been designed to store data for offline use, primarily to support authoring workflows on desktop systems. Industry-standard 3D interchange formats allow for sharing assets between different modeling tools, and within the content pipeline in general. However, neither of these types of formats is optimized for download speed or fast loading at runtime. Files tend to grow very large, and applications need to do a significant amount of processing to load such assets into GPU-accelerated applications.
+Traditional 3D modeling formats have been designed to store data for offline use, primarily to support authoring workflows on desktop systems. Industry-standard 3D interchange formats allow for sharing assets between different modeling tools, and within the content pipeline in general. However, neither of these types of formats is optimized for download speed or fast loading at runtime. Files tend to grow very large, and applications need to do a significant amount of processing to load such assets into GPU-accelerated applications.<br>传统的3D建模格式被设计用于存储数据以供离线使用，主要用于支持桌面系统上的创作工作流。行业标准的3D交换格式允许在不同的建模工具之间以及内容管道内共享资源。但是，这些类型的格式都没有针对下载速度或运行时的快速加载进行优化。文件往往会变得非常大，应用程序需要进行大量处理才能将这些资产加载到GPU加速的应用程序中
 
-Applications seeking high performance rarely load modeling formats directly; instead, they process models offline as part of a custom content pipeline, converting the assets into a proprietary format optimized for their runtime application.  This has led to a fragmented market of incompatible proprietary runtime formats and duplicated efforts in the content creation pipeline. 3D assets exported for one application cannot be reused in another application without going back to the original modeling, tool-specific source and performing another proprietary export step.
+Applications seeking high performance rarely load modeling formats directly; instead, they process models offline as part of a custom content pipeline, converting the assets into a proprietary format optimized for their runtime application.  This has led to a fragmented market of incompatible proprietary runtime formats and duplicated efforts in the content creation pipeline. 3D assets exported for one application cannot be reused in another application without going back to the original modeling, tool-specific source and performing another proprietary export step.<br>寻求高性能的应用很少直接加载建模格式;相反，它们将模型作为自定义内容工具的一部分进行离线处理，将资源转换为针对其运行时应用程序优化的专有格式。这导致了不兼容的专有运行时格式和内容创建工具中重复工作的市场分散。为一个应用程序导出的3D文件无法在其他应用程序中重复使用，无需返回到原始建模，工具特定的源并执行另一个专有导出步骤
 
-With the advent of mobile- and web-based 3D computing, new classes of applications have emerged that require fast, dynamic loading of standardized 3D assets. Digital marketing solutions, e-commerce product visualizations, and online model-sharing sites are just a few of the connected 3D applications being built today using WebGL or OpenGL ES. Beyond the need for efficient delivery, many of these online applications can benefit from a standard, interoperable format to enable sharing and reuse of assets between users, between applications, and within heterogeneous, distributed content pipelines.
+With the advent of mobile- and web-based 3D computing, new classes of applications have emerged that require fast, dynamic loading of standardized 3D assets. Digital marketing solutions, e-commerce product visualizations, and online model-sharing sites are just a few of the connected 3D applications being built today using WebGL or OpenGL ES. Beyond the need for efficient delivery, many of these online applications can benefit from a standard, interoperable format to enable sharing and reuse of assets between users, between applications, and within heterogeneous, distributed content pipelines.<br>随着基于移动和网络的3D计算的出现，出现了需要快速，动态加载标准化3D文件的新类别的应用程序。数字营销解决方案，电子商务产品可视化和在线模型共享站点只是当今使用WebGL或OpenGL ES构建的连接3D应用程序中的一小部分。除了高效交付的需求之外，许多这些在线应用程序都可以从标准的，可互操作的格式中受益，以实现用户之间，应用程序之间以及异构分布式内容管道之间的资产共享和重用
 
-glTF solves these problems by providing a vendor- and runtime-neutral format that can be loaded and rendered with minimal processing. The format combines an easily parseable JSON scene description with one or more binary files representing geometry, animations, and other rich data. Binary data is stored in such a way that it can be loaded directly into GPU buffers without additional parsing or other manipulation. Using this approach, glTF is able to faithfully preserve full hierarchical scenes with nodes, meshes, cameras, materials, and animations, while enabling efficient delivery and fast loading.
+glTF solves these problems by providing a vendor- and runtime-neutral format that can be loaded and rendered with minimal processing. The format combines an easily parseable JSON scene description with one or more binary files representing geometry, animations, and other rich data. Binary data is stored in such a way that it can be loaded directly into GPU buffers without additional parsing or other manipulation. Using this approach, glTF is able to faithfully preserve full hierarchical scenes with nodes, meshes, cameras, materials, and animations, while enabling efficient delivery and fast loading.<br>glTF通过提供供应商和运行时中立格式解决了这些问题，可以最少的处理加载和渲染。该格式将易于解析的JSON场景描述与一个或多个表示几何，动画和其他丰富数据的二进制文件相结合。二进制数据以这样的方式存储，即它可以直接加载到GPU缓冲区中而无需额外的解析或其他操作。使用这种方法，glTF能够完整地保存具有节点，网格，相机，材料和动画的完整分层场景，同时实现高效传输和快速加载
 
-## glTF Basics
+## glTF Basics  glTF基础知识
 
-*This section is non-normative.*
+*This section is non-normative.*  本节不具有规范性
 
-glTF assets are JSON files plus supporting external data. Specifically, a glTF asset is represented by:
+glTF assets are JSON files plus supporting external data. Specifically, a glTF asset is represented by:<br>glTF文件是由JSON文件以及外部数据组成。具体而言，glTF文件由以下表示：
 
-* A JSON-formatted file (`.gltf`) containing a full scene description: node hierarchy, materials, cameras, as well as descriptor information for meshes, animations, and other constructs
-* Binary files (`.bin`) containing geometry and animation data, and other buffer-based data
-* Image files (`.jpg`, `.png`) for textures
+* A JSON-formatted file (`.gltf`) containing a full scene description: node hierarchy, materials, cameras, as well as descriptor information for meshes, animations, and other constructs<br>包含完整场景描述的JSON格式文件（.gltf）：节点层次结构，材质，相机以及网格，动画和其他构造的描述符信息<br>
+* Binary files (`.bin`) containing geometry and animation data, and other buffer-based data<br>包含几何和动画数据的二进制文件（.bin）以及其他基于缓冲区的数据<br>
+* Image files (`.jpg`, `.png`) for textures 纹理图像文件（.jpg，.png）
 
-Assets defined in other formats, such as images, may be stored in external files referenced via URI, stored side-by-side in GLB container, or embedded directly into the JSON using [data URIs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
+Assets defined in other formats, such as images, may be stored in external files referenced via URI, stored side-by-side in GLB container, or embedded directly into the JSON using [data URIs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).<br>以其他格式（例如图像）定义的文件可以存储在通过URI引用的外部文件中，并排存储在GLB容器中，或者使用数据URI直接嵌入到JSON中。
 
-Valid glTF asset must specify its version.
+Valid glTF asset must specify its version.  有效的glTF文件必须指定其版本
 
 <p align="center">
 <img src="figures/files.png" width="50%" />
 </p>
 
-## Design Goals
+## Design Goals  设计目标
 
-*This section is non-normative.*
+*This section is non-normative.*  本节不具有规范性
 
-glTF has been designed to meet the following goals:
+glTF has been designed to meet the following goals: glTF旨在实现以下目标
 
-* *Compact file sizes.* While web developers like to work with clear text as much as possible, clear text encoding is simply not practical for transmitting 3D data due to sheer size. The glTF JSON file itself is clear text, but it is compact and rapid to parse. All large data such as geometry and animations are stored in binary files that are much smaller than equivalent text representations.
-* *Fast loading.* glTF data structures have been designed to mirror the GPU API data as closely as possible, both in the JSON and binary files, to reduce load times. For example, binary data for meshes could be viewed as JavaScript Typed Arrays and be loaded directly into GPU buffers with a simple data copy; no parsing or further processing is required.
-* *Runtime-independence.* glTF makes no assumptions about the target application or 3D engine. glTF specifies no runtime behaviors other than rendering and animation.
-* *Complete 3D scene representation.* Exporting single objects from a modeling package is not sufficient for many applications. Often, authors want to load entire scenes, including nodes, transformations, transform hierarchy, meshes, materials, cameras, and animations into their applications. glTF strives to preserve all of this information for use in the downstream application.
-* *Extensibility.* While the initial base specification supports a rich feature set, there will be many opportunities for growth and improvement. glTF defines a mechanism that allows the addition of both general-purpose and vendor-specific extensions.
+* *Compact file sizes.* While web developers like to work with clear text as much as possible, clear text encoding is simply not practical for transmitting 3D data due to sheer size. The glTF JSON file itself is clear text, but it is compact and rapid to parse. All large data such as geometry and animations are stored in binary files that are much smaller than equivalent text representations.<br>压缩文件大小。虽然Web开发人员喜欢尽可能使用明文，但由于规模庞大，明文编码对于传输3D数据根本不可行。 glTF JSON文件本身是明文，但它很紧凑，解析起来很快。所有大型数据（如几何和动画）都存储在比同等文本表示小得多的二进制文件中<br>
+* *Fast loading.* glTF data structures have been designed to mirror the GPU API data as closely as possible, both in the JSON and binary files, to reduce load times. For example, binary data for meshes could be viewed as JavaScript Typed Arrays and be loaded directly into GPU buffers with a simple data copy; no parsing or further processing is required.<br>快速加载。 glTF数据结构旨在尽可能在JSON和二进制文件中镜像GPU API数据，以减少加载时间。例如，网格的二进制数据可以被视为JavaScript Typed Arrays，并通过简单的数据副本直接加载到GPU缓冲区中;不需要解析或进一步处理<br>
+* *Runtime-independence.* glTF makes no assumptions about the target application or 3D engine. glTF specifies no runtime behaviors other than rendering and animation.<br>运行独立。 glTF不对目标应用程序或3D引擎做任何假设。 glTF指定除渲染和动画之外没有运行时行为<br>
+* *Complete 3D scene representation.* Exporting single objects from a modeling package is not sufficient for many applications. Often, authors want to load entire scenes, including nodes, transformations, transform hierarchy, meshes, materials, cameras, and animations into their applications. glTF strives to preserve all of this information for use in the downstream application.<br>完整的3D场景表示。从建模包中导出单个对象对于许多应用程序来说是不够的。通常，作者希望将整个场景（包括节点，变换，变换层次结构，网格，材质，相机和动画）加载到其应用程序中。 glTF努力保留所有这些信息，以便在下游应用程序中使用<br>
+* *Extensibility.* While the initial base specification supports a rich feature set, there will be many opportunities for growth and improvement. glTF defines a mechanism that allows the addition of both general-purpose and vendor-specific extensions.<br>可扩展性。虽然最初的基本规范支持丰富的功能集，但是会有很多增长和改进的机会。 glTF定义了一种机制，允许添加通用和特定于供应商的扩展<br>
 
-The design of glTF takes a pragmatic approach. The format is meant to mirror the GPU APIs as closely as possible, but if it did only that, there would be no cameras, animations, or other features typically found in both modeling tools and runtime systems, and much semantic information would be lost in the translation. By supporting these common constructs, glTF content can not only load and render, but it can be immediately usable in a wider range of applications and require less duplication of effort in the content pipeline.
+The design of glTF takes a pragmatic approach. The format is meant to mirror the GPU APIs as closely as possible, but if it did only that, there would be no cameras, animations, or other features typically found in both modeling tools and runtime systems, and much semantic information would be lost in the translation. By supporting these common constructs, glTF content can not only load and render, but it can be immediately usable in a wider range of applications and require less duplication of effort in the content pipeline.<br>glTF的设计采用务实的方法。该格式旨在尽可能地镜像GPU API，但如果只是这样，则不存在通常在建模工具和应用程序中使用的相机，动画或其他功能，并且会丢失大量语义信息。通过支持这些常见结构，glTF内容不仅可以加载和呈现，而且可以立即用于更广泛的应用程序，并且在内容创建工具中需要更少的重复工作
 
-The following are outside the scope of the initial design of glTF:
+The following are outside the scope of the initial design of glTF:<br>以下内容超出了glTF初始设计的范围
 
-* *glTF is not a streaming format.* The binary data in glTF is inherently streamable, and the buffer design allows for fetching data incrementally. But there are no other streaming constructs in the format, and no conformance requirements for an implementation to stream data versus downloading it in its entirety before rendering.
-* *glTF is not intended to be human-readable,* though by virtue of being represented in JSON, it is developer-friendly.
+* *glTF is not a streaming format.* The binary data in glTF is inherently streamable, and the buffer design allows for fetching data incrementally. But there are no other streaming constructs in the format, and no conformance requirements for an implementation to stream data versus downloading it in its entirety before rendering.<br>glTF不是流式格式。 glTF中的二进制数据本质上是可流化的，并且缓冲器设计允许增量地获取数据。但是在格式中没有其他流构造，并且对于流式传输数据的实现没有一致性要求，不要求在渲染之前完整地下载数据<br>
+* *glTF is not intended to be human-readable,* though by virtue of being represented in JSON, it is developer-friendly.<br>glTF尽管用JSON表示但并不是人类可读的，它对开发人员友好
 
-Version 2.0 of glTF does not define compression for geometry and other rich data. However, the design team believes that compression is a very important part of a transmission standard, and there is already work underway to define compression extensions.
+Version 2.0 of glTF does not define compression for geometry and other rich data. However, the design team believes that compression is a very important part of a transmission standard, and there is already work underway to define compression extensions.<br>glTF 2.0版没有为几何和其他丰富数据定义压缩。但是，设计团队认为压缩是传输标准中非常重要的一部分，并且正在进行定义压缩扩展的工作
 
-> The 3D Formats Working Group is developing partnerships to define the codec options for geometry compression.  glTF defines the node hierarchy, materials, animations, and geometry, and will reference the external compression specs.
+> The 3D Formats Working Group is developing partnerships to define the codec options for geometry compression.  glTF defines the node hierarchy, materials, animations, and geometry, and will reference the external compression specs.<br>3D格式工作组正在开发合作伙伴关系，以定义几何压缩的编解码器选项。 glTF定义节点层次结构，材质，动画和几何，并将引用外部压缩规范
 
-## Versioning
+## Versioning  版本
 
-Any updates made to glTF in a minor version will be backwards and forwards compatible. Backwards compatibility will ensure that any client implementation that supports loading a glTF 2.x asset will also be able to load a glTF 2.0 asset. Forwards compatibility will allow a client implementation that only supports glTF 2.0 to load glTF 2.x assets while gracefully ignoring any new features it does not understand.
+Any updates made to glTF in a minor version will be backwards and forwards compatible. Backwards compatibility will ensure that any client implementation that supports loading a glTF 2.x asset will also be able to load a glTF 2.0 asset. Forwards compatibility will allow a client implementation that only supports glTF 2.0 to load glTF 2.x assets while gracefully ignoring any new features it does not understand.<br>对次要版本的glTF进行的任何更新都将向后兼容。向后兼容性将确保支持加载glTF 2.x文件的任何客户端实现也能够加载glTF 2.0资产。向前兼容性将允许仅支持glTF 2.0的客户端实现加载glTF 2.x资产，同时优雅地忽略它不理解的任何新功能
 
-A minor version update can introduce new features but will not change any previously existing behavior. Existing functionality can be deprecated in a minor version update, but it will not be removed. 
+A minor version update can introduce new features but will not change any previously existing behavior. Existing functionality can be deprecated in a minor version update, but it will not be removed. <br>次要版本更新可以引入新功能，但不会更改任何以前存在的行为。可以在次要版本更新中弃用现有功能，但不会将其删除
 
-Major version updates are not expected to be compatible with previous versions.
+Major version updates are not expected to be compatible with previous versions.<br>主要版本更新预计不会与以前的版本兼容
 
-## File Extensions and MIME Types
+## File Extensions and MIME Types  文件扩展名和MIME类型
 
 * `*.gltf` files use `model/gltf+json`
 * `*.bin` files use `application/octet-stream`
-* Texture files use the official `image/*` type based on the specific image format. For compatibility with modern web browsers, the following image formats are supported: `image/jpeg`, `image/png`.
+* Texture files use the official `image/*` type based on the specific image format. For compatibility with modern web browsers, the following image formats are supported: `image/jpeg`, `image/png`.<br>纹理文件使用基于特定图像格式的官方`image/*`类型。为了与现代Web浏览器兼容，支持以下图像格式：image / jpeg，image / png
 
+<<<<<<< HEAD
 ## JSON Encoding
 
 To simplify client-side implementation, glTF has additional restrictions on JSON format and encoding.
@@ -180,27 +226,38 @@ To simplify client-side implementation, glTF has additional restrictions on JSON
 
    > **Implementation Note:** This allows generic glTF client implementations to not have full Unicode support. Application-specific strings (e.g., values of `"name"` properties or content of `extras` fields) may use any symbols.
 3. Names (keys) within JSON objects must be unique, i.e., duplicate keys aren't allowed.
+=======
+## JSON encoding  JSON编码
+
+To simplify client-side implementation, glTF has following restrictions on JSON format and encoding.<br>为了简化客户端实现，glTF对JSON格式和编码有以下限制
+
+1. JSON must use UTF-8 encoding without BOM.<br>JSON必须使用没有BOM的UTF-8编码<br>
+2. All strings defined in this spec (properties names, enums) use only ASCII charset and must be written as plain text, e.g., `"buffer"` instead of `"\u0062\u0075\u0066\u0066\u0065\u0072"`.<br>本规范中定义的所有字符串（属性名称，枚举）仅使用ASCII字符集，并且必须以纯文本形式写入，例如`"buffer"`而不能使用`"\u0062\u0075\u0066\u0066\u0065\u0072"`
+
+   > **Implementation Note:** This allows generic glTF client implementations to not have full Unicode support. Application-specific strings (e.g., value of `"name"` property) could use any charset.<br>实现注意：这允许通用glTF客户端实现不具有完全的Unicode支持。特定于应用程序的字符串（例如，“name”属性的值）可以使用任何字符集<br>
+3. Names (keys) within JSON objects must be unique, i.e., duplicate keys aren't allowed.<br>JSON对象中的名称（键）必须是唯一的，即不允许使用重复键
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
 ## URIs
 
-glTF uses URIs to reference buffers and image resources. These URIs may point to external resources or be data URIs that embed resources in the JSON. Embedded resources use "data" URI scheme ([RFC2397](https://tools.ietf.org/html/rfc2397)).
+glTF uses URIs to reference buffers and image resources. These URIs may point to external resources or be data URIs that embed resources in the JSON. Embedded resources use "data" URI scheme ([RFC2397](https://tools.ietf.org/html/rfc2397)).<br>glTF使用URI来引用缓冲区和图像资源。这些URI可以指向外部资源，也可以是在JSON中嵌入资源的数据URI。嵌入式资源使用“data”URI方案（RFC2397）
  
- > **Implementation Note:** Data URIs could be [decoded with JavaScript](https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding) or consumed directly by web browsers in HTML tags.
+ > **Implementation Note:** Data URIs could be [decoded with JavaScript](https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding) or consumed directly by web browsers in HTML tags.<br>实现注意：数据URI可以使用JavaScript解码，也可以由Web浏览器HTML标签直接使用
 
-Client implementations are required to support only embedded resources and relative external references (in a sense of [RFC3986](https://tools.ietf.org/html/rfc3986#section-4.2)). Clients are free to support other schemes (such as `http://`) depending on expected usage.
+Client implementations are required to support only embedded resources and relative external references (in a sense of [RFC3986](https://tools.ietf.org/html/rfc3986#section-4.2)). Clients are free to support other schemes (such as `http://`) depending on expected usage.<br>客户端实现只需要支持嵌入式资源和相关外部引用（在RFC3986的意义上）。客户可以根据预期用途自由支持其他方案（例如http：//）
 
- > **Implementation Note:** This allows the application to decide the best approach for delivery: if different assets share many of the same geometries, animations, or textures, separate files may be preferred to reduce the total amount of data requested. With separate files, applications can progressively load data and do not need to load data for parts of a model that are not visible. If an application cares more about single-file deployment, embedding data may be preferred even though it increases the overall size due to base64 encoding and does not support progressive or on-demand loading. Alternatively, an asset could use GLB container to store JSON and binary data in one file without base64 encoding. See [GLB File Format Specification](#glb-file-format-specification) for details.
+ > **Implementation Note:** This allows the application to decide the best approach for delivery: if different assets share many of the same geometries, animations, or textures, separate files may be preferred to reduce the total amount of data requested. With separate files, applications can progressively load data and do not need to load data for parts of a model that are not visible. If an application cares more about single-file deployment, embedding data may be preferred even though it increases the overall size due to base64 encoding and does not support progressive or on-demand loading. Alternatively, an asset could use GLB container to store JSON and binary data in one file without base64 encoding. See [GLB File Format Specification](#glb-file-format-specification) for details.<br>实现注意：这允许应用程序决定最佳交付方法：如果不同的资产共享许多相同的几何，动画或纹理，则可能优先使用单独的文件来减少所请求的数据总量。使用单独的文件，应用程序可以逐步加载数据，而不需要为不可见的模型部分加载数据。如果应用程序更关心单文件部署，即使由于base64编码而增加了整体大小，并且不支持渐进式或按需加载但是嵌入数据可能是首选。或者，资产可以使用GLB容器将JSON和二进制数据存储在一个文件中，而不使用base64编码。有关详细信息，请参阅GLB文件格式规范
 
-# Concepts
+# Concepts  概念
 
 <p align="center">
 <img src="figures/dictionary-objects.png" /><br/>
 The top-level arrays in a glTF asset.  See the <a href="#properties-reference">Properties Reference</a>.
 </p>
 
-## Asset
+## Asset  声明
 
-Each glTF asset must have an `asset` property. In fact, it's the only required top-level property for JSON to be a valid glTF. The `asset` object must contain glTF version which specifies the target glTF version of the asset. Additionally, an optional `minVersion` property can be used to specify the minimum glTF version support required to load the asset. The `minVersion` property allows asset creators to specify a minimum version that a client implementation must support in order to load the asset. This is very similar to the `extensionsRequired` concept, where an asset should only be loaded if the client supports the specified extension. Additional metadata can be stored in optional properties such as `generator` or `copyright`.  For example,
+Each glTF asset must have an `asset` property. In fact, it's the only required top-level property for JSON to be a valid glTF. The `asset` object must contain glTF version which specifies the target glTF version of the asset. Additionally, an optional `minVersion` property can be used to specify the minimum glTF version support required to load the asset. The `minVersion` property allows asset creators to specify a minimum version that a client implementation must support in order to load the asset. This is very similar to the `extensionsRequired` concept, where an asset should only be loaded if the client supports the specified extension. Additional metadata can be stored in optional properties such as `generator` or `copyright`.  For example,<br>每个glTF资产必须具有`asset`属性。实际上，它是JSON成为有效glTF的唯一必需的顶级属性。`asset`对象必须包含glTF版本，该版本指定glTF的版本信息。此外，可选的`minVersion`属性可用于指定加载gltf文件所需的最低glTF版本支持。 minVersion属性允许gltf文件创建者指定客户端实现必须支持的最低版本才能加载文件。这与`extensionsRequired`概念非常相似，只有在客户端支持指定的扩展名时才应加载文件。其他元数据可以存储在可选属性中，例如生成器或版权。例如
 
 ```json
 {
@@ -212,12 +269,12 @@ Each glTF asset must have an `asset` property. In fact, it's the only required t
 }
 ```
 
-> **Implementation Note:** Client implementations should first check whether a `minVersion` property is specified and ensure both major and minor versions can be supported. If no `minVersion` is specified, then clients should check the `version` property and ensure the major version is supported. Clients that load [GLB format](#glb-file-format-specification) should also check for the `minVersion` and `version` properties in the JSON chunk as the version specified in the GLB header only refers to the GLB container version.
+> **Implementation Note:** Client implementations should first check whether a `minVersion` property is specified and ensure both major and minor versions can be supported. If no `minVersion` is specified, then clients should check the `version` property and ensure the major version is supported. Clients that load [GLB format](#glb-file-format-specification) should also check for the `minVersion` and `version` properties in the JSON chunk as the version specified in the GLB header only refers to the GLB container version.<br>实现注意：客户端实现应首先检查是否指定了minVersion属性，并确保可以支持主要版本和次要版本。如果未指定minVersion，则客户端应检查version属性并确保支持主要版本。加载GLB格式的客户端还应检查JSON块中的minVersion和版本属性，因为GLB标头中指定的版本仅引用GLB容器版本
 
 
-## Indices and Names
+## Indices and Names  索引和名称
 
-Entities of a glTF asset are referenced by their indices in corresponding arrays, e.g., a `bufferView` refers to a `buffer` by specifying the buffer's index in `buffers` array.  For example:
+Entities of a glTF asset are referenced by their indices in corresponding arrays, e.g., a `bufferView` refers to a `buffer` by specifying the buffer's index in `buffers` array.  For example:<br>glTF文件的实体由它们在相应数组中的索引引用，例如，bufferView通过指定`buffers`数组中的缓冲区索引来引用缓冲区。例如
 
 ```json
 {
@@ -237,43 +294,47 @@ Entities of a glTF asset are referenced by their indices in corresponding arrays
 }
 ```
 
-In this example, `buffers` and `bufferViews` have only one element each. The bufferView refers to the buffer using the buffer's index: `"buffer": 0`.
+In this example, `buffers` and `bufferViews` have only one element each. The bufferView refers to the buffer using the buffer's index: `"buffer": 0`.<br>在此示例中，`buffers`和`bufferViews`每个只有一个元素。 bufferView使用缓冲区的索引引用缓冲区：“buffer”：0
 
-Whereas indices are used for internal glTF references, _names_ are used for application-specific uses such as display. Any top-level glTF object can have a `name` string property for this purpose. These property values are not guaranteed to be unique as they are intended to contain values created when the asset was authored.
+Whereas indices are used for internal glTF references, _names_ are used for application-specific uses such as display. Any top-level glTF object can have a `name` string property for this purpose. These property values are not guaranteed to be unique as they are intended to contain values created when the asset was authored.<br>索引用于内部glTF引用，而名称用于特定应用程序的用途，例如显示。为此，任何顶级glTF对象都可以具有名称字符串属性。这些属性值不保证是唯一的，因为它们旨在包含创建文件时创建的值
 
-For property names, glTF uses [camel case](http://en.wikipedia.org/wiki/CamelCase) `likeThis`. Camel case is a common naming convention in JSON and WebGL.
+For property names, glTF uses [camel case](http://en.wikipedia.org/wiki/CamelCase) `likeThis`. Camel case is a common naming convention in JSON and WebGL.<br>对于属性名称，glTF使用像Came这样的驼峰案例。 Camel case是JSON和WebGL中常见的命名约定
 
-## Coordinate System and Units
+## Coordinate System and Units   坐标系和单位
 
-glTF uses a right-handed coordinate system, that is, the cross product of +X and +Y yields +Z. glTF defines +Y as up. The front of a glTF asset faces +Z.
+glTF uses a right-handed coordinate system, that is, the cross product of +X and +Y yields +Z. glTF defines +Y as up. The front of a glTF asset faces +Z.<br>glTF使用右手坐标系，即+ X和+ Y的叉积产生+ Z. glTF将+ Y定义为up。 glTF文件的正面面向+ Z
 
 ![](figures/coordinate-system.png)
 
-The units for all linear distances are meters.
+The units for all linear distances are meters.  所有线性距离的单位是米
 
-All angles are in radians.
+All angles are in radians.  所有角度都是弧度值
 
-Positive rotation is counterclockwise.
+Positive rotation is counterclockwise.  正向旋转是逆时针方向
 
-The [node transformations](#transformations) and [animation channel paths](#animations) are 3D vectors or quaternions with the following data types and semantics:
+The [node transformations](#transformations) and [animation channel paths](#animations) are 3D vectors or quaternions with the following data types and semantics:<br>[node transformations]和[animation channel paths]是具有以下数据类型和语义的3D矢量或四元数
 
-* translation: A 3D vector containing the translation along the x, y and z axes
-* rotation: A quaternion (x, y, z, w), where w is the scalar
-* scale: A 3D vector containing the scaling factors along the x, y and z axes
+* translation: A 3D vector containing the translation along the x, y and z axes<br>平移：包含沿x，y和z轴平移的3D矢量<br>
+* rotation: A quaternion (x, y, z, w), where w is the scalar<br>rotation：四元数（x，y，z，w），其中w是标量<br>
+* scale: A 3D vector containing the scaling factors along the x, y and z axes<br>scale：包含沿x，y和z轴的缩放系数的3D矢量
 
 
 
-## Scenes
+## Scenes  场景
 
-The glTF asset contains zero or more *scenes*, the set of visual objects to render. Scenes are defined in a `scenes` array. An additional property, `scene` (note singular), identifies which of the scenes in the array is to be displayed at load time.
+The glTF asset contains zero or more *scenes*, the set of visual objects to render. Scenes are defined in a `scenes` array. An additional property, `scene` (note singular), identifies which of the scenes in the array is to be displayed at load time.<br>glTF文件包含零个或多个场景，即要渲染的可视对象集。场景在`scenes`数组中定义。附加属性`scene`标识哪些场景将在加载时显示
 
+<<<<<<< HEAD
 All nodes listed in `scene.nodes` array must be root nodes (see the next section for details).
 
 When `scene` is undefined, runtime is not required to render anything at load time.
+=======
+When `scene` is undefined, runtime is not required to render anything at load time.<br>当场景未定义时，不需要在加载时呈现任何内容
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
-> **Implementation Note:** This allows applications to use glTF assets as libraries of individual entities such as materials or meshes.   
+> **Implementation Note:** This allows applications to use glTF assets as libraries of individual entities such as materials or meshes.<br>实现注意：这允许应用程序将glTF文件用作单个实体（如材料或网格）的库   
 
-The following example defines a glTF asset with a single scene, that contains a single node.
+The following example defines a glTF asset with a single scene, that contains a single node.<br>以下示例使用单个场景定义glTF文件，该场景包含单个节点
 
 ```json
 {
@@ -294,17 +355,21 @@ The following example defines a glTF asset with a single scene, that contains a 
 }
 ```
 
-### Nodes and Hierarchy
+### Nodes and Hierarchy  节点和层次结构
 
-The glTF asset can define *nodes*, that is, the objects comprising the scene to render.
+The glTF asset can define *nodes*, that is, the objects comprising the scene to render.<br>glTF文件可以定义*nodes*，即包含要渲染的场景的对象
 
-Nodes have an optional `name` property.
+Nodes have an optional `name` property.<br>节点具有可选的`name`属性。
 
-Nodes also have transform properties, as described in the next section.
+Nodes also have transform properties, as described in the next section.<br>节点还具有变换属性，如下一节中所述
 
+<<<<<<< HEAD
 Nodes are organized in a parent-child hierarchy known informally as the *node hierarchy*. A node is called a *root node* when it doesn't have a parent.
+=======
+Nodes are organized in a parent-child hierarchy known informally as the *node hierarchy*.<br>节点以父子层次结构组织，非正式地称为*node hierarchy*节点层次结构
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
-The node hierarchy is defined using a node's `children` property, as in the following example:
+The node hierarchy is defined using a node's `children` property, as in the following example:<br>使用节点的children属性定义节点层次结构，如以下示例所示
 
 ```json
 {
@@ -329,25 +394,29 @@ The node hierarchy is defined using a node's `children` property, as in the foll
 }
 ```
 
-The node named `Car` has four children. Each of those nodes could in turn have its own children, creating a hierarchy of nodes.
+The node named `Car` has four children. Each of those nodes could in turn have its own children, creating a hierarchy of nodes.<br>名为`Car`的节点有四个子节点。这些节点中的每一个都可以拥有自己的子节点，从而创建节点层次结构
 
+<<<<<<< HEAD
 > For Version 2.0 conformance, the glTF node hierarchy is not a directed acyclic graph (DAG) or *scene graph*, but a disjoint union of strict trees. That is, no node may be a direct descendant of more than one node. This restriction is meant to simplify implementation and facilitate conformance.
+=======
+>For Version 2.0 conformance, the glTF node hierarchy is not a directed acyclic graph (DAG) or *scene graph*, but a strict tree. That is, no node may be a direct or indirect descendant of more than one node. This restriction is meant to simplify implementation and facilitate conformance. The restriction may be lifted later.<br>对于2.0版，glTF节点层次结构不是有向非循环图（DAG）或场景图，而是严格的树。也就是说，没有节点可以是多个节点的直接或间接后代。此限制旨在简化实施并促进一致性。可以稍后解除限制
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
-### Transformations
+### Transformations  变换
 
-Any node can define a local space transformation either by supplying a `matrix` property, or any of `translation`, `rotation`, and `scale`  properties (also known as *TRS properties*). `translation` and `scale` are `FLOAT_VEC3` values in the local coordinate system. `rotation` is a `FLOAT_VEC4` unit quaternion value, `(x, y, z, w)`, in the local coordinate system.
+Any node can define a local space transformation either by supplying a `matrix` property, or any of `translation`, `rotation`, and `scale`  properties (also known as *TRS properties*). `translation` and `scale` are `FLOAT_VEC3` values in the local coordinate system. `rotation` is a `FLOAT_VEC4` unit quaternion value, `(x, y, z, w)`, in the local coordinate system.<br>任何节点都可以通过提供矩阵`matrix`或任何平移，旋转和缩放属性（也称为TRS属性）来定义局部空间变换。平移和缩放是局部坐标系中的FLOAT_VEC3值。 rotation是局部坐标系中的FLOAT_VEC4单位四元数值（x，y，z，w）
 
-When `matrix` is defined, it must be decomposable to TRS. This implies that transformation matrices cannot skew or shear.
+When `matrix` is defined, it must be decomposable to TRS. This implies that transformation matrices cannot skew or shear.<br>定义`matrix`时，必须将其分解为TRS。这意味着转换矩阵不能倾斜或剪切
 
-TRS properties are converted to matrices and postmultiplied in the `T * R * S` order to compose the transformation matrix; first the scale is applied to the vertices, then the rotation, and then the translation.
+TRS properties are converted to matrices and postmultiplied in the `T * R * S` order to compose the transformation matrix; first the scale is applied to the vertices, then the rotation, and then the translation.<br>将TRS属性转换为矩阵并以T * R * S顺序进行后乘，以组成变换矩阵;首先将缩放应用于顶点，然后旋转，然后进行平移
 
-When a node is targeted for animation (referenced by an `animation.channel.target`), only TRS properties may be present; `matrix` will not be present. 
+When a node is targeted for animation (referenced by an `animation.channel.target`), only TRS properties may be present; `matrix` will not be present. <br>当节点以动画为目标时（由animation.channel.target引用），可能只存在TRS属性;`matrix`不会出现
 
-> **Implementation Note:** If the determinant of the transform is a negative value, the winding order of the mesh triangle faces should be reversed. This supports negative scales for mirroring geometry.
+> **Implementation Note:** If the determinant of the transform is a negative value, the winding order of the mesh triangle faces should be reversed. This supports negative scales for mirroring geometry.<br>实现注意：如果变换的行列式是负值，则应反转网格三角形面的缠绕顺序。这支持镜像几何的负标度
 
-> **Implementation Note:** Non-invertible transformations (e.g., scaling one axis to zero) could lead to lighting and/or visibility artifacts.
+> **Implementation Note:** Non-invertible transformations (e.g., scaling one axis to zero) could lead to lighting and/or visibility artifacts.<br>实现注意：不可逆转换（例如，将一个轴缩放到零）可能导致照明和/或可见性伪像
 
-In the example below, node named `Box` defines non-default rotation and translation.
+In the example below, node named `Box` defines non-default rotation and translation.<br>在下面的示例中，名为Box的节点定义了非默认的旋转和平移
 
 ```json
 {
@@ -375,7 +444,7 @@ In the example below, node named `Box` defines non-default rotation and translat
 }
 ```
 
-The next example defines the transformation for a node with attached camera using the `matrix` property rather than using the individual TRS values:
+The next example defines the transformation for a node with attached camera using the `matrix` property rather than using the individual TRS values:<br>下一个示例使用matrix属性定义具有附加摄像头的节点的变换，而不是使用单独的TRS值
 
 ```json
 {
@@ -406,19 +475,19 @@ The next example defines the transformation for a node with attached camera usin
 }
 ```
 
-## Binary Data Storage
+## Binary Data Storage  二进制数据存储
 
-### Buffers and Buffer Views
+### Buffers and Buffer Views  缓冲区和缓冲区视图
 
-A *buffer* is data stored as a binary blob. The buffer can contain a combination of geometry, animation, and skins.
+A *buffer* is data stored as a binary blob. The buffer can contain a combination of geometry, animation, and skins.<br>*buffer*是存储为二进制blob的数据。buffer可以包含几何，动画和皮肤等数据
 
-Binary blobs allow efficient creation of GPU buffers and textures since they require no additional parsing, except perhaps decompression. An asset can have any number of buffer files for flexibility for a wide array of applications.
+Binary blobs allow efficient creation of GPU buffers and textures since they require no additional parsing, except perhaps decompression. An asset can have any number of buffer files for flexibility for a wide array of applications.<br>二进制blob允许有效创建GPU缓冲区和纹理，因为除了可能的解压缩之外，它们不需要额外的解析。gltf文件可以包含任意数量的缓冲区文件，以便为各种应用程序提供灵活性
 
 Buffer data is little endian.
 
-All buffers are stored in the asset's `buffers` array.
+All buffers are stored in the asset's `buffers` array.<br>所有buffers都存储在gltf文件的`buffers`数组中
 
-The following example defines a buffer. The `byteLength` property specifies the size of the buffer file. The `uri` property is the URI to the buffer data. Buffer data may also be stored within the glTF file as base64-encoded data and reference via data URI.
+The following example defines a buffer. The `byteLength` property specifies the size of the buffer file. The `uri` property is the URI to the buffer data. Buffer data may also be stored within the glTF file as base64-encoded data and reference via data URI.<br>以下示例定义了一个缓冲区。 byteLength属性指定缓冲区文件的大小。 uri属性是缓冲区数据的URI。缓冲区数据也可以作为base64编码的数据存储在glTF文件中，并通过数据URI进行引用
 
 ```json
 {
@@ -431,13 +500,13 @@ The following example defines a buffer. The `byteLength` property specifies the 
 }
 ```
 
-A *bufferView* represents a subset of data in a buffer, defined by an integer offset into the buffer specified in the `byteOffset` property and a `byteLength` property to specify length of the buffer view.
+A *bufferView* represents a subset of data in a buffer, defined by an integer offset into the buffer specified in the `byteOffset` property and a `byteLength` property to specify length of the buffer view.<br>bufferView表示buffer中的数据子集，由byteOffset属性中的整数偏移量和byteLength属性指定缓冲区视图的长度定义
 
-When a buffer view contain vertex indices or attributes, they must be its only content, i.e., it's invalid to have more than one kind of data in the same buffer view.
+When a buffer view contain vertex indices or attributes, they must be its only content, i.e., it's invalid to have more than one kind of data in the same buffer view.<br>当缓冲区视图包含顶点索引或属性时，它们必须是唯一的内容，即在同一缓冲区视图中具有多种数据是无效的
 
-> **Implementation Note:** This allows a runtime to upload buffer view data to the GPU without any additional processing. When `bufferView.target` is defined, runtime must use it to determine data usage, otherwise it could be inferred from mesh' accessor objects.
+> **Implementation Note:** This allows a runtime to upload buffer view data to the GPU without any additional processing. When `bufferView.target` is defined, runtime must use it to determine data usage, otherwise it could be inferred from mesh' accessor objects.<br>实现注意：这允许应用程序运行时将缓冲区视图数据上传到GPU而无需任何其他处理。当定义`bufferView.target`时，应用程序运行时必须使用它来确定数据使用情况，否则可以从网格的访问者对象中推断出它
 
-The following example defines two buffer views: the first is an ELEMENT_ARRAY_BUFFER, which holds the indices for an indexed triangle set, and the second is an ARRAY_BUFFER that holds the vertex data for the triangle set.
+The following example defines two buffer views: the first is an ELEMENT_ARRAY_BUFFER, which holds the indices for an indexed triangle set, and the second is an ARRAY_BUFFER that holds the vertex data for the triangle set.<br>下面的示例定义了两个缓冲区视图：第一个是ELEMENT_ARRAY_BUFFER，它保存索引三角形集的索引，第二个是保存三角形集的顶点数据的ARRAY_BUFFER
 
 ```json
 {
@@ -459,17 +528,17 @@ The following example defines two buffer views: the first is an ELEMENT_ARRAY_BU
 }
 ```
 
-Buffer view could have `byteStride` property. It means byte-distance between consequential elements. This field  is defined only for buffer views that contain vertex attributes.
+Buffer view could have `byteStride` property. It means byte-distance between consequential elements. This field  is defined only for buffer views that contain vertex attributes.<br>缓冲区视图可以具有byteStride属性。它意味着相邻元素之间的字节距离。仅为包含顶点属性的缓冲区视图定义此字段
 
-Buffers and buffer views do not contain type information. They simply define the raw data for retrieval from the file. Objects within the glTF file (meshes, skins, animations) access buffers or buffer views via *accessors*.
+Buffers and buffer views do not contain type information. They simply define the raw data for retrieval from the file. Objects within the glTF file (meshes, skins, animations) access buffers or buffer views via *accessors*.<br>缓冲区和缓冲区视图不包含类型信息。他们只是定义从文件中检索的原始数据。 glTF文件中的对象（网格，外观，动画）通过*accessors*访问缓冲区或缓冲区视图
 
 #### GLB-stored Buffer
 
-glTF asset could use GLB file container to pack all resources into one file. glTF Buffer referring to GLB-stored `BIN` chunk, must have `buffer.uri` property undefined, and it must be the first element of `buffers` array; byte length of `BIN` chunk could be up to 3 bytes bigger than JSON-defined `buffer.byteLength` to satisfy GLB padding requirements.
+glTF asset could use GLB file container to pack all resources into one file. glTF Buffer referring to GLB-stored `BIN` chunk, must have `buffer.uri` property undefined, and it must be the first element of `buffers` array; byte length of `BIN` chunk could be up to 3 bytes bigger than JSON-defined `buffer.byteLength` to satisfy GLB padding requirements.<br>glTF文件可以使用GLB文件容器将所有资源打包到一个文件中。 glTF缓冲区指的是GLB存储的BIN块，必须具有未定义的buffer.uri属性，并且它必须是buffers数组的第一个元素; BIN块的字节长度最多可比JSON定义的buffer.byteLength大3个字节，以满足GLB填充要求
 
-> **Implementation Note:**  Not requiring strict equality of chunk's and buffer's lengths simplifies glTF to GLB conversion a bit: implementations don't need to update `buffer.byteLength` after applying GLB padding.
+> **Implementation Note:**  Not requiring strict equality of chunk's and buffer's lengths simplifies glTF to GLB conversion a bit: implementations don't need to update `buffer.byteLength` after applying GLB padding.<br>实现注意：不要求块和缓冲区长度的严格相等简化了glTF到GLB的转换：实现后不需要在应用GLB填充后更新buffer.byteLength
 
-In the following example, the first buffer objects refers to GLB-stored data, while the second points to external resource:
+In the following example, the first buffer objects refers to GLB-stored data, while the second points to external resource:<br>在以下示例中，第一个缓冲区对象引用GLB存储的数据，而第二个缓冲区对象引用外部资源
 
 ```json
 {
@@ -485,17 +554,17 @@ In the following example, the first buffer objects refers to GLB-stored data, wh
 }
 ```
 
-See [GLB File Format Specification](#glb-file-format-specification) for details on GLB File Format.
+See [GLB File Format Specification](#glb-file-format-specification) for details on GLB File Format.<br>有关GLB文件格式的详细信息，请参阅GLB文件格式规范
 
-### Accessors
+### Accessors  访问器
 
-All large data for meshes, skins, and animations is stored in buffers and retrieved via accessors.
+All large data for meshes, skins, and animations is stored in buffers and retrieved via accessors.<br>网格，皮肤和动画的所有大数据都存储在缓冲区中并通过访问器检索
 
-An *accessor* defines a method for retrieving data as typed arrays from within a `bufferView`. The accessor specifies a component type (e.g. `5126 (FLOAT)`) and a data type (e.g. `VEC3`), which when combined define the complete data type for each array element. The accessor also specifies the location and size of the data within the `bufferView` using the properties `byteOffset` and `count`. The latter specifies the number of elements within the `bufferView`, *not* the number of bytes. Elements could be, e.g., vertex indices, vertex attributes, animation keyframes, etc.
+An *accessor* defines a method for retrieving data as typed arrays from within a `bufferView`. The accessor specifies a component type (e.g. `5126 (FLOAT)`) and a data type (e.g. `VEC3`), which when combined define the complete data type for each array element. The accessor also specifies the location and size of the data within the `bufferView` using the properties `byteOffset` and `count`. The latter specifies the number of elements within the `bufferView`, *not* the number of bytes. Elements could be, e.g., vertex indices, vertex attributes, animation keyframes, etc.<br>*accessor*定义了一种从bufferView中将数据作为类型化数组进行检索的方法。访问器指定组件类型（例如5126（FLOAT））和数据类型（例如VEC3），它们在组合时定义每个数组元素的完整数据类型。访问器还使用属性byteOffset和count指定bufferView中数据的位置和大小。后者指定bufferView中的元素数，而不是字节数。元素可以是例如顶点索引，顶点属性，动画关键帧等
 
-All accessors are stored in the asset's `accessors` array.
+All accessors are stored in the asset's `accessors` array.所有访问器都存储在文件的`accessors`数组中
 
-The following fragment shows two accessors, the first is a scalar accessor for retrieving a primitive's indices, and the second is a 3-float-component vector accessor for retrieving the primitive's position data.
+The following fragment shows two accessors, the first is a scalar accessor for retrieving a primitive's indices, and the second is a 3-float-component vector accessor for retrieving the primitive's position data.<br>下面的片段显示了两个访问器，第一个是用于检索基元索引的标量访问器，第二个是用于检索基元位置数据的3浮点分量矢量访问器
 
 ```json
 {
@@ -534,15 +603,15 @@ The following fragment shows two accessors, the first is a scalar accessor for r
 }
 ```
 
-#### Floating-Point Data
+#### Floating-Point Data  浮点数据
 
-Data of `5126 (FLOAT)` componentType must use IEEE-754 single precision format. 
+Data of `5126 (FLOAT)` componentType must use IEEE-754 single precision format. <br>`5126 (FLOAT)`componentType的数据必须使用IEEE-754单精度格式
 
-Values of `NaN`, `+Infinity`, and `-Infinity` are not allowed.
+Values of `NaN`, `+Infinity`, and `-Infinity` are not allowed.<br>不允许使用NaN，+ Infinity和-Infinity的值
 
-#### Accessor Element Size
+#### Accessor Element Size  访问器元素尺寸
 
-The following tables can be used to compute the size of element accessible by accessor.
+The following tables can be used to compute the size of element accessible by accessor.<br>以下表格可用于计算访问者可访问的元素的大小
 
 | `componentType` | Size in bytes |
 |:---------------:|:-------------:|
@@ -564,7 +633,7 @@ The following tables can be used to compute the size of element accessible by ac
 | `"MAT4"` | 16 |
 
 Element size, in bytes, is
-`(size in bytes of the 'componentType') * (number of components defined by 'type')`.
+`(size in bytes of the 'componentType') * (number of components defined by 'type')`.<br>元素大小（以字节为单位）是（'componentType'的字节大小）*（'type'定义的组件数）
 
 For example:
 
@@ -582,28 +651,28 @@ For example:
 }
 ```
 
-In this accessor, the `componentType` is `5126` (FLOAT), so each component is four bytes.  The `type` is `"VEC3"`, so there are three components.  The size of each element is 12 bytes (`4 * 3`).
+In this accessor, the `componentType` is `5126` (FLOAT), so each component is four bytes.  The `type` is `"VEC3"`, so there are three components.  The size of each element is 12 bytes (`4 * 3`).<br>在此访问器中，componentType是5126（FLOAT），因此每个组件是四个字节。类型是“VEC3”，因此有三个组件。每个元素的大小为12个字节（4 * 3）
 
-#### Accessors Bounds
+#### Accessors Bounds  访问器界限
 
-`accessor.min` and `accessor.max` properties are arrays that contain per-component minimum and maximum values, respectively. Exporters and loaders must treat these values as having the same data type as accessor's `componentType`, i.e., use integers (JSON number without fractional part) for integer types and use floating-point decimals for `5126` (FLOAT).
+`accessor.min` and `accessor.max` properties are arrays that contain per-component minimum and maximum values, respectively. Exporters and loaders must treat these values as having the same data type as accessor's `componentType`, i.e., use integers (JSON number without fractional part) for integer types and use floating-point decimals for `5126` (FLOAT).<br>accessor.min和accessor.max属性是包含每个组件最小值和最大值的数组。导出器和加载器必须将这些值与accessor的componentType数据类型相匹配，即对整数类型使用整数（没有小数部分的JSON编号），并对5126（FLOAT）使用浮点小数
 
-> **Implementation Note:** JavaScript client implementations should convert JSON-parsed floating-point doubles to single precision, when `componentType` is `5126` (FLOAT). This could be done with `Math.fround` function.
+> **Implementation Note:** JavaScript client implementations should convert JSON-parsed floating-point doubles to single precision, when `componentType` is `5126` (FLOAT). This could be done with `Math.fround` function.<br>实现注意：当componentType为5126（FLOAT）时，JavaScript客户端实现应将JSON解析的浮点双精度转换为单精度。这可以使用Math.fround函数完成
 
-While these properties are not required for all accessor usages, there are cases when minimum and maximum must be defined. Refer to other sections of this specification for details. 
+While these properties are not required for all accessor usages, there are cases when minimum and maximum must be defined. Refer to other sections of this specification for details. <br>虽然这些属性不是对所有访问者必须的，但有时必须定义最小值和最大值。有关详细信息，请参阅本规范的其他部分
 
-#### Sparse Accessors
+#### Sparse Accessors  稀疏访问器
 
 Sparse encoding of arrays is often more memory-efficient than dense encoding when describing incremental changes with respect to a reference array.
-This is often the case when encoding morph targets (it is, in general, more efficient to describe a few displaced vertices in a morph target than transmitting all morph target vertices).
+This is often the case when encoding morph targets (it is, in general, more efficient to describe a few displaced vertices in a morph target than transmitting all morph target vertices).<br>在描述相对于参考数组的增量更改时，数组的稀疏编码通常比密集编码更具内存效率。在编码变形目标时通常就是这种情况（通常，描述变形目标中的几个移位顶点比传输所有变形目标顶点更有效）
 
 glTF 2.0 extends the accessor structure to enable efficient transfer of sparse arrays.
-Similarly to a standard accessor, a sparse accessor initializes an array of typed elements from data stored in a `bufferView` . On top of that, a sparse accessor includes a `sparse` dictionary describing the elements that deviate from their initialization value. The `sparse` dictionary contains the following mandatory properties:
-- `count`: number of displaced elements.
+Similarly to a standard accessor, a sparse accessor initializes an array of typed elements from data stored in a `bufferView` . On top of that, a sparse accessor includes a `sparse` dictionary describing the elements that deviate from their initialization value. The `sparse` dictionary contains the following mandatory properties:<br>glTF 2.0扩展了访问器结构，以实现稀疏阵列的有效传输。与标准访问器类似，稀疏访问器从存储在bufferView中的数据初始化类型化元素的数组。最重要的是，稀疏访问器包括一个稀疏字典，用于描述偏离其初始化值的元素。稀疏字典包含以下必需属性
+- `count`: number of displaced elements.<br>`count`:被替换元素的数量<br>
 - `indices`: strictly increasing array of integers of size `count` and specific `componentType` that stores the indices of those elements that deviate from the initialization value.
-- `values`: array of displaced elements corresponding to the indices in the `indices` array.
+- `values`: array of displaced elements corresponding to the indices in the `indices` array.<br>与`indices`数组中的索引相对应的移位元素的数组
 
-The following fragment shows an example of `sparse` accessor with 10 elements deviating from the initialization array.
+The following fragment shows an example of `sparse` accessor with 10 elements deviating from the initialization array.<br>以下片段显示了`sparse`accessor的示例，其中10个元素偏离初始化数组
 
 ```json
 {
@@ -631,21 +700,25 @@ The following fragment shows an example of `sparse` accessor with 10 elements de
 }
 ```
 A sparse accessor differs from a regular one in that `bufferView` property isn't required. When it's omitted, the sparse accessor is initialized as an array of zeros of size `(size of the accessor element) * (accessor.count)` bytes.
-A sparse accessor `min` and `max` properties correspond, respectively, to the minimum and maximum component values once the sparse substitution is applied.
+A sparse accessor `min` and `max` properties correspond, respectively, to the minimum and maximum component values once the sparse substitution is applied.<br>稀疏访问器与常规访问器的不同之处在于不需要bufferView属性。当省略它时，稀疏访问器被初始化为大小为零的数组（访问器元素的大小）*（accessor.count）字节。一旦应用稀疏替换，稀疏存取器min和max属性分别对应于最小和最大组件值
 
-When neither `sparse` nor `bufferView` is defined, `min` and `max` properties could have any values. This is intended for use cases when binary data is supplied by external means (e.g., via extensions).
+When neither `sparse` nor `bufferView` is defined, `min` and `max` properties could have any values. This is intended for use cases when binary data is supplied by external means (e.g., via extensions).<br>如果既未定义`sparse`也未定义bufferView，则min和max属性可以具有任何值。这适用于通过外部手段（例如，通过扩展）提供二进制数据的用例
 
-#### Data Alignment
+#### Data Alignment  数据对齐
 
-The offset of an `accessor` into a `bufferView` (i.e., `accessor.byteOffset`) and the offset of an `accessor` into a `buffer` (i.e., `accessor.byteOffset + bufferView.byteOffset`) must be a multiple of the size of the accessor's component type.
+The offset of an `accessor` into a `bufferView` (i.e., `accessor.byteOffset`) and the offset of an `accessor` into a `buffer` (i.e., `accessor.byteOffset + bufferView.byteOffset`) must be a multiple of the size of the accessor's component type.<br>`accessor`到bufferView（即accessor.byteOffset）的偏移量和访问者到缓冲区的偏移量（即accessor.byteOffset + bufferView.byteOffset）必须是访问者组件类型大小的倍数
 
-When `byteStride` of referenced `bufferView` is not defined, it means that accessor elements are tightly packed, i.e., effective stride equals the size of the element. When `byteStride` is defined, it must be a multiple of the size of the accessor's component type. `byteStride` must be defined, when two or more accessors use the same `bufferView`.
+When `byteStride` of referenced `bufferView` is not defined, it means that accessor elements are tightly packed, i.e., effective stride equals the size of the element. When `byteStride` is defined, it must be a multiple of the size of the accessor's component type. `byteStride` must be defined, when two or more accessors use the same `bufferView`.<br>当未定义bufferView的byteStride时，意味着访问器元素被紧密打包，即有效步幅等于元素的大小。当定义byteStride时，它必须是访问者组件类型大小的倍数。当两个或多个访问器使用相同的bufferView时，必须定义byteStride
 
-Each `accessor` must fit its `bufferView`, i.e., `accessor.byteOffset + STRIDE * (accessor.count - 1) + SIZE_OF_ELEMENT` must be less than or equal to `bufferView.length`.
+Each `accessor` must fit its `bufferView`, i.e., `accessor.byteOffset + STRIDE * (accessor.count - 1) + SIZE_OF_ELEMENT` must be less than or equal to `bufferView.length`.<br>每个`accessor`必须匹配其bufferView，即accessor.byteOffset + STRIDE *（accessor.count - 1）+ SIZE_OF_ELEMENT必须小于或等于bufferView.length
 
+<<<<<<< HEAD
 For performance and compatibility reasons, each element of a vertex attribute must be aligned to 4-byte boundaries inside `bufferView` (i.e., `accessor.byteOffset` and `bufferView.byteStride` must be multiples of 4).
+=======
+For performance and compatibility reasons, vertex attributes must be aligned to 4-byte boundaries inside `bufferView` (i.e., `accessor.byteOffset` and `bufferView.byteStride` must be multiples of 4). <br>出于性能和兼容性的原因，顶点属性必须与bufferView内的4字节边界对齐（即accessor.byteOffset和bufferView.byteStride必须是4的倍数)
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
-Accessors of matrix type have data stored in column-major order; start of each column must be aligned to 4-byte boundaries. To achieve this, three `type`/`componentType` combinations require special layout:
+Accessors of matrix type have data stored in column-major order; start of each column must be aligned to 4-byte boundaries. To achieve this, three `type`/`componentType` combinations require special layout:<br>矩阵类型的访问器具有按列顺序存储的数据;每列的开头必须与4字节边界对齐。为此，三种`type`/`componentType`组合需要特殊布局
 
 **MAT2, 1-byte components**
 ```
@@ -668,11 +741,11 @@ Accessors of matrix type have data stored in column-major order; start of each c
 |m00|m00|m10|m10|m20|m20|---|---|m01|m01|m11|m11|m21|m21|---|---|m02|m02|m12|m12|m22|m22|---|---|
 ```
 
-Alignment requirements apply only to start of each column, so trailing bytes could be omitted if there's no further data. 
+Alignment requirements apply only to start of each column, so trailing bytes could be omitted if there's no further data. <br>对齐要求仅适用于每列的开始，因此如果没有其他数据，则可以省略尾随字节
 
-> **Implementation Note:** For JavaScript, this allows a runtime to efficiently create a single ArrayBuffer from a glTF `buffer` or an ArrayBuffer per `bufferView`, and then use an `accessor` to turn a typed array view (e.g., `Float32Array`) into an ArrayBuffer without copying it because the byte offset of the typed array view is a multiple of the size of the type (e.g., `4` for `Float32Array`).
+> **Implementation Note:** For JavaScript, this allows a runtime to efficiently create a single ArrayBuffer from a glTF `buffer` or an ArrayBuffer per `bufferView`, and then use an `accessor` to turn a typed array view (e.g., `Float32Array`) into an ArrayBuffer without copying it because the byte offset of the typed array view is a multiple of the size of the type (e.g., `4` for `Float32Array`).<br>实现注意：对于JavaScript，这允许运行时从glTF缓冲区或每个bufferView的ArrayBuffer有效地创建单个ArrayBuffer，然后使用访问器将类型化数组视图（例如，Float32Array）转换为ArrayBuffer而不复制它，因为类型化数组视图的字节偏移量是类型大小的倍数（例如，Float32Array为4）
 
-Consider the following example:
+Consider the following example:  请考虑以下示例
 
 ```json
 {
@@ -695,28 +768,28 @@ Consider the following example:
     ]
 }
 ```
-Accessing binary data defined by example above could be done like this:
+Accessing binary data defined by example above could be done like this:<br>访问上面例子定义的二进制数据可以这样做
 
 ```js
 var typedView = new Uint16Array(buffer, accessor.byteOffset + accessor.bufferView.byteOffset, accessor.count);
 ```
 
-The size of the accessor component type is two bytes (the `componentType` is unsigned short). The accessor's `byteOffset` is also divisible by two. Likewise, the accessor's offset into buffer `0` is `5228 ` (`620 + 4608`), which is divisible by two.
+The size of the accessor component type is two bytes (the `componentType` is unsigned short). The accessor's `byteOffset` is also divisible by two. Likewise, the accessor's offset into buffer `0` is `5228 ` (`620 + 4608`), which is divisible by two.<br>访问器组件类型的大小是两个字节（componentType是unsigned short）。访问者的byteOffset也可以被2整除。同样，访问者到缓冲区0的偏移量是5228（620 + 4608），可以被2整除
 
 
-## Geometry
+## Geometry  几何
 
-Any node can contain one mesh, defined in its `mesh` property. Mesh can be skinned using a information provided in referenced `skin` object. Mesh can have morph targets.
+Any node can contain one mesh, defined in its `mesh` property. Mesh can be skinned using a information provided in referenced `skin` object. Mesh can have morph targets.<br>任何节点都可以包含一个网格，在其`mesh`属性中定义。可以使用引用的`skin`对象中提供的信息对网格进行蒙皮。网格可以有变形目标
 
 ### Meshes
 
-In glTF, meshes are defined as arrays of *primitives*. Primitives correspond to the data required for GPU draw calls. Primitives specify one or more `attributes`, corresponding to the vertex attributes used in the draw calls. Indexed primitives also define an `indices` property. Attributes and indices are defined as references to accessors containing corresponding data. Each primitive also specifies a material and a primitive type that corresponds to the GPU primitive type (e.g., triangle set).
+In glTF, meshes are defined as arrays of *primitives*. Primitives correspond to the data required for GPU draw calls. Primitives specify one or more `attributes`, corresponding to the vertex attributes used in the draw calls. Indexed primitives also define an `indices` property. Attributes and indices are defined as references to accessors containing corresponding data. Each primitive also specifies a material and a primitive type that corresponds to the GPU primitive type (e.g., triangle set).<br>在glTF中，网格被定义为*primitives*数组。基元对应于GPU绘制调用所需的数据。基元指定一个或多个属性，对应于绘制调用中使用的顶点属性。索引基元还定义索引属性。属性和索引被定义为对包含相应数据的访问器的引用。每个基元还指定对应于GPU基元类型（例如，三角形集）的材料和基元类型
 
-> **Implementation note:** Splitting one mesh into *primitives* could be useful to limit number of indices per draw call.
+> **Implementation note:** Splitting one mesh into *primitives* could be useful to limit number of indices per draw call.<br>实现注意事项：将一个网格拆分为*primitives*可能有助于限制每个draw call调用的索引数
 
-If `material` is not specified, then a [default material](#default-material) is used.
+If `material` is not specified, then a [default material](#default-material) is used.<br>如果未指定`material`，则使用默认材质
 
-The following example defines a mesh containing one triangle set primitive:
+The following example defines a mesh containing one triangle set primitive:<br>以下示例定义包含一个三角形集基元的网格
 
 ```json
 {
@@ -740,11 +813,11 @@ The following example defines a mesh containing one triangle set primitive:
 }
 ```
 
-Each attribute is defined as a property of the `attributes` object. The name of the property corresponds to an enumerated value identifying the vertex attribute, such as `POSITION`. The value of the property is the index of an accessor that contains the data.
+Each attribute is defined as a property of the `attributes` object. The name of the property corresponds to an enumerated value identifying the vertex attribute, such as `POSITION`. The value of the property is the index of an accessor that contains the data.<br>每个属性都定义为`attributes`对象的属性。属性的名称对应于标识顶点属性的枚举值，例如POSITION。属性的值是包含数据的访问者的索引
 
-Valid attribute semantic property names include `POSITION`, `NORMAL`, `TANGENT`, `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`, `JOINTS_0`, and `WEIGHTS_0`.  Application-specific semantics must start with an underscore, e.g., `_TEMPERATURE`.
+Valid attribute semantic property names include `POSITION`, `NORMAL`, `TANGENT`, `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`, `JOINTS_0`, and `WEIGHTS_0`.  Application-specific semantics must start with an underscore, e.g., `_TEMPERATURE`.<br>有效属性语义属性名称包括`POSITION`, `NORMAL`, `TANGENT`, `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`, `JOINTS_0`, 和 `WEIGHTS_0`。特定于应用程序的语义必须以下划线开头，例如_TEMPERATURE
 
-Valid accessor type and component type for each attribute semantic property are defined below.
+Valid accessor type and component type for each attribute semantic property are defined below.<br>下面定义了每个属性语义属性的有效访问者类型和组件类型
 
 |Name|Accessor Type(s)|Component Type(s)|Description|
 |----|----------------|-----------------|-----------|
@@ -757,23 +830,34 @@ Valid accessor type and component type for each attribute semantic property are 
 |`JOINTS_0`|`"VEC4"`|`5121`&nbsp;(UNSIGNED_BYTE)<br>`5123`&nbsp;(UNSIGNED_SHORT)|See [Skinned Mesh Attributes](#skinned-mesh-attributes)|
 |`WEIGHTS_0`|`"VEC4`|`5126`&nbsp;(FLOAT)<br>`5121`&nbsp;(UNSIGNED_BYTE)&nbsp;normalized<br>`5123`&nbsp;(UNSIGNED_SHORT)&nbsp;normalized|See [Skinned Mesh Attributes](#skinned-mesh-attributes)|
 
-`POSITION` accessor **must** have `min` and `max` properties defined.
+`POSITION` accessor **must** have `min` and `max` properties defined.<br>POSITION访问器必须定义最小和最大属性
 
-`TEXCOORD`, `COLOR`, `JOINTS`, and `WEIGHTS` attribute semantic property names must be of the form `[semantic]_[set_index]`, e.g., `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`. Client implementations must support at least two UV texture coordinate sets, one vertex color, and one joints/weights set. Extensions can add additional property names, accessor types, and/or accessor component types.
+`TEXCOORD`, `COLOR`, `JOINTS`, and `WEIGHTS` attribute semantic property names must be of the form `[semantic]_[set_index]`, e.g., `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`. Client implementations must support at least two UV texture coordinate sets, one vertex color, and one joints/weights set. Extensions can add additional property names, accessor types, and/or accessor component types.<br>TEXCOORD，COLOR，JOINTS和WEIGHTS属性语义属性名称必须是[semantic] _ [set_index]形式，例如TEXCOORD_0，TEXCOORD_1，COLOR_0。客户端实现必须支持至少两个UV纹理坐标集，一个顶点颜色和一个关节/权重集。扩展可以添加其他属性名称，访问者类型和/或访问者组件类型
 
-All indices for indexed attribute semantics, must start with 0 and be continuous: `TEXCOORD_0`, `TEXCOORD_1`, etc.
+All indices for indexed attribute semantics, must start with 0 and be continuous: `TEXCOORD_0`, `TEXCOORD_1`, etc.<br>索引属性语义的所有索引必须以0开头并且是连续的：TEXCOORD_0，TEXCOORD_1等
 
-> **Implementation note:** Each primitive corresponds to one WebGL draw call (engines are, of course, free to batch draw calls). When a primitive's `indices` property is defined, it references the accessor to use for index data, and GL's `drawElements` function should be used. When the `indices` property is not defined, GL's `drawArrays` function should be used with a count equal to the count property of any of the accessors referenced by the `attributes` property (they are all equal for a given primitive).
+> **Implementation note:** Each primitive corresponds to one WebGL draw call (engines are, of course, free to batch draw calls). When a primitive's `indices` property is defined, it references the accessor to use for index data, and GL's `drawElements` function should be used. When the `indices` property is not defined, GL's `drawArrays` function should be used with a count equal to the count property of any of the accessors referenced by the `attributes` property (they are all equal for a given primitive).<br>实现说明：每个primitive对应一个WebGL draw call（当然，引擎可以自由批量绘制调用）。当定义了一个primitive的indices属性时，它引用了保存索引数据的访问器，并且应该使用GL的drawElements函数。如果未定义indices属性，则应使用GL的drawArrays函数，其计数等于attributes属性引用的任何访问器的count属性（它们对于给定的基元都是相等的）
 
-> **Implementation note:** When normals are not specified, client implementations should calculate flat normals.
+> **Implementation note:** When normals are not specified, client implementations should calculate flat normals.<br>实现说明：未指定法线时，客户端实现应计算flat法线
 
-> **Implementation note:** When tangents are not specified, client implementations should calculate tangents using default MikkTSpace algorithms.  For best results, the mesh triangles should also be processed using default MikkTSpace algorithms.
+> **Implementation note:** When tangents are not specified, client implementations should calculate tangents using default MikkTSpace algorithms.  For best results, the mesh triangles should also be processed using default MikkTSpace algorithms.<br>实现说明：当未指定切线时，客户端实现应使用默认的MikkTSpace算法计算切线。为获得最佳结果，还应使用默认的MikkTSpace算法处理网格三角形
 
+<<<<<<< HEAD
 > **Implementation note:** Vertices of the same triangle should have the same `tangent.w` value. When vertices of the same triangle have different `tangent.w` values, tangent space is considered undefined.
 
 > **Implementation note:** When normals and tangents are specified, client implementations should compute the bitangent by taking the cross product of the normal and tangent xyz vectors and multiplying against the w component of the tangent: `bitangent = cross(normal, tangent.xyz) * tangent.w`
+=======
+> **Implementation note:** When normals and tangents are specified, client implementations should compute the bitangent by taking the cross product of the normal and tangent xyz vectors and multiplying against the w component of the tangent: `bitangent = cross(normal, tangent.xyz) * tangent.w`<br>实现注意事项：当指定法线和切线时，客户端实现应通过获取法线和切线xyz向量的叉积并乘以切线的w分量来计算比特率：bitangent = cross（normal，tangent.xyz）* tangent .W
 
-#### Morph Targets
+> **Implementation note:** When the 'mode' property is set to a non-triangular type (such as POINTS or LINES) some additional considerations must be taken while considering the proper rendering technique:<br>实现注意事项：当'mode'属性设置为非三角形类型（如POINTS或LINES）时，在考虑正确的渲染技术时必须考虑一些其他因素
+> > For LINES with `NORMAL` and `TANGENT` properties can render with standard lighting including normal maps.<br>对于具有NORMAL和TANGENT属性的LINES，可以使用包括法线贴图在内的标准光照进行渲染
+> > 
+> > For all POINTS or LINES with no `TANGENT` property, render with standard lighting but ignore any normal maps on the material.<br>对于没有TANGENT属性的所有POINTS或LINES，使用标准光照渲染但忽略材质上的任何法线贴图
+> > 
+> > For POINTS or LINES with no `NORMAL` property, don't calculate lighting and instead output the `COLOR` value for each pixel drawn.<br>对于没有NORMAL属性的POINTS或LINES，不要计算光照，而是为每个绘制的像素输出COLOR值
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
+
+#### Morph Targets  变形目标
 
 Morph Targets are defined by extending the Mesh concept.
 
@@ -1014,13 +1098,13 @@ A skin is instanced within a node using a combination of the node's `mesh` and `
 }
 ```
 
-## Texture Data
+## Texture Data  纹理数据
 
-glTF separates texture access into three distinct types of objects: Textures, Images, and Samplers.
+glTF separates texture access into three distinct types of objects: Textures, Images, and Samplers.<br>glTF将纹理访问分为三种不同类型的对象：Textures，Images和Samplers
 
-### Textures
+### Textures 纹理
 
-All textures are stored in the asset's `textures` array. A texture is defined by an image resource, denoted by the `source` property and a sampler index (`sampler`).
+All textures are stored in the asset's `textures` array. A texture is defined by an image resource, denoted by the `source` property and a sampler index (`sampler`).<br>所有纹理都存储在文件的`textures`数组中。纹理由图像资源定义，由source属性和采样器索引（sampler）表示
 
 ```json
 {
@@ -1033,18 +1117,18 @@ All textures are stored in the asset's `textures` array. A texture is defined by
 }
 ```
 
-> **Implementation Note** glTF 2.0 supports only 2D textures.
+> **Implementation Note** glTF 2.0 supports only 2D textures.<br>实现说明:glTF 2.0仅支持2D纹理
 
 ### Images
 
-Images referred to by textures are stored in the `images` array of the asset. 
+Images referred to by textures are stored in the `images` array of the asset. <br>纹理引用的图像存储在文件的`images`数组中
 
-Each image contains one of
-- a URI to an external file in one of the supported images formats, or
-- a URI with embedded base64-encoded data, or
-- a reference to a `bufferView`; in that case `mimeType` must be defined.
+Each image contains one of 每个图像包含
+- a URI to an external file in one of the supported images formats, or<br>一种受支持的图像格式的外部文件的URI，或<br>
+- a URI with embedded base64-encoded data, or<br>带有嵌入式base64编码数据的URI，或<br>
+- a reference to a `bufferView`; in that case `mimeType` must be defined.<br>对bufferView的引用;在这种情况下，必须定义mimeType
 
-The following example shows an image pointing to an external PNG image file and another image referencing a `bufferView` with JPEG data.
+The following example shows an image pointing to an external PNG image file and another image referencing a `bufferView` with JPEG data.<br>以下示例显示指向外部PNG图像文件的图像和引用带有JPEG数据的bufferView的另一个图像
 
 ```json
 {
@@ -1059,19 +1143,19 @@ The following example shows an image pointing to an external PNG image file and 
     ]
 }
 ```
-> **Implementation Note:** When image data is provided by `uri` and `mimeType` is defined, client implementations should prefer JSON-defined MIME Type over one provided by transport layer.
+> **Implementation Note:** When image data is provided by `uri` and `mimeType` is defined, client implementations should prefer JSON-defined MIME Type over one provided by transport layer.<br>实现注意：当图像数据定义了uri并同时定义了mimeType参数时，客户端实现应优先于传输层提供的JSON定义的MIME类型
 
 The origin of the UV coordinates (0, 0) corresponds to the upper left corner of a texture image.
-This is illustrated in the following figure, where the respective UV coordinates are shown for all four corners of a normalized UV space:
+This is illustrated in the following figure, where the respective UV coordinates are shown for all four corners of a normalized UV space:<br>UV坐标（0,0）的原点对应于纹理图像的左上角。下图说明了这一点，其中显示了标准化UV空间的所有四个角的相应UV坐标
 <p align="center">
 <img src="figures/texcoords.jpg" /><br/>
 </p>
 
-Any colorspace information (such as ICC profiles, intents, etc) from PNG or JPEG containers must be ignored.
+Any colorspace information (such as ICC profiles, intents, etc) from PNG or JPEG containers must be ignored.<br>必须忽略来自PNG或JPEG容器的任何颜色空间信息（例如ICC配置文件，意图等）
 
-> **Implementation Note:** This increases portability of an asset, since not all image decoding libraries fully support custom color conversions. To achieve correct rendering, WebGL runtimes must disable such conversions by setting `UNPACK_COLORSPACE_CONVERSION_WEBGL` flag to `NONE`.
+> **Implementation Note:** This increases portability of an asset, since not all image decoding libraries fully support custom color conversions. To achieve correct rendering, WebGL runtimes must disable such conversions by setting `UNPACK_COLORSPACE_CONVERSION_WEBGL` flag to `NONE`.<br>实现注意：这增加了资产的可移植性，因为并非所有图像解码库都完全支持自定义颜色转换。要实现正确的渲染，WebGL运行时必须通过将UNPACK_COLORSPACE_CONVERSION_WEBGL标志设置为NONE来禁用此类转换
 
-### Samplers
+### Samplers  采样
 
 Samplers are stored in the `samplers` array of the asset. Each sampler specifies filter and wrapping options corresponding to the GL types. The following example defines a sampler with linear mag filtering, linear mipmap min filtering, and repeat wrapping in S (U) and T (V).
 
@@ -1097,15 +1181,15 @@ Samplers are stored in the `samplers` array of the asset. Each sampler specifies
 > * Has a wrapping mode (either `wrapS` or `wrapT`) equal to `REPEAT` or `MIRRORED_REPEAT`, or
 > * Has a minification filter (`minFilter`) that uses mipmapping (`NEAREST_MIPMAP_NEAREST`, `NEAREST_MIPMAP_LINEAR`, `LINEAR_MIPMAP_NEAREST`, or `LINEAR_MIPMAP_LINEAR`).
 
-## Materials
+## Materials  材质
 
-glTF defines materials using a common set of parameters that are based on widely used material representations from Physically-Based Rendering (PBR). Specifically, glTF uses the metallic-roughness material model. Using this declarative representation of materials enables a glTF file to be rendered consistently across platforms. 
+glTF defines materials using a common set of parameters that are based on widely used material representations from Physically-Based Rendering (PBR). Specifically, glTF uses the metallic-roughness material model. Using this declarative representation of materials enables a glTF file to be rendered consistently across platforms. <br>glTF使用一组通用参数来定义材料，这些参数基于广泛使用的基于物理的渲染（PBR）的材料表示。具体而言，glTF使用金属粗糙度材料模型。使用这种材料的声明表示，可以跨平台一致地呈现glTF文件
 
 <p><img src="figures/materials.png" /></p>
 
-### Metallic-Roughness Material 
+### Metallic-Roughness Material   金属粗糙材质
 
-All parameters related to the metallic-roughness material model are defined under the `pbrMetallicRoughness` property of `material` object. The following example shows how a material like gold can be defined using the metallic-roughness parameters: 
+All parameters related to the metallic-roughness material model are defined under the `pbrMetallicRoughness` property of `material` object. The following example shows how a material like gold can be defined using the metallic-roughness parameters: <br>与金属粗糙度材料模型相关的所有参数都在材料对象的pbrMetallicRoughness属性下定义。以下示例显示如何使用metal-roughness参数定义像gold这样的材质
 
 ```json
 {
@@ -1122,14 +1206,18 @@ All parameters related to the metallic-roughness material model are defined unde
 }
 ```
 
-The metallic-roughness material model is defined by the following properties:
-* `baseColor` - The base color of the material
-* `metallic` - The metalness of the material
-* `roughness` - The roughness of the material
+The metallic-roughness material model is defined by the following properties:  金属粗糙度材质模型由以下属性定义：
+* `baseColor` - The base color of the material  材质的基色
+* `metallic` - The metalness of the material  材质的金属质感
+* `roughness` - The roughness of the material  材质的粗糙度
 
-The base color has two different interpretations depending on the value of metalness. When the material is a metal, the base color is the specific measured reflectance value at normal incidence (F0). For a non-metal the base color represents the reflected diffuse color of the material. In this model it is not possible to specify a F0 value for non-metals, and a linear value of 4% (0.04) is used. 
+The base color has two different interpretations depending on the value of metalness. When the material is a metal, the base color is the specific measured reflectance value at normal incidence (F0). For a non-metal the base color represents the reflected diffuse color of the material. In this model it is not possible to specify a F0 value for non-metals, and a linear value of 4% (0.04) is used. <br>根据金属度的值，基色有两种不同的解释。当材料是金属时，基色是垂直入射时的特定测量反射率值（F0）。对于非金属，基色表示材质反射的漫反射颜色。在该模型中，不可能为非金属指定F0值，并且使用4％（0.04）的线性值
 
+<<<<<<< HEAD
 The value for each property (`baseColor`, `metallic`, `roughness`) can be defined using factors or textures. The `metallic` and `roughness` properties are packed together in a single texture called `metallicRoughnessTexture`. If a texture is not given, all respective texture components within this material model are assumed to have a value of `1.0`. If both factors and textures are present the factor value acts as a linear multiplier for the corresponding texture values. The `baseColorTexture` is in sRGB space and must be converted to linear space before it is used for any computations.
+=======
+The value for each property (`baseColor`, `metallic`, `roughness`) can be defined using factors or textures. The `metallic` and `roughness` properties are packed together in a single texture called `metallicRoughnessTexture`. If a texture is not given, all respective texture components within this material model are assumed to have a value of `1.0`. If both factors and textures are present the factor value acts as a linear multiplier for the corresponding texture values. Texture content must be converted to linear space before it is used for any lighting computations. <br>可以使用因子或纹理定义每个属性的值（baseColor，metal，roughness）。金属和粗糙度属性在称为metallicRoughnessTexture的单个纹理中打包在一起。如果未给出纹理，则假定此材料模型中的所有相应纹理组件的值均为1.0。如果存在因子和纹理，则因子值充当相应纹理值的线性乘数。在将纹理内容用于任何光照计算之前，必须将其转换为线性空间
+>>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
 For example, assume a value of `[0.9, 0.5, 0.3, 1.0]` in linear space is obtained from an RGBA `baseColorTexture`, and assume that `baseColorFactor` is given as `[0.2, 1.0, 0.7, 1.0]`.
 Then, the result would be 
@@ -1149,18 +1237,18 @@ The following equations show how to calculate bidirectional reflectance distribu
 <br>
 *&alpha;* = `roughness ^ 2`
 
-All implementations should use the same calculations for the BRDF inputs. Implementations of the BRDF itself can vary based on device performance and resource constraints. See [Appendix B](#appendix-b-brdf-implementation) for more details on the BRDF calculations.
+All implementations should use the same calculations for the BRDF inputs. Implementations of the BRDF itself can vary based on device performance and resource constraints. See [Appendix B](#appendix-b-brdf-implementation) for more details on the BRDF calculations.<br>所有实现都应对BRDF输入使用相同的计算。 BRDF本身的实现可以根据设备性能和资源限制而变化。有关BRDF计算的更多详细信息，请参见附录B
 
 ### Additional Maps
 
-The material definition also provides for additional maps that can also be used with the metallic-roughness material model as well as other material models which could be provided via glTF extensions.
+The material definition also provides for additional maps that can also be used with the metallic-roughness material model as well as other material models which could be provided via glTF extensions.<br>材料定义还提供了额外的地图，这些地图也可以与金属粗糙度材料模型以及glTF扩展提供的其他材料模型一起使用
 
 Materials define the following additional maps:
 - **normal** : A tangent space normal map.
 - **occlusion** : The occlusion map indicating areas of indirect lighting.
-- **emissive** : The emissive map controls the color and intensity of the light being emitted by the material.
+- **emissive** : The emissive map controls the color and intensity of the light being emitted by the material.<br>自发光贴图控制材质发出的光的颜色和强度
 
-The following examples shows a material that is defined using `pbrMetallicRoughness` parameters as well as additional texture maps:
+The following examples shows a material that is defined using `pbrMetallicRoughness` parameters as well as additional texture maps:<br>以下示例显示了使用pbrMetallicRoughness参数以及其他纹理贴图定义的材质
 
 ```json
 {
@@ -1191,29 +1279,29 @@ The following examples shows a material that is defined using `pbrMetallicRoughn
 }
 ```
 
->**Implementation Note:** If an implementation is resource-bound and cannot support all the maps defined it should support these additional maps in the following priority order.  Resource-bound implementations should drop maps from the bottom to the top.
+>**Implementation Note:** If an implementation is resource-bound and cannot support all the maps defined it should support these additional maps in the following priority order.  Resource-bound implementations should drop maps from the bottom to the top.<br>实现注意：如果实现受资源限制且无法支持定义的所有映射，则应按以下优先级顺序支持这些附加映射。 资源绑定实现应该从底部到顶部删除贴图。
 >
 >| Map       | Rendering impact when map is not supported |
 >|-----------|--------------------------------------------|
 >| Normal    | Geometry will appear less detailed than authored. |
 >| Occlusion | Model will appear brighter in areas that should be darker. |
->| Emissive  | Model with lights will not be lit. For example, the headlights of a car model will be off instead of on. |
+>| Emissive  | Model with lights will not be lit. For example, the headlights of a car model will be off instead of on. <br>带灯的自发光模型不会亮起。 例如，汽车模型的前灯将关闭而不是打开|
 
 ### Alpha Coverage
 
-The `alphaMode` property defines how the alpha value of the main factor and texture should be interpreted. The alpha value is defined in the `baseColor` for metallic-roughness material model. 
+The `alphaMode` property defines how the alpha value of the main factor and texture should be interpreted. The alpha value is defined in the `baseColor` for metallic-roughness material model. <br>alphaMode属性定义应如何解释主要因子和纹理的alpha值。 alpha值在金属粗糙度材料模型中在baseColor中定义
 
-`alphaMode` can be one of the following values:
-* `OPAQUE` - The rendered output is fully opaque and any alpha value is ignored.
-* `MASK` - The rendered output is either fully opaque or fully transparent depending on the alpha value and the specified alpha cutoff value. This mode is used to simulate geometry such as tree leaves or wire fences.
-* `BLEND` - The rendered output is combined with the background using the normal painting operation (i.e. the Porter and Duff over operator). This mode is used to simulate geometry such as guaze cloth or animal fur. 
+`alphaMode` can be one of the following values:  alphaMode可以是以下值之一
+* `OPAQUE` - The rendered output is fully opaque and any alpha value is ignored. <br>渲染的输出完全不透明，忽略任何alpha值
+* `MASK` - The rendered output is either fully opaque or fully transparent depending on the alpha value and the specified alpha cutoff value. This mode is used to simulate geometry such as tree leaves or wire fences.<br>渲染输出完全不透明或完全透明，具体取决于alpha值和指定的alpha截止值。此模式用于模拟树叶或线栅等几何体
+* `BLEND` - The rendered output is combined with the background using the normal painting operation (i.e. the Porter and Duff over operator). This mode is used to simulate geometry such as guaze cloth or animal fur. <br>使用常规绘制操作（即Porter和Duff over运算符）将渲染输出与背景组合。此模式用于模拟几何形状，如guaze布或动物毛皮
 
- When `alphaMode` is set to `MASK` the `alphaCutoff` property specifies the cutoff threshold. If the alpha value is greater than or equal to the `alphaCutoff` value then it is rendered as fully opaque, otherwise, it is rendered as fully transparent. `alphaCutoff` value is ignored for other modes.
+ When `alphaMode` is set to `MASK` the `alphaCutoff` property specifies the cutoff threshold. If the alpha value is greater than or equal to the `alphaCutoff` value then it is rendered as fully opaque, otherwise, it is rendered as fully transparent. `alphaCutoff` value is ignored for other modes.<br>当alphaMode设置为MASK时，alphaCutoff属性指定截止阈值。如果alpha值大于或等于alphaCutoff值，则它将呈现为完全不透明，否则呈现为完全透明。其他模式将忽略alphaCutoff值
 
->**Implementation Note for Real-Time Rasterizers:** Real-time rasterizers typically use depth buffers and mesh sorting to support alpha modes. The following describe the expected behavior for these types of renderers.
->* `OPAQUE` - A depth value is written for every pixel and mesh sorting is not required for correct output.
->* `MASK` - A depth value is not written for a pixel that is discarded after the alpha test. A depth value is written for all other pixels. Mesh sorting is not required for correct output.
->* `BLEND` - Support for this mode varies. There is no perfect and fast solution that works for all cases. Implementations should try to achieve the correct blending output for as many situations as possible. Whether depth value is written or whether to sort is up to the implementation. For example, implementations can discard pixels which have zero or close to zero alpha value to avoid sorting issues.
+>**Implementation Note for Real-Time Rasterizers:** Real-time rasterizers typically use depth buffers and mesh sorting to support alpha modes. The following describe the expected behavior for these types of renderers.<br>实时光栅化的实现说明：实时光栅化通常使用深度缓冲区和网格排序来支持alpha模式。以下描述了这些类型的渲染器的预期行为<br>
+>* `OPAQUE` - A depth value is written for every pixel and mesh sorting is not required for correct output.<br>为每个像素写入深度值，并且正确输出不需要网格排序<br>
+>* `MASK` - A depth value is not written for a pixel that is discarded after the alpha test. A depth value is written for all other pixels. Mesh sorting is not required for correct output.<br>不为alpha测试后丢弃的像素写入深度值。为所有其他像素写入深度值。正确输出不需要网格排序<br>
+>* `BLEND` - Support for this mode varies. There is no perfect and fast solution that works for all cases. Implementations should try to achieve the correct blending output for as many situations as possible. Whether depth value is written or whether to sort is up to the implementation. For example, implementations can discard pixels which have zero or close to zero alpha value to avoid sorting issues.<br>对此模式的支持各不相同。没有完美而快速的解决方案适用于所有情况。实现应该尝试在尽可能多的情况下实现正确的混合输出。是否写入深度值或是否进行排序取决于实现。例如，实现可以丢弃具有零或接近零alpha值的像素以避免排序问题
 
 ### Double Sided
 
