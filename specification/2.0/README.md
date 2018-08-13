@@ -44,51 +44,6 @@ Copyright (C) 2013-2017 The Khronos Group Inc. All Rights Reserved. glTF is a tr
   * [File Extensions and MIME Types](#file-extensions-and-mime-types)  文件扩展名和MIME类型
   * [JSON Encoding](#json-encoding)  JSON编码
   * [URIs](#uris)
-<<<<<<< HEAD
-* [Concepts](#concepts)
-  * [Asset](#asset)
-  * [Indices and Names](#indices-and-names)
-  * [Coordinate System and Units](#coordinate-system-and-units)
-  * [Scenes](#scenes)
-    * [Nodes and Hierarchy](#nodes-and-hierarchy)
-    * [Transformations](#transformations)
-  * [Binary Data Storage](#binary-data-storage)
-    * [Buffers and Buffer Views](#buffers-and-buffer-views)
-      * [GLB-stored Buffer](#glb-stored-buffer)
-    * [Accessors](#accessors)
-        * [Floating-Point Data](#floating-point-data)
-        * [Accessor Element Size](#accessor-element-size)
-        * [Accessors Bounds](#accessors-bounds)
-        * [Sparse Accessors](#sparse-accessors)
-    * [Data Alignment](#data-alignment)   
-  * [Geometry](#geometry)
-    * [Meshes](#meshes)
-      * [Tangent-space definition](#tangent-space-definition)
-      * [Morph Targets](#morph-targets)
-    * [Skins](#skins)
-      * [Skinned Mesh Attributes](#skinned-mesh-attributes)
-      * [Joint Hierarchy](#joint-hierarchy)
-    * [Instantiation](#instantiation)
-  * [Texture Data](#texture-data)
-    * [Textures](#textures)
-    * [Images](#images)
-    * [Samplers](#samplers)
-  * [Materials](#materials)
-    * [Metallic-Roughness Material](#metallic-roughness-material)
-    * [Additional Maps](#additional-maps)
-    * [Alpha Coverage](#alpha-coverage)
-    * [Double Sided](#double-sided)
-    * [Default Material](#default-material)
-    * [Point and Line Materials](#point-and-line-materials)
-  * [Cameras](#cameras)
-    * [Projection Matrices](#projection-matrices)
-  * [Animations](#animations)
-  * [Specifying Extensions](#specifying-extensions)
-* [GLB File Format Specification](#glb-file-format-specification)
-  * [File Extension](#file-extension)
-  * [MIME Type](#mime-type)
-  * [Binary glTF Layout](#binary-gltf-layout)
-=======
 * [Concepts](#concepts)  概念
   * [Asset](#asset)  声明
   * [Indices and Names](#indices-and-names)  索引和名称
@@ -131,7 +86,6 @@ Copyright (C) 2013-2017 The Khronos Group Inc. All Rights Reserved. glTF is a tr
   * [File Extension](#file-extension)  文件扩展名
   * [MIME Type](#mime-type)  MIME类型
   * [Binary glTF Layout](#binary-gltf-layout)  二进制glTF布局
->>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
     * [Header](#header)
     * [Chunks](#chunks)
       * [Structured JSON Content](#structured-json-content)  结构化JSON内容
@@ -214,19 +168,6 @@ Major version updates are not expected to be compatible with previous versions.<
 * `*.bin` files use `application/octet-stream`
 * Texture files use the official `image/*` type based on the specific image format. For compatibility with modern web browsers, the following image formats are supported: `image/jpeg`, `image/png`.<br>纹理文件使用基于特定图像格式的官方`image/*`类型。为了与现代Web浏览器兼容，支持以下图像格式：image / jpeg，image / png
 
-<<<<<<< HEAD
-## JSON Encoding
-
-To simplify client-side implementation, glTF has additional restrictions on JSON format and encoding.
-
-1. JSON must use UTF-8 encoding without BOM.
-   > **Implementation Note:** glTF exporters must not add a byte order mark to the beginning of JSON text. In the interests of interoperability, client implementations may ignore the presence of a byte order mark rather than treating it as an error. See [RFC8259, section 8](https://tools.ietf.org/html/rfc8259#section-8) for more information.
-
-2. All strings defined in this spec (properties names, enums) use only ASCII charset and must be written as plain text, e.g., `"buffer"` instead of `"\u0062\u0075\u0066\u0066\u0065\u0072"`.
-
-   > **Implementation Note:** This allows generic glTF client implementations to not have full Unicode support. Application-specific strings (e.g., values of `"name"` properties or content of `extras` fields) may use any symbols.
-3. Names (keys) within JSON objects must be unique, i.e., duplicate keys aren't allowed.
-=======
 ## JSON encoding  JSON编码
 
 To simplify client-side implementation, glTF has following restrictions on JSON format and encoding.<br>为了简化客户端实现，glTF对JSON格式和编码有以下限制
@@ -236,7 +177,6 @@ To simplify client-side implementation, glTF has following restrictions on JSON 
 
    > **Implementation Note:** This allows generic glTF client implementations to not have full Unicode support. Application-specific strings (e.g., value of `"name"` property) could use any charset.<br>实现注意：这允许通用glTF客户端实现不具有完全的Unicode支持。特定于应用程序的字符串（例如，“name”属性的值）可以使用任何字符集<br>
 3. Names (keys) within JSON objects must be unique, i.e., duplicate keys aren't allowed.<br>JSON对象中的名称（键）必须是唯一的，即不允许使用重复键
->>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
 ## URIs
 
@@ -324,13 +264,7 @@ The [node transformations](#transformations) and [animation channel paths](#anim
 
 The glTF asset contains zero or more *scenes*, the set of visual objects to render. Scenes are defined in a `scenes` array. An additional property, `scene` (note singular), identifies which of the scenes in the array is to be displayed at load time.<br>glTF文件包含零个或多个场景，即要渲染的可视对象集。场景在`scenes`数组中定义。附加属性`scene`标识哪些场景将在加载时显示
 
-<<<<<<< HEAD
-All nodes listed in `scene.nodes` array must be root nodes (see the next section for details).
-
-When `scene` is undefined, runtime is not required to render anything at load time.
-=======
 When `scene` is undefined, runtime is not required to render anything at load time.<br>当场景未定义时，不需要在加载时呈现任何内容
->>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
 > **Implementation Note:** This allows applications to use glTF assets as libraries of individual entities such as materials or meshes.<br>实现注意：这允许应用程序将glTF文件用作单个实体（如材料或网格）的库   
 
@@ -363,11 +297,7 @@ Nodes have an optional `name` property.<br>节点具有可选的`name`属性。
 
 Nodes also have transform properties, as described in the next section.<br>节点还具有变换属性，如下一节中所述
 
-<<<<<<< HEAD
-Nodes are organized in a parent-child hierarchy known informally as the *node hierarchy*. A node is called a *root node* when it doesn't have a parent.
-=======
 Nodes are organized in a parent-child hierarchy known informally as the *node hierarchy*.<br>节点以父子层次结构组织，非正式地称为*node hierarchy*节点层次结构
->>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
 The node hierarchy is defined using a node's `children` property, as in the following example:<br>使用节点的children属性定义节点层次结构，如以下示例所示
 
@@ -396,11 +326,7 @@ The node hierarchy is defined using a node's `children` property, as in the foll
 
 The node named `Car` has four children. Each of those nodes could in turn have its own children, creating a hierarchy of nodes.<br>名为`Car`的节点有四个子节点。这些节点中的每一个都可以拥有自己的子节点，从而创建节点层次结构
 
-<<<<<<< HEAD
-> For Version 2.0 conformance, the glTF node hierarchy is not a directed acyclic graph (DAG) or *scene graph*, but a disjoint union of strict trees. That is, no node may be a direct descendant of more than one node. This restriction is meant to simplify implementation and facilitate conformance.
-=======
 >For Version 2.0 conformance, the glTF node hierarchy is not a directed acyclic graph (DAG) or *scene graph*, but a strict tree. That is, no node may be a direct or indirect descendant of more than one node. This restriction is meant to simplify implementation and facilitate conformance. The restriction may be lifted later.<br>对于2.0版，glTF节点层次结构不是有向非循环图（DAG）或场景图，而是严格的树。也就是说，没有节点可以是多个节点的直接或间接后代。此限制旨在简化实施并促进一致性。可以稍后解除限制
->>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
 ### Transformations  变换
 
@@ -712,11 +638,7 @@ When `byteStride` of referenced `bufferView` is not defined, it means that acces
 
 Each `accessor` must fit its `bufferView`, i.e., `accessor.byteOffset + STRIDE * (accessor.count - 1) + SIZE_OF_ELEMENT` must be less than or equal to `bufferView.length`.<br>每个`accessor`必须匹配其bufferView，即accessor.byteOffset + STRIDE *（accessor.count - 1）+ SIZE_OF_ELEMENT必须小于或等于bufferView.length
 
-<<<<<<< HEAD
-For performance and compatibility reasons, each element of a vertex attribute must be aligned to 4-byte boundaries inside `bufferView` (i.e., `accessor.byteOffset` and `bufferView.byteStride` must be multiples of 4).
-=======
 For performance and compatibility reasons, vertex attributes must be aligned to 4-byte boundaries inside `bufferView` (i.e., `accessor.byteOffset` and `bufferView.byteStride` must be multiples of 4). <br>出于性能和兼容性的原因，顶点属性必须与bufferView内的4字节边界对齐（即accessor.byteOffset和bufferView.byteStride必须是4的倍数)
->>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
 Accessors of matrix type have data stored in column-major order; start of each column must be aligned to 4-byte boundaries. To achieve this, three `type`/`componentType` combinations require special layout:<br>矩阵类型的访问器具有按列顺序存储的数据;每列的开头必须与4字节边界对齐。为此，三种`type`/`componentType`组合需要特殊布局
 
@@ -842,11 +764,6 @@ All indices for indexed attribute semantics, must start with 0 and be continuous
 
 > **Implementation note:** When tangents are not specified, client implementations should calculate tangents using default MikkTSpace algorithms.  For best results, the mesh triangles should also be processed using default MikkTSpace algorithms.<br>实现说明：当未指定切线时，客户端实现应使用默认的MikkTSpace算法计算切线。为获得最佳结果，还应使用默认的MikkTSpace算法处理网格三角形
 
-<<<<<<< HEAD
-> **Implementation note:** Vertices of the same triangle should have the same `tangent.w` value. When vertices of the same triangle have different `tangent.w` values, tangent space is considered undefined.
-
-> **Implementation note:** When normals and tangents are specified, client implementations should compute the bitangent by taking the cross product of the normal and tangent xyz vectors and multiplying against the w component of the tangent: `bitangent = cross(normal, tangent.xyz) * tangent.w`
-=======
 > **Implementation note:** When normals and tangents are specified, client implementations should compute the bitangent by taking the cross product of the normal and tangent xyz vectors and multiplying against the w component of the tangent: `bitangent = cross(normal, tangent.xyz) * tangent.w`<br>实现注意事项：当指定法线和切线时，客户端实现应通过获取法线和切线xyz向量的叉积并乘以切线的w分量来计算比特率：bitangent = cross（normal，tangent.xyz）* tangent .W
 
 > **Implementation note:** When the 'mode' property is set to a non-triangular type (such as POINTS or LINES) some additional considerations must be taken while considering the proper rendering technique:<br>实现注意事项：当'mode'属性设置为非三角形类型（如POINTS或LINES）时，在考虑正确的渲染技术时必须考虑一些其他因素
@@ -855,7 +772,6 @@ All indices for indexed attribute semantics, must start with 0 and be continuous
 > > For all POINTS or LINES with no `TANGENT` property, render with standard lighting but ignore any normal maps on the material.<br>对于没有TANGENT属性的所有POINTS或LINES，使用标准光照渲染但忽略材质上的任何法线贴图
 > > 
 > > For POINTS or LINES with no `NORMAL` property, don't calculate lighting and instead output the `COLOR` value for each pixel drawn.<br>对于没有NORMAL属性的POINTS或LINES，不要计算光照，而是为每个绘制的像素输出COLOR值
->>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
 #### Morph Targets  变形目标
 
@@ -881,8 +797,6 @@ Valid accessor type and component type for each attribute semantic property are 
 |`TANGENT`|`"VEC3"`|`5126`&nbsp;(FLOAT)|XYZ vertex tangent displacements|
 
 `POSITION` accessor **must** have `min` and `max` properties defined.
-
-All Morph Target's accessors **must** have the same `count` as the accessors of the original primitive.
 
 A Morph Target may also define an optional `mesh.weights` property that stores the default targets weights. In the absence of a `node.weights` property, the primitives attributes are resolved using these weights. When this property is missing, the default targets weights are assumed to be zero.
 
@@ -928,7 +842,7 @@ All skins are stored in the `skins` array of the asset. Each skin is defined by 
 
 > **Implementation Note:** The matrix defining how to pose the skin's geometry for use with the joints ("Bind Shape Matrix") should be premultiplied to mesh data or to Inverse Bind Matrices. 
 
-> **Implementation Note:** Client implementations should apply only the transform of the skeleton root node to the skinned mesh while ignoring the transform of the skinned mesh node. In the example below, the translation of `node_0` and the scale of `node_1` are applied while the translation of `node_3` and rotation of `node_4` are ignored.
+> **Implementation Note:** Client implementations should apply only the transform of the skeleton root node to the skinned mesh while ignoring the transform of the skinned mesh node. In the example below, the position of `node_0` and the scale of `node_1` are applied while the position of `node_3` and rotation of `node_4` are ignored.
 
 ```json
 {
@@ -936,7 +850,7 @@ All skins are stored in the `skins` array of the asset. Each skin is defined by 
         {
             "name": "node_0",
             "children": [ 1 ],
-            "translation": [ 0.0, 1.0, 0.0 ]
+            "position": [ 0.0, 1.0, 0.0 ]
         },
         {
             "name": "node_1",
@@ -949,7 +863,7 @@ All skins are stored in the `skins` array of the asset. Each skin is defined by 
         {
             "name": "node_3",
             "children": [ 4 ],
-            "translation": [ 1.0, 0.0, 0.0 ]
+            "position": [ 1.0, 0.0, 0.0 ]
         },
         {
             "name": "node_4",
@@ -1001,8 +915,6 @@ The number of joints that influence one vertex is limited to 4, so referenced ac
 
 * **`JOINTS_0`**: `UNSIGNED_BYTE` or `UNSIGNED_SHORT`
 * **`WEIGHTS_0`**: `FLOAT`, or normalized `UNSIGNED_BYTE`, or normalized `UNSIGNED_SHORT`
-
-The joint weights for each vertex must be >= 0, and normalized to have a linear sum of one. No joint may have more than one non-zero weight for a given vertex.
 
 #### Joint Hierarchy
 
@@ -1213,11 +1125,7 @@ The metallic-roughness material model is defined by the following properties:  �
 
 The base color has two different interpretations depending on the value of metalness. When the material is a metal, the base color is the specific measured reflectance value at normal incidence (F0). For a non-metal the base color represents the reflected diffuse color of the material. In this model it is not possible to specify a F0 value for non-metals, and a linear value of 4% (0.04) is used. <br>根据金属度的值，基色有两种不同的解释。当材料是金属时，基色是垂直入射时的特定测量反射率值（F0）。对于非金属，基色表示材质反射的漫反射颜色。在该模型中，不可能为非金属指定F0值，并且使用4％（0.04）的线性值
 
-<<<<<<< HEAD
-The value for each property (`baseColor`, `metallic`, `roughness`) can be defined using factors or textures. The `metallic` and `roughness` properties are packed together in a single texture called `metallicRoughnessTexture`. If a texture is not given, all respective texture components within this material model are assumed to have a value of `1.0`. If both factors and textures are present the factor value acts as a linear multiplier for the corresponding texture values. The `baseColorTexture` is in sRGB space and must be converted to linear space before it is used for any computations.
-=======
 The value for each property (`baseColor`, `metallic`, `roughness`) can be defined using factors or textures. The `metallic` and `roughness` properties are packed together in a single texture called `metallicRoughnessTexture`. If a texture is not given, all respective texture components within this material model are assumed to have a value of `1.0`. If both factors and textures are present the factor value acts as a linear multiplier for the corresponding texture values. Texture content must be converted to linear space before it is used for any lighting computations. <br>可以使用因子或纹理定义每个属性的值（baseColor，metal，roughness）。金属和粗糙度属性在称为metallicRoughnessTexture的单个纹理中打包在一起。如果未给出纹理，则假定此材料模型中的所有相应纹理组件的值均为1.0。如果存在因子和纹理，则因子值充当相应纹理值的线性乘数。在将纹理内容用于任何光照计算之前，必须将其转换为线性空间
->>>>>>> 9258066de87bb72620e22d9bad65e9a247e867ff
 
 For example, assume a value of `[0.9, 0.5, 0.3, 1.0]` in linear space is obtained from an RGBA `baseColorTexture`, and assume that `baseColorFactor` is given as `[0.2, 1.0, 0.7, 1.0]`.
 Then, the result would be 
@@ -1310,17 +1218,6 @@ The `doubleSided` property specifies whether the material is double sided. When 
 ### Default Material
 
 The default material, used when a mesh does not specify a material, is defined to be a material with no properties specified. All the default values of [`material`](#reference-material) apply. Note that this material does not emit light and will be black unless some lighting is present in the scene.
-
-### Point and Line Materials
-
-*This section is non-normative.*
-
-This specification does not define size and style of non-triangular primitives (such as POINTS or LINES) at this time, and applications may use various techniques to render these primitives as appropriate. However, the following recommendations are provided for consistency:
-
-* POINTS and LINES should have widths of 1px in viewport space.
-* For LINES with `NORMAL` and `TANGENT` properties, render with standard lighting including normal maps.
-* For POINTS or LINES with no `TANGENT` property, render with standard lighting but ignore any normal maps on the material.
-* For POINTS or LINES with no `NORMAL` property, don't calculate lighting and instead output the `COLOR` value for each pixel drawn.
 
 ## Cameras
 
@@ -1546,8 +1443,6 @@ The following examples show expected animations usage.
 When `node` isn't defined, channel should be ignored. Valid path names are `"translation"`, `"rotation"`, `"scale"`, and `"weights"`.
 
 Each of the animation's *samplers* defines the `input`/`output` pair: a set of floating point scalar values representing linear time in seconds; and a set of vectors or scalars representing animated property. All values are stored in a buffer and accessed via accessors; refer to the table below for output accessor types. Interpolation between keys is performed using the interpolation method specified in the `interpolation` property. Supported `interpolation` values include `LINEAR`, `STEP`, and `CUBICSPLINE`. See [Appendix C](#appendix-c-spline-interpolation) for additional information about spline interpolation.
-
-The inputs of each sampler are relative to `t=0`, defined as the beginning of the parent `animations` entry. Before and after the provided input range, output should be "clamped" to the nearest end of the input range. For example, if the earliest sampler input for an animation is `t=10`, a client implementation should begin playback of that animation at `t=0` with output clamped to the first output value. Samplers within a given animation are _not_ required to have the same inputs.
 
 |`channel.path`|Accessor Type|Component Type(s)|Description|
 |----|----------------|-----------------|-----------|
@@ -2748,7 +2643,7 @@ A set of parameter values that are used to define the metallic-roughness materia
 
 #### material.normalTexture
 
-A tangent space normal map. The texture contains RGB components in linear space. Each texel represents the XYZ components of a normal vector in tangent space. Red [0 to 255] maps to X [-1 to 1]. Green [0 to 255] maps to Y [-1 to 1]. Blue [128 to 255] maps to Z [1/255 to 1]. The normal vectors use OpenGL conventions where +X is right and +Y is up. +Z points toward the viewer. In GLSL, this vector would be unpacked like so: `vec3 normalVector = tex2D(normalMap, texCoord) * 2 - 1`. Client implementations should normalize the normal vectors before using them in lighting equations.
+A tangent space normal map. The texture contains RGB components in linear space. Each texel represents the XYZ components of a normal vector in tangent space. Red [0 to 255] maps to X [-1 to 1]. Green [0 to 255] maps to Y [-1 to 1]. Blue [128 to 255] maps to Z [1/255 to 1]. The normal vectors use OpenGL conventions where +X is right and +Y is up. +Z points toward the viewer. In GLSL, this vector would be unpacked like so: `float3 normalVector = tex2D(normalMap, texCoord) * 2 - 1`. Client implementations should normalize the normal vectors before using them in lighting equations.
 
 * **Type**: `object`
 * **Required**: No
